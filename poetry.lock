@@ -500,22 +500,6 @@ files = [
 ]
 
 [[package]]
-name = "lichecker"
-version = "0.0.1a1"
-description = ""
-category = "dev"
-optional = false
-python-versions = "*"
-files = []
-develop = false
-
-[package.source]
-type = "git"
-url = "https://github.com/NeonJarbas/lichecker"
-reference = "HEAD"
-resolved_reference = "45eb40e3614ac8d54b1d32bd28c2e102e33f7b30"
-
-[[package]]
 name = "mccabe"
 version = "0.4.0"
 description = "McCabe checker, plugin for flake8"
@@ -1466,5 +1450,5 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 
 [metadata]
 lock-version = "2.0"
-  python-versions = "^3.7"
-content-hash = "5170b9ee3c7bad1dae3a2a58719133ca3f537352c4e76ddf54c639057ac97a95"
+python-versions = "^3.7"
+content-hash = "f37afeb5c9936c869269260ebb6d389fb189e2204a7cefd7a492898249b5e941"

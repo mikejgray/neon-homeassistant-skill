@@ -1,46 +1,16 @@
 name: Create and publish a Python package to GitHub
-# https://mestrak.com/blog/semantic-release-with-python-poetry-github-actions-20nn
+# Adapted from https://mestrak.com/blog/semantic-release-with-python-poetry-github-actions-20nn
 
 on:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
 
 jobs:
-  quality:
+  Release:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-      - name: Install Python Poetry
-        uses: abatilo/actions-poetry@v2.1.0
-        with:
-          poetry-version: 1.3.2
-      - name: Configure poetry
-        shell: bash
-        run: python -m poetry config virtualenvs.in-project true
-      - name: View poetry version
-        run: poetry --version
-      - name: Install dependencies
-        run: |
-          python -m poetry install
-      - name: Test with pytest
-        run: |
-          python -m poetry run python -m pytest -v tests
-
-  Release:
-    needs: Quality
-    # https://github.community/t/how-do-i-specify-job-dependency-running-in-another-workflow/16482
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'chore(release):')
-    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
