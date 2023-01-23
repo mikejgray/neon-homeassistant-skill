@@ -3,7 +3,7 @@ from mycroft.skills.core import MycroftSkill
 from mycroft.util.log import LOG
 from mycroft import intent_handler
 
-__version__ = "0.0.0"
+__version__ = "0.0.1"
 
 # https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant/blob/master/ovos_PHAL_plugin_homeassistant/__init__.py
 class NeonHomeAssistantSkill(MycroftSkill):
