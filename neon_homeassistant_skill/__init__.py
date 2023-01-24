@@ -16,13 +16,8 @@ class NeonHomeAssistantSkill(MycroftSkill):
     def get_device_intent(self, message):
         """Handle intent to get a single device from Home Assistant."""
         bus_target = "ovos.phal.plugin.homeassistant.get.device"
-        self._get_device_intent(bus_target, message.data)
-        self.bus.emit(Message(bus_target, message.data))
-
-    def _get_device_intent(self, event, data):
-        """Handle intent to get a single device from Home Assistant."""
-        LOG.debug(data)
-        self.add_event(event, data)
+        LOG.info(message)
+        self.bus.emit(bus_target)
 
     @intent_handler("turn.on.intent")
     def handle_turn_on_intent(self, message) -> None:
