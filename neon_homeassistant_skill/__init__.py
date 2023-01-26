@@ -15,22 +15,21 @@ class NeonHomeAssistantSkill(MycroftSkill):
     @intent_handler("sensor.intent")
     def get_device_intent(self, message):
         """Handle intent to get a single device from Home Assistant."""
-        bus_target = "ovos.phal.plugin.homeassistant.get.device"
-        LOG.info(message)
-        self.bus.emit(bus_target)
+        LOG.debug(message.data)
+        self.bus.emit(Message("ovos.phal.plugin.homeassistant.get.device", message.data))
 
     @intent_handler("turn.on.intent")
     def handle_turn_on_intent(self, message) -> None:
         """Handle turn on intent."""
-        LOG.debug(message.data)
-        self.add_event("ovos.phal.plugin.homeassistant.device.turn_on", message.data)
+        LOG.info(message.data)
+        self.bus.emit(Message("ovos.phal.plugin.homeassistant.device.turn_on", message.data))
 
     @intent_handler("turn.off.intent")
     @intent_handler("stop.intent")
     def handle_turn_off_intent(self, message) -> None:
         """Handle turn off intent."""
-        LOG.debug(message.data)
-        self.add_event("ovos.phal.plugin.homeassistant.device.turn_on", message.data)
+        LOG.info(message.data)
+        self.bus.emit(Message("ovos.phal.plugin.homeassistant.device.turn_on", message.data))
 
     # @intent_handler("call.supported.function.intent")
     # def handle_call_supported_function(self, message) -> None:
