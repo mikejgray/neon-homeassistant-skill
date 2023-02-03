@@ -5,7 +5,7 @@ from mycroft.skills.core import MycroftSkill, intent_handler
 from mycroft.util.log import LOG
 from pfzy import fuzzy_match
 
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 
 # https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant/blob/master/ovos_PHAL_plugin_homeassistant/__init__.py
 class NeonHomeAssistantSkill(MycroftSkill):
@@ -33,7 +33,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
     def get_device_intent(self, message):
         """Handle intent to get a single device from Home Assistant."""
         LOG.info(message.data)
-        device = message.data.get("device")
+        device = message.data.get("Entity")
         LOG.info(f"Device: {device}")
         device_id = self.get_device_id(device)
         LOG.info(f"Device ID: {device_id}")
@@ -46,7 +46,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
     def handle_turn_on_intent(self, message) -> None:
         """Handle turn on intent."""
         LOG.info(message.data)
-        device = message.data.get("device")
+        device = message.data.get("Entity")
         LOG.info(f"Device: {device}")
         device_id = self.get_device_id(device)
         LOG.info(f"Device ID: {device_id}")
@@ -60,7 +60,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
     def handle_turn_off_intent(self, message) -> None:
         """Handle turn off intent."""
         LOG.info(message.data)
-        device = message.data.get("device")
+        device = message.data.get("Entity")
         device_id = self.get_device_id(device)
         if device:
             self.bus.emit(Message("ovos.phal.plugin.homeassistant.device.turn_off", {"device_id": device_id}))
