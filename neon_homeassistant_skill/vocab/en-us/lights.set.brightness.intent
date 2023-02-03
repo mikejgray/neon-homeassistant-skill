@@ -1,0 +1,3 @@
+(set|change) (|the) brightness of {device} to {brightness} (|percent)
+(set|change) {device} brightness to {brightness} (|percent)
+(set|change) {device} to {brightness} (|percent)
