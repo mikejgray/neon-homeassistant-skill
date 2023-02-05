@@ -4,11 +4,12 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "neon-homeassistant-skill"
-version = "0.0.4"
+version = "0.0.5"
 description = "A Neon AI Skill for Home Assistant, which integrates with ovos-PHAL-plugin-homeassistant."
 authors = [ "Mike Gray <mike@graywind.org>" ]
 readme = "README.md"
-license = "BSD-3"
+license = "Apache-2.0"
+include = ["neon_homeassistant_skill/dialog/*", "neon_homeassistant_skill/vocab/*"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
@@ -27,12 +28,5 @@ adapt-parser = {git = "https://github.com/mycroftai/adapt"}
 ovos-core = "^0.0.5"
 mycroft-messagebus-client = "^0.10.1"
 
-[tool.semantic_release]
-version_variable = [
-    "neon_homeassistant_skill/__init__.py:__version__",
-    "pyproject.toml:version"
-]
-branch = "main"
-upload_to_pypi = false
-upload_to_release = true
-build_command = "pip install poetry && poetry build"
+[tool.poetry.scripts]
+"neon-homeassistant-skill" = "neon_homeassistant_skill:NeonHomeAssistantSkill"
