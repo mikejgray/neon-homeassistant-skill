@@ -1,0 +1,3 @@
+Requested {device} was not found. Please try again.
+Could not find {device} in Home Assistant.
+I'm sorry, Home Assistant didn't tell me about {device}.
