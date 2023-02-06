@@ -1,4 +1,4 @@
-stop (the|) {Entity}
-Can you stop (the|) {Entity} please?
-I'd like to stop (the|) {Entity}
-I would like (the|) {Entity} stopped
+stop (the|) {entity}
+Can you stop (the|) {entity} please?
+I'd like to stop (the|) {entity}
+I would like (the|) {entity} stopped

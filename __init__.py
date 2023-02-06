@@ -5,7 +5,7 @@ from mycroft.skills.core import MycroftSkill, intent_handler
 from mycroft.util.log import LOG
 from pfzy import fuzzy_match
 
-__version__ = "0.0.5"
+__version__ = "0.0.6"
 
 
 # https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant/blob/master/ovos_PHAL_plugin_homeassistant/__init__.py
@@ -20,7 +20,6 @@ class NeonHomeAssistantSkill(MycroftSkill):
         self._build_device_list()
         self.bus.on("ovos.phal.plugin.homeassistant.get.devices.response", self._handle_device_list)
         self.bus.on("ovos.phal.plugin.homeassistant.device.state.updated", self._handle_device_state_update)
-        self.bus.on("ovos.phal.plugin.homeassistant.get.device.response", self._handle_device_status)
 
     def _build_device_list(self):
         self.bus.emit(Message("ovos.phal.plugin.homeassistant.get.devices"))
@@ -31,16 +30,13 @@ class NeonHomeAssistantSkill(MycroftSkill):
     def _handle_device_state_update(self, message):
         self._build_device_list()
 
-    def _handle_device_status(self, message):  # Tested live
-        self.speak("I can't tell you, but I can show you.")  # TODO: One day
-
     @intent_handler("sensor.intent")  # Tested live, no GUI
     def get_device_intent(self, message):
         """Handle intent to get a single device from Home Assistant."""
         LOG.info(message.data)
         device, device_id = self._get_device_from_message(message)
         if device and device_id:
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.get.device", message.data))
+            self.bus.emit(Message("ovos.phal.plugin.homeassistant.get.device", {"device_id": device_id}))
         else:
             self.speak_dialog("device.not.found", data={"device": device})
 
@@ -77,98 +73,116 @@ class NeonHomeAssistantSkill(MycroftSkill):
         self.bus.emit(Message("ovos-PHAL-plugin-homeassistant.close"))
         self.speak_dialog("ha.dashboard.closed")
 
-    # @intent_handler("lights.get.brightness.intent")
-    # def handle_get_brightness_intent(self, message):
-    #     device, device_id = self._get_device_from_message(message)
-    #     if device and device_id:
-    #         for dev in self.devices_list:
-    #             if dev["id"] == device_id:
-    #                 brightness = int(dev["attributes"].get("brightness"))
-    #                 if brightness:
-    #                     self.speak_dialog(
-    #                         "lights.current.brightness",
-    #                         data={"brightness": round(brightness / 255 * 100), "device": device},
-    #                     )
-    #                 else:
-    #                     self.speak_dialog(
-    #                         "lights.status.not.available", data={"device": device, "status": "brightness"}
-    #                     )
-    #     else:
-    #         self.speak_dialog("device.not.found", data={"device": device})  # Not quite...check corner cases here
+    @intent_handler("lights.get.brightness.intent")  # Tested, but inconsistent...it's not always finding devices well
+    def handle_get_brightness_intent(self, message):
+        LOG.info(message.data)
+        device, device_id = self._get_device_from_message(message)
+        if device and device_id:
+            brightness = self._get_device_info(device_id).get("attributes", {}).get("brightness")
+            LOG.info(brightness)
+            if brightness:
+                self.speak_dialog(
+                    "lights.current.brightness",
+                    data={
+                        "brightness": self._get_percentage_brightness_from_ha_value(brightness),
+                        "device": device,
+                    },
+                )
+            else:
+                self.speak_dialog("lights.status.not.available", data={"device": device})
+        else:
+            self.speak_dialog("device.not.found", data={"device": device})
 
-    # @intent_handler("lights.set.brightness.intent")
-    # def handle_set_brightness_intent(self, message):
-    #     device = message.data.get("device", "")
-    #     brightness = int(message.data.get("brightness"))
-    #     device_id = self._get_device_id(device)
-    #     if device_id:
-    #         call_data = {
-    #             "device_id": device_id,
-    #             "function_name": "turn_on",
-    #             "data": {"brightness": round(brightness / 100 * 255)},
-    #         }
-    #         self.bus.emit(Message("ovos.phal.plugin.homeassistant.call.supported.function", call_data))
-    #     else:
-    #         self.speak_dialog("device.not.found", data={"device": device})
+    @intent_handler("lights.set.brightness.intent")  # Tested live, no GUI
+    def handle_set_brightness_intent(self, message):
+        device, device_id = self._get_device_from_message(message)
+        if device and device_id:  # If the intent doesn't understand the device, you'll get a device_id but no device
+            brightness = message.data.get("brightness")
+            call_data = {
+                "device_id": device_id,
+                "function_name": "turn_on",
+                "function_args": {"brightness": self._get_ha_value_from_percentage_brightness(brightness)},
+            }
+            LOG.info(call_data)
+            self.bus.emit(Message("ovos.phal.plugin.homeassistant.call.supported.function", call_data))
+            self.speak_dialog("acknowledge")
+        else:
+            self.speak_dialog("device.not.found", data={"device": device})
 
-    # @intent_handler("lights.increase.brightness.intent")
-    # def handle_increase_brightness_intent(self, message):
-    #     device = message.data.get("device", "")
-    #     device_id = self._get_device_id(device)
-    #     if device_id:
-    #         for device in self.devices_list:
-    #             if device["id"] == device_id:
-    #                 brightness = int(device["attributes"].get("brightness"))
-    #                 break
+    # Tested live, no GUI. Works once then status isn't being updated from PHAL.
+    @intent_handler("lights.increase.brightness.intent")
+    def handle_increase_brightness_intent(self, message):
+        device, device_id = self._get_device_from_message(message)
+        if device and device_id:  # If the intent doesn't understand the device, you'll get a device_id but no device
+            brightness = self._get_device_info(device_id).get("attributes", {}).get("brightness")
+            if brightness:
+                increased_percentage = min(self._get_percentage_brightness_from_ha_value(brightness) + 10, 100)
+                call_data = {
+                    "device_id": device_id,
+                    "function_name": "turn_on",
+                    "function_args": {
+                        "brightness": self._get_ha_value_from_percentage_brightness(increased_percentage)
+                    },
+                }
+                self.bus.emit(Message("ovos.phal.plugin.homeassistant.call.supported.function", call_data))
+                self.speak_dialog("acknowledge")
+            else:
+                self.speak_dialog("lights.status.not.available", data={"device": device})
+        else:
+            self.speak_dialog("device.not.found", data={"device": device})
 
-    #         brightness = round(brightness / 255 * 100) + 10
-    #         self.handle_set_brightness_intent({"device": device, "brightness": brightness})
+    # Tested live, no GUI. Works once then status isn't being updated from PHAL.
+    @intent_handler("lights.decrease.brightness.intent")
+    def handle_decrease_brightness_intent(self, message):
+        device, device_id = self._get_device_from_message(message)
+        if device and device_id:  # If the intent doesn't understand the device, you'll get a device_id but no device
+            brightness = self._get_device_info(device_id).get("attributes", {}).get("brightness")
+            if brightness:
+                decreased_percentage = max(self._get_percentage_brightness_from_ha_value(brightness) - 10, 0)
+                call_data = {
+                    "device_id": device_id,
+                    "function_name": "turn_on",
+                    "function_args": {
+                        "brightness": self._get_ha_value_from_percentage_brightness(decreased_percentage)
+                    },
+                }
+                self.bus.emit(Message("ovos.phal.plugin.homeassistant.call.supported.function", call_data))
+                self.speak_dialog("acknowledge")
+            else:
+                self.speak_dialog("lights.status.not.available", data={"device": device})
+        else:
+            self.speak_dialog("device.not.found", data={"device": device})
 
-    # @intent_handler("lights.decrease.brightness.intent")
-    # def handle_decrease_brightness_intent(self, message):
-    #     device = message.data.get("device", "")
-    #     device_id = self._get_device_id(device)
-    #     if device_id:
-    #         for device in self.devices_list:
-    #             if device["id"] == device_id:
-    #                 brightness = int(device["attributes"].get("brightness"))
-    #                 break
+    @intent_handler("lights.get.color.intent")
+    def handle_get_color_intent(self, message):
+        device, device_id = self._get_device_from_message(message)
+        if device_id:
+            for dev in self.devices_list:
+                if dev["id"] == device_id:
+                    color = dev["attributes"].get("rgb_color")
+                    if color:
+                        self.speak_dialog("lights.current.color", data={"color": color, "device": device})
+                    else:
+                        self.speak_dialog("lights.status.not.available", data={"device": device, "status": "color"})
 
-    #         brightness = max(round(brightness / 255 * 100) - 10, 0)
-    #         self.handle_set_brightness_intent({"device": device, "brightness": brightness})
+    @intent_handler("lights.set.color.intent")
+    def handle_set_color_intent(self, message):
+        device, device_id = self._get_device_from_message(message)
+        device_id = self._get_device_id(device)
+        if device_id:
+            for device in self.devices_list:
+                if device["id"] == device_id:
+                    brightness = device["attributes"].get("brightness")
+                    break
 
-    # @intent_handler("lights.get.color.intent")
-    # def handle_get_color_intent(self, message):
-    #     device = message.data.get("device", "")
-    #     device_id = self._get_device_id(device)
-    #     if device_id:
-    #         for dev in self.devices_list:
-    #             if dev["id"] == device_id:
-    #                 color = dev["attributes"].get("rgb_color")
-    #                 if color:
-    #                     self.speak_dialog("lights.current.color", data={"color": color, "device": device})
-    #                 else:
-    #                     self.speak_dialog("lights.status.not.available", data={"device": device, "status": "color"})
-
-    # @intent_handler("lights.set.color.intent")
-    # def handle_set_color_intent(self, message):
-    #     device = message.data.get("device", "")
-    #     color = message.data.get("color")
-    #     device_id = self._get_device_id(device)
-    #     if device_id:
-    #         for device in self.devices_list:
-    #             if device["id"] == device_id:
-    #                 brightness = device["attributes"].get("brightness")
-    #                 break
-
-    #         call_data = {
-    #             "device_id": device_id,
-    #             "function_name": "turn_on",
-    #             "data": {"brightness": brightness, "rgb_color": color},
-    #         }
-    #         self.bus.emit(Message("ovos.phal.plugin.homeassistant.call.supported.function", call_data))
-    #     else:
-    #         self.speak_dialog("device.not.found", data={"device": device})
+            call_data = {
+                "device_id": device_id,
+                "function_name": "turn_on",
+                "data": {"brightness": brightness, "rgb_color": message.data.get("color")},
+            }
+            self.bus.emit(Message("ovos.phal.plugin.homeassistant.call.supported.function", call_data))
+        else:
+            self.speak_dialog("device.not.found", data={"device": device})
 
     def _fuzzy_match_name(self, spoken_name, device_names):
         result = asyncio.run(fuzzy_match(spoken_name, device_names))
@@ -195,6 +209,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
                 device_names.append(device["attributes"]["friendly_name"].lower())
             else:
                 device_names.append(device["name"].lower())
+        LOG.debug(device_names)
         spoken_name = spoken_name.lower()
         if spoken_name in device_names:
             return self.devices_list[device_names.index(spoken_name)]["id"]
@@ -202,16 +217,25 @@ class NeonHomeAssistantSkill(MycroftSkill):
             fuzzy_result = self._fuzzy_match_name(spoken_name, device_names)
             return fuzzy_result if fuzzy_result else None
 
-    # @intent_handler("call.supported.function.intent")
-    # def handle_call_supported_function(self, message) -> None:
-    #     """Handle call supported function intent."""
-    #     LOG.debug(message.data)
-    #     self.add_event("ovos.phal.plugin.homeassistant.call.supported.function", message.data)
+    def _get_device_info(self, device_id):
+        return [x for x in self.devices_list if x["id"] == device_id][0]
+
+    def _get_percentage_brightness_from_ha_value(self, brightness):
+        return round(int(brightness) / 255 * 100)
+
+    def _get_ha_value_from_percentage_brightness(self, brightness):
+        return round(int(brightness)) / 100 * 255
+
+    def _search_for_device_by_id(self, device_id):
+        """Returns index of device or None if not found."""
+        for i, dic in enumerate(self.devices_list):
+            if dic["id"] == device_id:
+                return i
+        return None
 
     # Supported bus events in OVOS PHAL plugin
     # self.bus.emit(Message("ovos.phal.plugin.homeassistant.get.device.display.model"))
     # self.bus.emit(Message("ovos.phal.plugin.homeassistant.get.device.display.list.model"))
-    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.call.supported.function"))
     # self.bus.emit(Message("ovos.phal.plugin.homeassistant.start.oauth.flow"))
     # # GUI EVENTS
     # self.bus.emit(Message("ovos.phal.plugin.homeassistant.show.device.dashboard"))
