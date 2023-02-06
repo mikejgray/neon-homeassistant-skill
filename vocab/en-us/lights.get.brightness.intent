@@ -1,2 +1,2 @@
-(get|query) the (|current) brightness of the {device}
-(what is|what's) the (|current) brightness of the {device}
+(get|query) the (|current) brightness of (|the) {entity}
+(what is|what's) the (|current) brightness of (|the) {entity}

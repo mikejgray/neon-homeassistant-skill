@@ -1,3 +1,3 @@
-increase (|the) brightness of (|the) {device}
-make (|the) {device} brighter
-bump (|up) (|the) brightness of (|the) {device}
+increase (|the) brightness of (|the) {entity}
+make (|the) {entity} brighter
+bump (|up) (|the) brightness of (|the) {entity}

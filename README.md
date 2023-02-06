@@ -8,7 +8,6 @@ Still a work in progress - but for turning devices on/off and opening the Home A
 
 ## Upcoming Features
 
-- Brightness settings
-- Color settings
+- Color settings (still in testing)
 - Start OAuth workflow with voice
 - Start an instance of the ovos-PHAL-plugin-homeassistant if PHAL isn't already running
