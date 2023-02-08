@@ -1,0 +1,3 @@
+{type} {device} is showing a state of {state}
+The {type} called {device} is currently {state}
+Home Assistant tells me the {type} {device} is {state}

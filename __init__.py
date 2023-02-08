@@ -36,7 +36,16 @@ class NeonHomeAssistantSkill(MycroftSkill):
         LOG.info(message.data)
         device, device_id = self._get_device_from_message(message)
         if device and device_id:
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.get.device", {"device_id": device_id}))
+            dev = self._get_device_info(device_id)
+            self.bus.emit(
+                Message(
+                    "ovos.phal.plugin.homeassistant.show.device.dashboard",
+                    {"device_id": device_id, "device_type": dev.get("type")},
+                )
+            )
+            self.speak_dialog(
+                "device.status", data={"device": device, "type": dev.get("type"), "state": dev.get("state")}
+            )
         else:
             self.speak_dialog("device.not.found", data={"device": device})
 
@@ -187,6 +196,15 @@ class NeonHomeAssistantSkill(MycroftSkill):
         else:
             self.speak_dialog("device.not.found", data={"device": device})
 
+    # Supported bus events in OVOS PHAL plugin
+    # # GUI EVENTS
+    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.show.area.dashboard"))
+    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.update.device.dashboard"))
+    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.update.area.dashboard"))
+    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.set.group.display.settings"))
+    # We can start a vacuum using call.supported.function start
+
+    # Internal helpers
     def _fuzzy_match_name(self, spoken_name, device_names):
         result = asyncio.run(fuzzy_match(spoken_name, device_names))
         if result:
@@ -235,17 +253,6 @@ class NeonHomeAssistantSkill(MycroftSkill):
             if dic["id"] == device_id:
                 return i
         return None
-
-    # Supported bus events in OVOS PHAL plugin
-    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.get.device.display.model"))
-    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.get.device.display.list.model"))
-    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.start.oauth.flow"))
-    # # GUI EVENTS
-    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.show.device.dashboard"))
-    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.show.area.dashboard"))
-    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.update.device.dashboard"))
-    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.update.area.dashboard"))
-    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.set.group.display.settings"))
 
     # Intent handlers from Mycroft  # TODO:
 
