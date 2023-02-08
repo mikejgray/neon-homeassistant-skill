@@ -179,12 +179,9 @@ class NeonHomeAssistantSkill(MycroftSkill):
     @intent_handler("lights.set.color.intent")
     def handle_set_color_intent(self, message):
         device, device_id = self._get_device_from_message(message)
-        device_id = self._get_device_id(device)
-        if device_id:
-            for device in self.devices_list:
-                if device["id"] == device_id:
-                    brightness = device["attributes"].get("brightness")
-                    break
+        if device and device_id:
+            dev = self._get_device_info(device_id)
+            brightness = dev.get("attributes", {}).get("brightness")
 
             call_data = {
                 "device_id": device_id,
@@ -196,12 +193,15 @@ class NeonHomeAssistantSkill(MycroftSkill):
         else:
             self.speak_dialog("device.not.found", data={"device": device})
 
-    # Supported bus events in OVOS PHAL plugin
-    # # GUI EVENTS
-    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.show.area.dashboard"))
-    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.update.device.dashboard"))
-    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.update.area.dashboard"))
-    # self.bus.emit(Message("ovos.phal.plugin.homeassistant.set.group.display.settings"))
+    @intent_handler("show.area.dashboard.intent")
+    def handle_show_area_dashboard_intent(self, message):
+        area = message.get("area")
+        if area:
+            self.bus.emit(Message("ovos.phal.plugin.homeassistant.show.area.dashboard"), {"area": area})
+            self.speak_dialog("area.dashboard.opened", data={"area": area})
+        else:
+            self.speak_dialog("area.not.found")
+
     # We can start a vacuum using call.supported.function start
 
     # Internal helpers
