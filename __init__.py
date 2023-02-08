@@ -5,7 +5,7 @@ from mycroft.skills.core import MycroftSkill, intent_handler
 from mycroft.util.log import LOG
 from pfzy import fuzzy_match
 
-__version__ = "0.0.6"
+__version__ = "0.0.7"
 
 
 # https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant/blob/master/ovos_PHAL_plugin_homeassistant/__init__.py
@@ -30,7 +30,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
     def _handle_device_state_update(self, message):
         self._build_device_list()
 
-    @intent_handler("sensor.intent")  # Tested live, no GUI
+    @intent_handler("sensor.intent")
     def get_device_intent(self, message):
         """Handle intent to get a single device from Home Assistant."""
         LOG.info(message.data)
@@ -40,7 +40,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
         else:
             self.speak_dialog("device.not.found", data={"device": device})
 
-    @intent_handler("turn.on.intent")  # Tested live
+    @intent_handler("turn.on.intent")
     def handle_turn_on_intent(self, message) -> None:
         """Handle turn on intent."""
         LOG.info(message.data)
@@ -53,7 +53,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
 
     @intent_handler("turn.off.intent")
     @intent_handler("stop.intent")
-    def handle_turn_off_intent(self, message) -> None:  # Tested live
+    def handle_turn_off_intent(self, message) -> None:
         """Handle turn off intent."""
         LOG.info(message.data)
         device, device_id = self._get_device_from_message(message)
@@ -63,17 +63,17 @@ class NeonHomeAssistantSkill(MycroftSkill):
         else:
             self.speak_dialog("device.not.found", data={"device": device})
 
-    @intent_handler("open.dashboard.intent")  # Tested live, no GUI
+    @intent_handler("open.dashboard.intent")
     def handle_open_dashboard_intent(self, message):
         self.bus.emit(Message("ovos-PHAL-plugin-homeassistant.home"))
         self.speak_dialog("ha.dashboard.opened")
 
-    @intent_handler("close.dashboard.intent")  # Tested live, no GUI
+    @intent_handler("close.dashboard.intent")
     def handle_close_dashboard_intent(self, message):
         self.bus.emit(Message("ovos-PHAL-plugin-homeassistant.close"))
         self.speak_dialog("ha.dashboard.closed")
 
-    @intent_handler("lights.get.brightness.intent")  # Tested, but inconsistent...it's not always finding devices well
+    @intent_handler("lights.get.brightness.intent")
     def handle_get_brightness_intent(self, message):
         LOG.info(message.data)
         device, device_id = self._get_device_from_message(message)
@@ -93,7 +93,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
         else:
             self.speak_dialog("device.not.found", data={"device": device})
 
-    @intent_handler("lights.set.brightness.intent")  # Tested live, no GUI
+    @intent_handler("lights.set.brightness.intent")
     def handle_set_brightness_intent(self, message):
         device, device_id = self._get_device_from_message(message)
         if device and device_id:  # If the intent doesn't understand the device, you'll get a device_id but no device
@@ -109,7 +109,6 @@ class NeonHomeAssistantSkill(MycroftSkill):
         else:
             self.speak_dialog("device.not.found", data={"device": device})
 
-    # Tested live, no GUI. Works once then status isn't being updated from PHAL.
     @intent_handler("lights.increase.brightness.intent")
     def handle_increase_brightness_intent(self, message):
         device, device_id = self._get_device_from_message(message)
@@ -131,7 +130,6 @@ class NeonHomeAssistantSkill(MycroftSkill):
         else:
             self.speak_dialog("device.not.found", data={"device": device})
 
-    # Tested live, no GUI. Works once then status isn't being updated from PHAL.
     @intent_handler("lights.decrease.brightness.intent")
     def handle_decrease_brightness_intent(self, message):
         device, device_id = self._get_device_from_message(message)
@@ -156,10 +154,14 @@ class NeonHomeAssistantSkill(MycroftSkill):
     @intent_handler("lights.get.color.intent")
     def handle_get_color_intent(self, message):
         device, device_id = self._get_device_from_message(message)
+        color = self._get_device_info(device_id).get("attributes", {}).get("rgb_color")
+        LOG.info(device)
+        LOG.info(device_id)
         if device_id:
             for dev in self.devices_list:
                 if dev["id"] == device_id:
                     color = dev["attributes"].get("rgb_color")
+                    LOG.info(dev)
                     if color:
                         self.speak_dialog("lights.current.color", data={"color": color, "device": device})
                     else:
@@ -181,6 +183,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
                 "data": {"brightness": brightness, "rgb_color": message.data.get("color")},
             }
             self.bus.emit(Message("ovos.phal.plugin.homeassistant.call.supported.function", call_data))
+            self.speak_dialog("acknowledge")
         else:
             self.speak_dialog("device.not.found", data={"device": device})
 
@@ -191,7 +194,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
         else:
             return None
 
-    def _get_device_from_message(self, message):  # Tested live
+    def _get_device_from_message(self, message):
         device = message.data.get("entity", "")
         LOG.info(f"Device: {device}")
         device_id = self._get_device_id(device)
