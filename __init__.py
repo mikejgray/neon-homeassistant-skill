@@ -202,7 +202,25 @@ class NeonHomeAssistantSkill(MycroftSkill):
         else:
             self.speak_dialog("area.not.found")
 
-    # We can start a vacuum using call.supported.function start
+    # @intent_handler("vacuum.action.intent")  # TODO: Find an intent that doesn't conflict with OCP
+    # def handle_vacuum_action_intent(self, message):
+    #     device, device_id = self._get_device_from_message(message)
+    #     if device and device_id:  # If the intent doesn't understand the device, you'll get a device_id but no device
+    #         dev = self._get_device_info(device_id)
+    #         action = message.data.get("action")
+    #         if action in ("start", "stop", "pause"):
+    #             if dev.get("type") == "vacuum":
+    #                 call_data = {
+    #                     "device_id": device_id,
+    #                     "function_name": message.data.get("action"),
+    #                 }
+    #                 LOG.info(call_data)
+    #                 self.bus.emit(Message("ovos.phal.plugin.homeassistant.call.supported.function", call_data))
+    #             self.speak_dialog("acknowledge")
+    #         else:
+    #             self.speak("vacuum.action.not.found", data={"action": action})
+    #     else:
+    #         self.speak_dialog("device.not.found", data={"device": device})
 
     # Internal helpers
     def _fuzzy_match_name(self, spoken_name, device_names):
