@@ -27,7 +27,7 @@ def get_requirements(requirements_filename: str):
 
 
 def find_resource_files():
-    resource_base_dirs = ("locale", "ui")
+    resource_base_dirs = ("locale", "ui", "dialog", "vocab")
     base_dir = path.dirname(__file__)
     package_data = ["*.json"]
     for res in resource_base_dirs:
@@ -55,8 +55,8 @@ setup(
     description="OVOS home assistant phal plugin voice interface skill",
     long_description=long_description,
     url=URL,
-    author="Aix",
-    author_email="aix.m@outlook.com",
+    author="Mike Gray",
+    author_email="mike@graywind.org",
     license="Apache-2.0",
     package_dir={SKILL_PKG: ""},
     package_data={SKILL_PKG: find_resource_files()},

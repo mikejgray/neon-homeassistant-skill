@@ -5,7 +5,7 @@ from mycroft.skills.core import MycroftSkill, intent_handler
 from mycroft.util.log import LOG
 from pfzy import fuzzy_match
 
-__version__ = "0.0.7"
+__version__ = "0.0.8"
 
 
 # https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant/blob/master/ovos_PHAL_plugin_homeassistant/__init__.py
@@ -15,14 +15,17 @@ class NeonHomeAssistantSkill(MycroftSkill):
     def __init__(self):
         super(NeonHomeAssistantSkill, self).__init__(name="NeonHomeAssistantSkill")
         self.devices_list = None
+        self.skill_id = "neon-homeassistant-skill"
 
     def initialize(self):
         self._build_device_list()
         self.bus.on("ovos.phal.plugin.homeassistant.get.devices.response", self._handle_device_list)
         self.bus.on("ovos.phal.plugin.homeassistant.device.state.updated", self._handle_device_state_update)
+        # TODO: Try to get a response from the PHAL skill. If no response, ask user if they want to load it
+        # Keep state in settings
 
     def _build_device_list(self):
-        self.bus.emit(Message("ovos.phal.plugin.homeassistant.get.devices"))
+        self.bus.emit(Message("ovos.phal.plugin.homeassistant.get.devices", None, {"skill_id": self.skill_id}))
 
     def _handle_device_list(self, message):
         self.devices_list = message.data
@@ -113,7 +116,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
                 "function_args": {"brightness": self._get_ha_value_from_percentage_brightness(brightness)},
             }
             LOG.info(call_data)
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.call.supported.function", call_data))
+            self.bus.emit(Message("ovos.phal.plugin.homeassistant.call.supported.function", call_data, self.context))
             self.speak_dialog("acknowledge")
         else:
             self.speak_dialog("device.not.found", data={"device": device})
