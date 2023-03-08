@@ -1,0 +1,43 @@
+# Specify resources to test here.
+
+# Specify languages to be tested
+languages:
+  - "en-us"
+
+# vocab is lowercase .voc file basenames
+vocab: []
+
+# dialog is .dialog file basenames (case-sensitive)
+dialog:
+  - acknowledge
+  - device.status
+  - ha.dashboard.opened
+  - area.dashboard.opened
+  - device.turned.off
+  - lights.current.brightness
+  - area.not.found
+  - device.turned.on
+  - lights.status.not.available
+  - device.not.found
+  - ha.dashboard.closed
+  - vacuum.action.not.found
+# regex entities, not necessarily filenames
+regex: []
+intents:
+  # Padatious intents are the `.intent` file names
+  padatious:
+    - close.dashboard
+    - lights.set.brightness
+    - stop
+    - lights.decrease.brightness
+    - lights.set.color
+    - turn.off
+    - lights.get.brightness
+    - open.dashboard
+    - turn.on
+    - lights.get.color
+    - sensor
+    - lights.increase.brightness
+    - show.area.dashboard
+  # Adapt intents are the name passed to the constructor
+  adapt: []
