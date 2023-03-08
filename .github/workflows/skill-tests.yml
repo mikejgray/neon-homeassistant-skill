@@ -10,8 +10,8 @@ jobs:
     uses: neongeckocom/.github/.github/workflows/python_build_tests.yml@master
   skill_unit_tests:
     uses: neongeckocom/.github/.github/workflows/skill_tests.yml@master
-    with:
-      resource_file: tests/test_resources.yaml
+    # with:
+    #   resource_file: tests/test_resources.yaml
   skill_intent_tests:
     uses: neongeckocom/.github/.github/workflows/skill_test_intents.yml@master
     with:
