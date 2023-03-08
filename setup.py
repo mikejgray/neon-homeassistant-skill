@@ -41,7 +41,7 @@ def find_resource_files():
 with open("README.md", "r") as f:
     long_description = f.read()
 
-with open("./version.py", "r", encoding="utf-8") as v:
+with open("./neon_homeassistant_skill/__init__.py", "r", encoding="utf-8") as v:
     for line in v.readlines():
         if line.startswith("__version__"):
             if '"' in line:
