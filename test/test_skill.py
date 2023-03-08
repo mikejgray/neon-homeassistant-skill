@@ -18,7 +18,7 @@ url = f"https://github.com/{AUTHOR}/{REPO}@{BRANCH}"
 class TestSkillIntentMatching(unittest.TestCase):
     skill = NeonHomeAssistantSkill()
 
-    test_intents_filename = getenv("INTENT_TEST_FILE", "tests/test_intents.yaml")
+    test_intents_filename = getenv("INTENT_TEST_FILE", "test/test_intents.yaml")
     with open(test_intents_filename, encoding="utf-8") as f:
         valid_intents = safe_load(f)
     ha_intents = IntentContainer()
