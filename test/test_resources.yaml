@@ -26,18 +26,18 @@ regex: []
 intents:
   # Padatious intents are the `.intent` file names
   padatious:
-    - close.dashboard
-    - lights.set.brightness
-    - stop
-    - lights.decrease.brightness
-    - lights.set.color
-    - turn.off
-    - lights.get.brightness
-    - open.dashboard
-    - turn.on
-    - lights.get.color
-    - sensor
-    - lights.increase.brightness
-    - show.area.dashboard
+    - close.dashboard.intent
+    - lights.set.brightness.intent
+    - stop.intent
+    - lights.decrease.brightness.intent
+    - lights.set.color.intent
+    - turn.off.intent
+    - lights.get.brightness.intent
+    - open.dashboard.intent
+    - turn.on.intent
+    - lights.get.color.intent
+    - sensor.intent
+    - lights.increase.brightness.intent
+    - show.area.dashboard.intent
   # Adapt intents are the name passed to the constructor
   adapt: []
