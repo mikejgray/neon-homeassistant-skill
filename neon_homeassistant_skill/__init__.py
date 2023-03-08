@@ -30,7 +30,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
     def _handle_device_list(self, message):
         self.devices_list = message.data
 
-    def _handle_device_state_update(self, message):
+    def _handle_device_state_update(self, _):
         self._build_device_list()
 
     @intent_handler("sensor.intent")
@@ -76,12 +76,12 @@ class NeonHomeAssistantSkill(MycroftSkill):
             self.speak_dialog("device.not.found", data={"device": device})
 
     @intent_handler("open.dashboard.intent")
-    def handle_open_dashboard_intent(self, message):
+    def handle_open_dashboard_intent(self, _):
         self.bus.emit(Message("ovos-PHAL-plugin-homeassistant.home"))
         self.speak_dialog("ha.dashboard.opened")
 
     @intent_handler("close.dashboard.intent")
-    def handle_close_dashboard_intent(self, message):
+    def handle_close_dashboard_intent(self, _):
         self.bus.emit(Message("ovos-PHAL-plugin-homeassistant.close"))
         self.speak_dialog("ha.dashboard.closed")
 
@@ -106,7 +106,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
             self.speak_dialog("device.not.found", data={"device": device})
 
     @intent_handler("lights.set.brightness.intent")
-    def handle_set_brightness_intent(self, message):
+    def handle_set_brightness_intent(self, message: Message):
         device, device_id = self._get_device_from_message(message)
         if device and device_id:  # If the intent doesn't understand the device, you'll get a device_id but no device
             brightness = message.data.get("brightness")
@@ -116,7 +116,9 @@ class NeonHomeAssistantSkill(MycroftSkill):
                 "function_args": {"brightness": self._get_ha_value_from_percentage_brightness(brightness)},
             }
             LOG.info(call_data)
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.call.supported.function", call_data, self.context))
+            self.bus.emit(
+                Message("ovos.phal.plugin.homeassistant.call.supported.function", call_data, message.context)
+            )
             self.speak_dialog("acknowledge")
         else:
             self.speak_dialog("device.not.found", data={"device": device})
