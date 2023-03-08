@@ -1,0 +1,18 @@
+# This workflow will run unit tests
+
+name: Test Skill
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  py_build_tests:
+    uses: neongeckocom/.github/.github/workflows/python_build_tests.yml@master
+  skill_unit_tests:
+    uses: neongeckocom/.github/.github/workflows/skill_tests.yml@master
+  skill_intent_tests:
+    uses: neongeckocom/.github/.github/workflows/skill_test_intents.yml@master
+  skill_resource_tests:
+    uses: neongeckocom/.github/.github/workflows/skill_test_resources.yml@master
+  skill_install_tests:
+    uses: neongeckocom/.github/.github/workflows/skill_test_installation.yml@master
