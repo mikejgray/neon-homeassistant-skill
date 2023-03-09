@@ -27,7 +27,7 @@ def get_requirements(requirements_filename: str):
 
 
 def find_resource_files():
-    resource_base_dirs = ("locale", "ui")
+    resource_base_dirs = ("locale", "ui", "dialog", "vocab")
     base_dir = path.dirname(__file__)
     package_data = ["*.json"]
     for res in resource_base_dirs:
@@ -41,7 +41,7 @@ def find_resource_files():
 with open("README.md", "r") as f:
     long_description = f.read()
 
-with open("./version.py", "r", encoding="utf-8") as v:
+with open("./neon_homeassistant_skill/__init__.py", "r", encoding="utf-8") as v:
     for line in v.readlines():
         if line.startswith("__version__"):
             if '"' in line:
@@ -55,8 +55,8 @@ setup(
     description="OVOS home assistant phal plugin voice interface skill",
     long_description=long_description,
     url=URL,
-    author="Aix",
-    author_email="aix.m@outlook.com",
+    author="Mike Gray",
+    author_email="mike@graywind.org",
     license="Apache-2.0",
     package_dir={SKILL_PKG: ""},
     package_data={SKILL_PKG: find_resource_files()},
