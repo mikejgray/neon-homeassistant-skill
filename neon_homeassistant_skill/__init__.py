@@ -5,7 +5,7 @@ from mycroft.skills.core import MycroftSkill, intent_handler
 from mycroft.util.log import LOG
 from pfzy import fuzzy_match
 
-__version__ = "0.0.8"
+__version__ = "0.0.9"
 
 
 # https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant/blob/master/ovos_PHAL_plugin_homeassistant/__init__.py
@@ -200,7 +200,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
 
     @intent_handler("show.area.dashboard.intent")
     def handle_show_area_dashboard_intent(self, message):
-        area = message.get("area")
+        area = message.data.get("area")
         if area:
             self.bus.emit(Message("ovos.phal.plugin.homeassistant.show.area.dashboard"), {"area": area})
             self.speak_dialog("area.dashboard.opened", data={"area": area})
