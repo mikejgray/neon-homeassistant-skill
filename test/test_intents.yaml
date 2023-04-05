@@ -1227,16 +1227,16 @@ en-us:
               - entity: bedside lamp
 
     lights.set.color.intent:
-        - set  bedside lamp color to blue:
+        - adjust bedside lamp color to blue:
               - entity: bedside lamp
               - color: blue
-        - set the bedside lamp color to blue:
+        - adjust the bedside lamp color to blue:
               - entity: bedside lamp
               - color: blue
-        - set my bedside lamp color to blue:
+        - adjust my bedside lamp color to blue:
               - entity: bedside lamp
               - color: blue
-        - make  bedside lamp color to blue:
+        - make bedside lamp color to blue:
               - entity: bedside lamp
               - color: blue
         - make the bedside lamp color to blue:
@@ -1251,16 +1251,16 @@ en-us:
         - make the light bedside lamp to blue:
               - entity: bedside lamp
               - color: blue
-        - make  light bedside lamp to blue:
+        - make light bedside lamp to blue:
               - entity: bedside lamp
               - color: blue
-        - set my light bedside lamp to blue:
+        - change my light bedside lamp to blue:
               - entity: bedside lamp
               - color: blue
-        - set the light bedside lamp to blue:
+        - change the light bedside lamp to blue:
               - entity: bedside lamp
               - color: blue
-        - set  light bedside lamp to blue:
+        - change light bedside lamp to blue:
               - entity: bedside lamp
               - color: blue
 
@@ -1473,3 +1473,13 @@ en-us:
               - entity: living room speaker
         - I would like my living room speaker on:
               - entity: living room speaker
+    assist.intent:
+        - tell home assistant to turn on the roomba
+              - command: turn on the roomba
+        - tell home assistant turn on the roomba
+              - command: turn on the roomba
+
+
+unmatched intents:
+  en-us:
+    - set a reminder to change my oil at 4 PM
