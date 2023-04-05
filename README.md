@@ -9,7 +9,7 @@ Available on PyPi: `pip install neon-homeassistant-skill`
 ## Installation on Neon
 
 Install ovos-PHAL-plugin-homeassistant [per their documentation](https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant)
-Note that Neon uses a YAML configuration, not a JSON file, so edit ~/.config/neon/neon.yaml and make the following update for a minimal installation:
+Note that Neon uses a YAML configuration, not a JSON file, so edit `~/.config/neon/neon.yaml` and make the following update for a minimal installation:
 
 ```yaml
 PHAL:
@@ -18,7 +18,9 @@ PHAL:
     api_key: <HA_LONG_LIVED_TOKEN>
 ```
 
-You can also say `open home assistant dashboard` on a device with a screen, like the Mark 2, and use the OAuth login flow from the PHAL plugin.
+(the `PHAL` node should be at the root of the user configuration file, appended to the end of file if existing content exists, and will merge with system configuration per [Neon Configuration Docs](https://neongeckocom.github.io/neon-docs/quick_reference/configuration/))
+
+You can also say `open home assistant dashboard` on a device with a screen, like the Mark II, and use the OAuth login flow from the PHAL plugin.
 
 SSH to the Neon device
 
