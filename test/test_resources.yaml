@@ -39,5 +39,6 @@ intents:
     - sensor.intent
     - lights.increase.brightness.intent
     - show.area.dashboard.intent
+    - assist.intent
   # Adapt intents are the name passed to the constructor
   adapt: []
