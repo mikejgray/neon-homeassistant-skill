@@ -5,7 +5,7 @@ from mycroft.skills.core import MycroftSkill, intent_handler
 from mycroft.util.log import LOG
 from pfzy import fuzzy_match
 
-__version__ = "0.0.9"
+__version__ = "0.0.10"
 
 
 # https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant/blob/master/ovos_PHAL_plugin_homeassistant/__init__.py
@@ -206,6 +206,15 @@ class NeonHomeAssistantSkill(MycroftSkill):
             self.speak_dialog("area.dashboard.opened", data={"area": area})
         else:
             self.speak_dialog("area.not.found")
+
+    @intent_handler("assist.intent")
+    def handle_assist_intent(self, message):
+        command = message.data.get("command")
+        if command:
+            self.bus.emit(Message("ovos.phal.plugin.homeassistant.assist.intent"), {"command": command})
+            self.speak_dialog("assist")
+        else:
+            self.speak_dialog("Sorry, I didn't catch what to tell Home Assistant.")
 
     # @intent_handler("vacuum.action.intent")  # TODO: Find an intent that doesn't conflict with OCP
     # def handle_vacuum_action_intent(self, message):
