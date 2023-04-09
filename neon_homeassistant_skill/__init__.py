@@ -202,7 +202,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
     def handle_show_area_dashboard_intent(self, message):
         area = message.data.get("area")
         if area:
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.show.area.dashboard"), {"area": area})
+            self.bus.emit(Message("ovos.phal.plugin.homeassistant.show.area.dashboard", {"area": area}))
             self.speak_dialog("area.dashboard.opened", data={"area": area})
         else:
             self.speak_dialog("area.not.found")
@@ -211,7 +211,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
     def handle_assist_intent(self, message):
         command = message.data.get("command")
         if command:
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.assist.intent"), {"command": command})
+            self.bus.emit(Message("ovos.phal.plugin.homeassistant.assist.intent", {"command": command}))
             self.speak_dialog("assist")
         else:
             self.speak_dialog("Sorry, I didn't catch what to tell Home Assistant.")
