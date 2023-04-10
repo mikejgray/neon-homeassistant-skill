@@ -21,1464 +21,1482 @@
 #        - expected_entity_key: expected_entity_value
 
 en-us:
-      close_dashboard.intent:
-            - close home assistant
-            - close the home assistant
-            - close my home assistant
-            - close home assistant dashboard
-            - close the home assistant dashboard
-            - close my home assistant dashboard
-            - open home assistant
+        close_dashboard.intent:
+                - close home assistant
+                - close the home assistant
+                - close my home assistant
+                - close home assistant dashboard
+                - close the home assistant dashboard
+                - close my home assistant dashboard
+                - open home assistant
 
-      open_dashboard.intent:
-            - open the home assistant
-            - open my home assistant
-            - open home assistant dashboard
-            - open the home assistant dashboard
-            - open my home assistant dashboard
-            - display home assistant dashboard
-            - display the home assistant dashboard
-            - display my home assistant dashboard
+        open_dashboard.intent:
+                - open the home assistant
+                - open my home assistant
+                - open home assistant dashboard
+                - open the home assistant dashboard
+                - open my home assistant dashboard
+                - display home assistant dashboard
+                - display the home assistant dashboard
+                - display my home assistant dashboard
 
-      stop_intent:
-            - stop the living room speaker:
-                    - entity: living room speaker
-            - stop my living room speaker:
-                    - entity: living room speaker
-            - Can you stop living room speaker please?:
-                    - entity: living room speaker
-            - Can you stop the living room speaker please?:
-                    - entity: living room speaker
-            - Can you stop my living room speaker please?:
-                    - entity: living room speaker
-            - I'd like to stop living room speaker:
-                    - entity: living room speaker
-            - I'd like to stop the living room speaker:
-                    - entity: living room speaker
-            - I'd like to stop living room speaker:
-                    - entity: living room speaker
-            - I'd like to stop the living room speaker:
-                    - entity: living room speaker
-            - I'd like to stop my living room speaker:
-                    - entity: living room speaker
-            - I would like living room speaker stopped:
-                    - entity: living room speaker
-            - I would like the living room speaker stopped:
-                    - entity: living room speaker
-            - I would like my living room speaker stopped:
-                    - entity: living room speaker
+        stop_intent:
+                - stop the living room speaker:
+                          - entity: living room speaker
+                - stop my living room speaker:
+                          - entity: living room speaker
+                - Can you stop living room speaker please?:
+                          - entity: living room speaker
+                - Can you stop the living room speaker please?:
+                          - entity: living room speaker
+                - Can you stop my living room speaker please?:
+                          - entity: living room speaker
+                - I'd like to stop living room speaker:
+                          - entity: living room speaker
+                - I'd like to stop the living room speaker:
+                          - entity: living room speaker
+                - I'd like to stop living room speaker:
+                          - entity: living room speaker
+                - I'd like to stop the living room speaker:
+                          - entity: living room speaker
+                - I'd like to stop my living room speaker:
+                          - entity: living room speaker
+                - I would like living room speaker stopped:
+                          - entity: living room speaker
+                - I would like the living room speaker stopped:
+                          - entity: living room speaker
+                - I would like my living room speaker stopped:
+                          - entity: living room speaker
 
-      sensor.intent:
-            - What is  temperature of my living room speaker please:
-                    - entity: living room speaker
-            - What is  temperature of my living room speaker:
-                    - entity: living room speaker
-            - What is  temperature of the living room speaker please:
-                    - entity: living room speaker
-            - What is  temperature of the living room speaker:
-                    - entity: living room speaker
-            - What is  temperature of  living room speaker please:
-                    - entity: living room speaker
-            - What is  temperature of  living room speaker:
-                    - entity: living room speaker
-            - What is  hue of my living room speaker please:
-                    - entity: living room speaker
-            - What is  hue of my living room speaker:
-                    - entity: living room speaker
-            - What is  hue of the living room speaker please:
-                    - entity: living room speaker
-            - What is  hue of the living room speaker:
-                    - entity: living room speaker
-            - What is  hue of  living room speaker please:
-                    - entity: living room speaker
-            - What is  hue of  living room speaker:
-                    - entity: living room speaker
-            - What is  value of my living room speaker please:
-                    - entity: living room speaker
-            - What is  value of my living room speaker:
-                    - entity: living room speaker
-            - What is  value of the living room speaker please:
-                    - entity: living room speaker
-            - What is  value of the living room speaker:
-                    - entity: living room speaker
-            - What is  value of  living room speaker please:
-                    - entity: living room speaker
-            - What is  value of  living room speaker:
-                    - entity: living room speaker
-            - What is  state of my living room speaker please:
-                    - entity: living room speaker
-            - What is  state of my living room speaker:
-                    - entity: living room speaker
-            - What is  state of the living room speaker please:
-                    - entity: living room speaker
-            - What is  state of the living room speaker:
-                    - entity: living room speaker
-            - What is  state of  living room speaker please:
-                    - entity: living room speaker
-            - What is  state of  living room speaker:
-                    - entity: living room speaker
-            - What is  status of my living room speaker please:
-                    - entity: living room speaker
-            - What is  status of my living room speaker:
-                    - entity: living room speaker
-            - What is  status of the living room speaker please:
-                    - entity: living room speaker
-            - What is  status of the living room speaker:
-                    - entity: living room speaker
-            - What is  status of  living room speaker please:
-                    - entity: living room speaker
-            - What is  status of  living room speaker:
-                    - entity: living room speaker
-            - What is  read out of my living room speaker please:
-                    - entity: living room speaker
-            - What is  read out of my living room speaker:
-                    - entity: living room speaker
-            - What is  read out of the living room speaker please:
-                    - entity: living room speaker
-            - What is  read out of the living room speaker:
-                    - entity: living room speaker
-            - What is  read out of  living room speaker please:
-                    - entity: living room speaker
-            - What is  read out of  living room speaker:
-                    - entity: living room speaker
-            - What is the temperature of my living room speaker please:
-                    - entity: living room speaker
-            - What is the temperature of my living room speaker:
-                    - entity: living room speaker
-            - What is the temperature of the living room speaker please:
-                    - entity: living room speaker
-            - What is the temperature of the living room speaker:
-                    - entity: living room speaker
-            - What is the temperature of  living room speaker please:
-                    - entity: living room speaker
-            - What is the temperature of  living room speaker:
-                    - entity: living room speaker
-            - What is the hue of my living room speaker please:
-                    - entity: living room speaker
-            - What is the hue of my living room speaker:
-                    - entity: living room speaker
-            - What is the hue of the living room speaker please:
-                    - entity: living room speaker
-            - What is the hue of the living room speaker:
-                    - entity: living room speaker
-            - What is the hue of  living room speaker please:
-                    - entity: living room speaker
-            - What is the hue of  living room speaker:
-                    - entity: living room speaker
-            - What is the value of my living room speaker please:
-                    - entity: living room speaker
-            - What is the value of my living room speaker:
-                    - entity: living room speaker
-            - What is the value of the living room speaker please:
-                    - entity: living room speaker
-            - What is the value of the living room speaker:
-                    - entity: living room speaker
-            - What is the value of  living room speaker please:
-                    - entity: living room speaker
-            - What is the value of  living room speaker:
-                    - entity: living room speaker
-            - What is the state of my living room speaker please:
-                    - entity: living room speaker
-            - What is the state of my living room speaker:
-                    - entity: living room speaker
-            - What is the state of the living room speaker please:
-                    - entity: living room speaker
-            - What is the state of the living room speaker:
-                    - entity: living room speaker
-            - What is the state of  living room speaker please:
-                    - entity: living room speaker
-            - What is the state of  living room speaker:
-                    - entity: living room speaker
-            - What is the status of my living room speaker please:
-                    - entity: living room speaker
-            - What is the status of my living room speaker:
-                    - entity: living room speaker
-            - What is the status of the living room speaker please:
-                    - entity: living room speaker
-            - What is the status of the living room speaker:
-                    - entity: living room speaker
-            - What is the status of  living room speaker please:
-                    - entity: living room speaker
-            - What is the status of  living room speaker:
-                    - entity: living room speaker
-            - What is the read out of my living room speaker please:
-                    - entity: living room speaker
-            - What is the read out of my living room speaker:
-                    - entity: living room speaker
-            - What is the read out of the living room speaker please:
-                    - entity: living room speaker
-            - What is the read out of the living room speaker:
-                    - entity: living room speaker
-            - What is the read out of  living room speaker please:
-                    - entity: living room speaker
-            - What is the read out of  living room speaker:
-                    - entity: living room speaker
-            - Give me  temperature of my living room speaker please:
-                    - entity: living room speaker
-            - Give me  temperature of my living room speaker:
-                    - entity: living room speaker
-            - Give me  temperature of the living room speaker please:
-                    - entity: living room speaker
-            - Give me  temperature of the living room speaker:
-                    - entity: living room speaker
-            - Give me  temperature of  living room speaker please:
-                    - entity: living room speaker
-            - Give me  temperature of  living room speaker:
-                    - entity: living room speaker
-            - Give me  hue of my living room speaker please:
-                    - entity: living room speaker
-            - Give me  hue of my living room speaker:
-                    - entity: living room speaker
-            - Give me  hue of the living room speaker please:
-                    - entity: living room speaker
-            - Give me  hue of the living room speaker:
-                    - entity: living room speaker
-            - Give me  hue of  living room speaker please:
-                    - entity: living room speaker
-            - Give me  hue of  living room speaker:
-                    - entity: living room speaker
-            - Give me  value of my living room speaker please:
-                    - entity: living room speaker
-            - Give me  value of my living room speaker:
-                    - entity: living room speaker
-            - Give me  value of the living room speaker please:
-                    - entity: living room speaker
-            - Give me  value of the living room speaker:
-                    - entity: living room speaker
-            - Give me  value of  living room speaker please:
-                    - entity: living room speaker
-            - Give me  value of  living room speaker:
-                    - entity: living room speaker
-            - Give me  state of my living room speaker please:
-                    - entity: living room speaker
-            - Give me  state of my living room speaker:
-                    - entity: living room speaker
-            - Give me  state of the living room speaker please:
-                    - entity: living room speaker
-            - Give me  state of the living room speaker:
-                    - entity: living room speaker
-            - Give me  state of  living room speaker please:
-                    - entity: living room speaker
-            - Give me  state of  living room speaker:
-                    - entity: living room speaker
-            - Give me  status of my living room speaker please:
-                    - entity: living room speaker
-            - Give me  status of my living room speaker:
-                    - entity: living room speaker
-            - Give me  status of the living room speaker please:
-                    - entity: living room speaker
-            - Give me  status of the living room speaker:
-                    - entity: living room speaker
-            - Give me  status of  living room speaker please:
-                    - entity: living room speaker
-            - Give me  status of  living room speaker:
-                    - entity: living room speaker
-            - Give me  read out of my living room speaker please:
-                    - entity: living room speaker
-            - Give me  read out of my living room speaker:
-                    - entity: living room speaker
-            - Give me  read out of the living room speaker please:
-                    - entity: living room speaker
-            - Give me  read out of the living room speaker:
-                    - entity: living room speaker
-            - Give me  read out of  living room speaker please:
-                    - entity: living room speaker
-            - Give me  read out of  living room speaker:
-                    - entity: living room speaker
-            - Give me the temperature of my living room speaker please:
-                    - entity: living room speaker
-            - Give me the temperature of my living room speaker:
-                    - entity: living room speaker
-            - Give me the temperature of the living room speaker please:
-                    - entity: living room speaker
-            - Give me the temperature of the living room speaker:
-                    - entity: living room speaker
-            - Give me the temperature of  living room speaker please:
-                    - entity: living room speaker
-            - Give me the temperature of  living room speaker:
-                    - entity: living room speaker
-            - Give me the hue of my living room speaker please:
-                    - entity: living room speaker
-            - Give me the hue of my living room speaker:
-                    - entity: living room speaker
-            - Give me the hue of the living room speaker please:
-                    - entity: living room speaker
-            - Give me the hue of the living room speaker:
-                    - entity: living room speaker
-            - Give me the hue of  living room speaker please:
-                    - entity: living room speaker
-            - Give me the hue of  living room speaker:
-                    - entity: living room speaker
-            - Give me the value of my living room speaker please:
-                    - entity: living room speaker
-            - Give me the value of my living room speaker:
-                    - entity: living room speaker
-            - Give me the value of the living room speaker please:
-                    - entity: living room speaker
-            - Give me the value of the living room speaker:
-                    - entity: living room speaker
-            - Give me the value of  living room speaker please:
-                    - entity: living room speaker
-            - Give me the value of  living room speaker:
-                    - entity: living room speaker
-            - Give me the state of my living room speaker please:
-                    - entity: living room speaker
-            - Give me the state of my living room speaker:
-                    - entity: living room speaker
-            - Give me the state of the living room speaker please:
-                    - entity: living room speaker
-            - Give me the state of the living room speaker:
-                    - entity: living room speaker
-            - Give me the state of  living room speaker please:
-                    - entity: living room speaker
-            - Give me the state of  living room speaker:
-                    - entity: living room speaker
-            - Give me the status of my living room speaker please:
-                    - entity: living room speaker
-            - Give me the status of my living room speaker:
-                    - entity: living room speaker
-            - Give me the status of the living room speaker please:
-                    - entity: living room speaker
-            - Give me the status of the living room speaker:
-                    - entity: living room speaker
-            - Give me the status of  living room speaker please:
-                    - entity: living room speaker
-            - Give me the status of  living room speaker:
-                    - entity: living room speaker
-            - Give me the read out of my living room speaker please:
-                    - entity: living room speaker
-            - Give me the read out of my living room speaker:
-                    - entity: living room speaker
-            - Give me the read out of the living room speaker please:
-                    - entity: living room speaker
-            - Give me the read out of the living room speaker:
-                    - entity: living room speaker
-            - Give me the read out of  living room speaker please:
-                    - entity: living room speaker
-            - Give me the read out of  living room speaker:
-                    - entity: living room speaker
-            - Tell me  temperature of my living room speaker please:
-                    - entity: living room speaker
-            - Tell me  temperature of my living room speaker:
-                    - entity: living room speaker
-            - Tell me  temperature of the living room speaker please:
-                    - entity: living room speaker
-            - Tell me  temperature of the living room speaker:
-                    - entity: living room speaker
-            - Tell me  temperature of  living room speaker please:
-                    - entity: living room speaker
-            - Tell me  temperature of  living room speaker:
-                    - entity: living room speaker
-            - Tell me  hue of my living room speaker please:
-                    - entity: living room speaker
-            - Tell me  hue of my living room speaker:
-                    - entity: living room speaker
-            - Tell me  hue of the living room speaker please:
-                    - entity: living room speaker
-            - Tell me  hue of the living room speaker:
-                    - entity: living room speaker
-            - Tell me  hue of  living room speaker please:
-                    - entity: living room speaker
-            - Tell me  hue of  living room speaker:
-                    - entity: living room speaker
-            - Tell me  value of my living room speaker please:
-                    - entity: living room speaker
-            - Tell me  value of my living room speaker:
-                    - entity: living room speaker
-            - Tell me  value of the living room speaker please:
-                    - entity: living room speaker
-            - Tell me  value of the living room speaker:
-                    - entity: living room speaker
-            - Tell me  value of  living room speaker please:
-                    - entity: living room speaker
-            - Tell me  value of  living room speaker:
-                    - entity: living room speaker
-            - Tell me  state of my living room speaker please:
-                    - entity: living room speaker
-            - Tell me  state of my living room speaker:
-                    - entity: living room speaker
-            - Tell me  state of the living room speaker please:
-                    - entity: living room speaker
-            - Tell me  state of the living room speaker:
-                    - entity: living room speaker
-            - Tell me  state of  living room speaker please:
-                    - entity: living room speaker
-            - Tell me  state of  living room speaker:
-                    - entity: living room speaker
-            - Tell me  status of my living room speaker please:
-                    - entity: living room speaker
-            - Tell me  status of my living room speaker:
-                    - entity: living room speaker
-            - Tell me  status of the living room speaker please:
-                    - entity: living room speaker
-            - Tell me  status of the living room speaker:
-                    - entity: living room speaker
-            - Tell me  status of  living room speaker please:
-                    - entity: living room speaker
-            - Tell me  status of  living room speaker:
-                    - entity: living room speaker
-            - Tell me  read out of my living room speaker please:
-                    - entity: living room speaker
-            - Tell me  read out of my living room speaker:
-                    - entity: living room speaker
-            - Tell me  read out of the living room speaker please:
-                    - entity: living room speaker
-            - Tell me  read out of the living room speaker:
-                    - entity: living room speaker
-            - Tell me  read out of  living room speaker please:
-                    - entity: living room speaker
-            - Tell me  read out of  living room speaker:
-                    - entity: living room speaker
-            - Tell me the temperature of my living room speaker please:
-                    - entity: living room speaker
-            - Tell me the temperature of my living room speaker:
-                    - entity: living room speaker
-            - Tell me the temperature of the living room speaker please:
-                    - entity: living room speaker
-            - Tell me the temperature of the living room speaker:
-                    - entity: living room speaker
-            - Tell me the temperature of  living room speaker please:
-                    - entity: living room speaker
-            - Tell me the temperature of  living room speaker:
-                    - entity: living room speaker
-            - Tell me the hue of my living room speaker please:
-                    - entity: living room speaker
-            - Tell me the hue of my living room speaker:
-                    - entity: living room speaker
-            - Tell me the hue of the living room speaker please:
-                    - entity: living room speaker
-            - Tell me the hue of the living room speaker:
-                    - entity: living room speaker
-            - Tell me the hue of  living room speaker please:
-                    - entity: living room speaker
-            - Tell me the hue of  living room speaker:
-                    - entity: living room speaker
-            - Tell me the value of my living room speaker please:
-                    - entity: living room speaker
-            - Tell me the value of my living room speaker:
-                    - entity: living room speaker
-            - Tell me the value of the living room speaker please:
-                    - entity: living room speaker
-            - Tell me the value of the living room speaker:
-                    - entity: living room speaker
-            - Tell me the value of  living room speaker please:
-                    - entity: living room speaker
-            - Tell me the value of  living room speaker:
-                    - entity: living room speaker
-            - Tell me the state of my living room speaker please:
-                    - entity: living room speaker
-            - Tell me the state of my living room speaker:
-                    - entity: living room speaker
-            - Tell me the state of the living room speaker please:
-                    - entity: living room speaker
-            - Tell me the state of the living room speaker:
-                    - entity: living room speaker
-            - Tell me the state of  living room speaker please:
-                    - entity: living room speaker
-            - Tell me the state of  living room speaker:
-                    - entity: living room speaker
-            - Tell me the status of my living room speaker please:
-                    - entity: living room speaker
-            - Tell me the status of my living room speaker:
-                    - entity: living room speaker
-            - Tell me the status of the living room speaker please:
-                    - entity: living room speaker
-            - Tell me the status of the living room speaker:
-                    - entity: living room speaker
-            - Tell me the status of  living room speaker please:
-                    - entity: living room speaker
-            - Tell me the status of  living room speaker:
-                    - entity: living room speaker
-            - Tell me the read out of my living room speaker please:
-                    - entity: living room speaker
-            - Tell me the read out of my living room speaker:
-                    - entity: living room speaker
-            - Tell me the read out of the living room speaker please:
-                    - entity: living room speaker
-            - Tell me the read out of the living room speaker:
-                    - entity: living room speaker
-            - Tell me the read out of  living room speaker please:
-                    - entity: living room speaker
-            - Tell me the read out of  living room speaker:
-                    - entity: living room speaker
-            - Get  temperature of my living room speaker please:
-                    - entity: living room speaker
-            - Get  temperature of my living room speaker:
-                    - entity: living room speaker
-            - Get  temperature of the living room speaker please:
-                    - entity: living room speaker
-            - Get  temperature of the living room speaker:
-                    - entity: living room speaker
-            - Get  temperature of  living room speaker please:
-                    - entity: living room speaker
-            - Get  temperature of  living room speaker:
-                    - entity: living room speaker
-            - Get  hue of my living room speaker please:
-                    - entity: living room speaker
-            - Get  hue of my living room speaker:
-                    - entity: living room speaker
-            - Get  hue of the living room speaker please:
-                    - entity: living room speaker
-            - Get  hue of the living room speaker:
-                    - entity: living room speaker
-            - Get  hue of  living room speaker please:
-                    - entity: living room speaker
-            - Get  hue of  living room speaker:
-                    - entity: living room speaker
-            - Get  value of my living room speaker please:
-                    - entity: living room speaker
-            - Get  value of my living room speaker:
-                    - entity: living room speaker
-            - Get  value of the living room speaker please:
-                    - entity: living room speaker
-            - Get  value of the living room speaker:
-                    - entity: living room speaker
-            - Get  value of  living room speaker please:
-                    - entity: living room speaker
-            - Get  value of  living room speaker:
-                    - entity: living room speaker
-            - Get  state of my living room speaker please:
-                    - entity: living room speaker
-            - Get  state of my living room speaker:
-                    - entity: living room speaker
-            - Get  state of the living room speaker please:
-                    - entity: living room speaker
-            - Get  state of the living room speaker:
-                    - entity: living room speaker
-            - Get  state of  living room speaker please:
-                    - entity: living room speaker
-            - Get  state of  living room speaker:
-                    - entity: living room speaker
-            - Get  status of my living room speaker please:
-                    - entity: living room speaker
-            - Get  status of my living room speaker:
-                    - entity: living room speaker
-            - Get  status of the living room speaker please:
-                    - entity: living room speaker
-            - Get  status of the living room speaker:
-                    - entity: living room speaker
-            - Get  status of  living room speaker please:
-                    - entity: living room speaker
-            - Get  status of  living room speaker:
-                    - entity: living room speaker
-            - Get  read out of my living room speaker please:
-                    - entity: living room speaker
-            - Get  read out of my living room speaker:
-                    - entity: living room speaker
-            - Get  read out of the living room speaker please:
-                    - entity: living room speaker
-            - Get  read out of the living room speaker:
-                    - entity: living room speaker
-            - Get  read out of  living room speaker please:
-                    - entity: living room speaker
-            - Get  read out of  living room speaker:
-                    - entity: living room speaker
-            - Get the temperature of my living room speaker please:
-                    - entity: living room speaker
-            - Get the temperature of my living room speaker:
-                    - entity: living room speaker
-            - Get the temperature of the living room speaker please:
-                    - entity: living room speaker
-            - Get the temperature of the living room speaker:
-                    - entity: living room speaker
-            - Get the temperature of  living room speaker please:
-                    - entity: living room speaker
-            - Get the temperature of  living room speaker:
-                    - entity: living room speaker
-            - Get the hue of my living room speaker please:
-                    - entity: living room speaker
-            - Get the hue of my living room speaker:
-                    - entity: living room speaker
-            - Get the hue of the living room speaker please:
-                    - entity: living room speaker
-            - Get the hue of the living room speaker:
-                    - entity: living room speaker
-            - Get the hue of  living room speaker please:
-                    - entity: living room speaker
-            - Get the hue of  living room speaker:
-                    - entity: living room speaker
-            - Get the value of my living room speaker please:
-                    - entity: living room speaker
-            - Get the value of my living room speaker:
-                    - entity: living room speaker
-            - Get the value of the living room speaker please:
-                    - entity: living room speaker
-            - Get the value of the living room speaker:
-                    - entity: living room speaker
-            - Get the value of  living room speaker please:
-                    - entity: living room speaker
-            - Get the value of  living room speaker:
-                    - entity: living room speaker
-            - Get the state of my living room speaker please:
-                    - entity: living room speaker
-            - Get the state of my living room speaker:
-                    - entity: living room speaker
-            - Get the state of the living room speaker please:
-                    - entity: living room speaker
-            - Get the state of the living room speaker:
-                    - entity: living room speaker
-            - Get the state of  living room speaker please:
-                    - entity: living room speaker
-            - Get the state of  living room speaker:
-                    - entity: living room speaker
-            - Get the status of my living room speaker please:
-                    - entity: living room speaker
-            - Get the status of my living room speaker:
-                    - entity: living room speaker
-            - Get the status of the living room speaker please:
-                    - entity: living room speaker
-            - Get the status of the living room speaker:
-                    - entity: living room speaker
-            - Get the status of  living room speaker please:
-                    - entity: living room speaker
-            - Get the status of  living room speaker:
-                    - entity: living room speaker
-            - Get the read out of my living room speaker please:
-                    - entity: living room speaker
-            - Get the read out of my living room speaker:
-                    - entity: living room speaker
-            - Get the read out of the living room speaker please:
-                    - entity: living room speaker
-            - Get the read out of the living room speaker:
-                    - entity: living room speaker
-            - Get the read out of  living room speaker please:
-                    - entity: living room speaker
-            - Get the read out of  living room speaker:
-                    - entity: living room speaker
-            - is my living room speaker on:
-                    - entity: living room speaker
-            - is my living room speaker off:
-                    - entity: living room speaker
-            - is my living room speaker high:
-                    - entity: living room speaker
-            - is my living room speaker low:
-                    - entity: living room speaker
-            - is my living room speaker cold:
-                    - entity: living room speaker
-            - is my living room speaker warm:
-                    - entity: living room speaker
-            - is my living room speaker hot:
-                    - entity: living room speaker
-            - is my living room speaker connected:
-                    - entity: living room speaker
-            - is my living room speaker disconnected:
-                    - entity: living room speaker
-            - is my living room speaker open:
-                    - entity: living room speaker
-            - is my living room speaker closed:
-                    - entity: living room speaker
-            - is my living room speaker dark:
-                    - entity: living room speaker
-            - is my living room speaker in motion:
-                    - entity: living room speaker
-            - is my living room speaker occupied:
-                    - entity: living room speaker
-            - is my living room speaker plugged in:
-                    - entity: living room speaker
-            - is my living room speaker secure:
-                    - entity: living room speaker
-            - is my living room speaker unsecure:
-                    - entity: living room speaker
-            - is my living room speaker charging:
-                    - entity: living room speaker
-            - is my living room speaker available:
-                    - entity: living room speaker
-            - is the living room speaker on:
-                    - entity: living room speaker
-            - is the living room speaker off:
-                    - entity: living room speaker
-            - is the living room speaker high:
-                    - entity: living room speaker
-            - is the living room speaker low:
-                    - entity: living room speaker
-            - is the living room speaker cold:
-                    - entity: living room speaker
-            - is the living room speaker warm:
-                    - entity: living room speaker
-            - is the living room speaker hot:
-                    - entity: living room speaker
-            - is the living room speaker connected:
-                    - entity: living room speaker
-            - is the living room speaker disconnected:
-                    - entity: living room speaker
-            - is the living room speaker open:
-                    - entity: living room speaker
-            - is the living room speaker closed:
-                    - entity: living room speaker
-            - is the living room speaker dark:
-                    - entity: living room speaker
-            - is the living room speaker in motion:
-                    - entity: living room speaker
-            - is the living room speaker occupied:
-                    - entity: living room speaker
-            - is the living room speaker plugged in:
-                    - entity: living room speaker
-            - is the living room speaker secure:
-                    - entity: living room speaker
-            - is the living room speaker unsecure:
-                    - entity: living room speaker
-            - is the living room speaker charging:
-                    - entity: living room speaker
-            - is the living room speaker available:
-                    - entity: living room speaker
-            - is  living room speaker on:
-                    - entity: living room speaker
-            - is  living room speaker off:
-                    - entity: living room speaker
-            - is  living room speaker high:
-                    - entity: living room speaker
-            - is  living room speaker low:
-                    - entity: living room speaker
-            - is  living room speaker cold:
-                    - entity: living room speaker
-            - is  living room speaker warm:
-                    - entity: living room speaker
-            - is  living room speaker hot:
-                    - entity: living room speaker
-            - is  living room speaker connected:
-                    - entity: living room speaker
-            - is  living room speaker disconnected:
-                    - entity: living room speaker
-            - is  living room speaker open:
-                    - entity: living room speaker
-            - is  living room speaker closed:
-                    - entity: living room speaker
-            - is  living room speaker dark:
-                    - entity: living room speaker
-            - is  living room speaker in motion:
-                    - entity: living room speaker
-            - is  living room speaker occupied:
-                    - entity: living room speaker
-            - is  living room speaker plugged in:
-                    - entity: living room speaker
-            - is  living room speaker secure:
-                    - entity: living room speaker
-            - is  living room speaker unsecure:
-                    - entity: living room speaker
-            - is  living room speaker charging:
-                    - entity: living room speaker
-            - is  living room speaker available:
-                    - entity: living room speaker
-            - has  living room speaker detected a moisture:
-                    - entity: living room speaker
-            - has  living room speaker detected a energy:
-                    - entity: living room speaker
-            - has  living room speaker detected a problem:
-                    - entity: living room speaker
-            - has  living room speaker detected a vibration:
-                    - entity: living room speaker
-            - has  living room speaker detected a gas:
-                    - entity: living room speaker
-            - has  living room speaker detected a sound:
-                    - entity: living room speaker
-            - has  living room speaker detected  moisture:
-                    - entity: living room speaker
-            - has  living room speaker detected  energy:
-                    - entity: living room speaker
-            - has  living room speaker detected  problem:
-                    - entity: living room speaker
-            - has  living room speaker detected  vibration:
-                    - entity: living room speaker
-            - has  living room speaker detected  gas:
-                    - entity: living room speaker
-            - has  living room speaker detected  sound:
-                    - entity: living room speaker
-            - has the living room speaker detected a moisture:
-                    - entity: living room speaker
-            - has the living room speaker detected a energy:
-                    - entity: living room speaker
-            - has the living room speaker detected a problem:
-                    - entity: living room speaker
-            - has the living room speaker detected a vibration:
-                    - entity: living room speaker
-            - has the living room speaker detected a gas:
-                    - entity: living room speaker
-            - has the living room speaker detected a sound:
-                    - entity: living room speaker
-            - has the living room speaker detected  moisture:
-                    - entity: living room speaker
-            - has the living room speaker detected  energy:
-                    - entity: living room speaker
-            - has the living room speaker detected  problem:
-                    - entity: living room speaker
-            - has the living room speaker detected  vibration:
-                    - entity: living room speaker
-            - has the living room speaker detected  gas:
-                    - entity: living room speaker
-            - has the living room speaker detected  sound:
-                    - entity: living room speaker
-            - has my living room speaker detected a moisture:
-                    - entity: living room speaker
-            - has my living room speaker detected a energy:
-                    - entity: living room speaker
-            - has my living room speaker detected a problem:
-                    - entity: living room speaker
-            - has my living room speaker detected a vibration:
-                    - entity: living room speaker
-            - has my living room speaker detected a gas:
-                    - entity: living room speaker
-            - has my living room speaker detected a sound:
-                    - entity: living room speaker
-            - has my living room speaker detected  moisture:
-                    - entity: living room speaker
-            - has my living room speaker detected  energy:
-                    - entity: living room speaker
-            - has my living room speaker detected  problem:
-                    - entity: living room speaker
-            - has my living room speaker detected  vibration:
-                    - entity: living room speaker
-            - has my living room speaker detected  gas:
-                    - entity: living room speaker
-            - has my living room speaker detected  sound:
-                    - entity: living room speaker
+        sensor.intent:
+                - What is  temperature of my living room speaker please:
+                          - entity: living room speaker
+                - What is  temperature of my living room speaker:
+                          - entity: living room speaker
+                - What is  temperature of the living room speaker please:
+                          - entity: living room speaker
+                - What is  temperature of the living room speaker:
+                          - entity: living room speaker
+                - What is  temperature of  living room speaker please:
+                          - entity: living room speaker
+                - What is  temperature of  living room speaker:
+                          - entity: living room speaker
+                - What is  hue of my living room speaker please:
+                          - entity: living room speaker
+                - What is  hue of my living room speaker:
+                          - entity: living room speaker
+                - What is  hue of the living room speaker please:
+                          - entity: living room speaker
+                - What is  hue of the living room speaker:
+                          - entity: living room speaker
+                - What is  hue of  living room speaker please:
+                          - entity: living room speaker
+                - What is  hue of  living room speaker:
+                          - entity: living room speaker
+                - What is  value of my living room speaker please:
+                          - entity: living room speaker
+                - What is  value of my living room speaker:
+                          - entity: living room speaker
+                - What is  value of the living room speaker please:
+                          - entity: living room speaker
+                - What is  value of the living room speaker:
+                          - entity: living room speaker
+                - What is  value of  living room speaker please:
+                          - entity: living room speaker
+                - What is  value of  living room speaker:
+                          - entity: living room speaker
+                - What is  state of my living room speaker please:
+                          - entity: living room speaker
+                - What is  state of my living room speaker:
+                          - entity: living room speaker
+                - What is  state of the living room speaker please:
+                          - entity: living room speaker
+                - What is  state of the living room speaker:
+                          - entity: living room speaker
+                - What is  state of  living room speaker please:
+                          - entity: living room speaker
+                - What is  state of  living room speaker:
+                          - entity: living room speaker
+                - What is  status of my living room speaker please:
+                          - entity: living room speaker
+                - What is  status of my living room speaker:
+                          - entity: living room speaker
+                - What is  status of the living room speaker please:
+                          - entity: living room speaker
+                - What is  status of the living room speaker:
+                          - entity: living room speaker
+                - What is  status of  living room speaker please:
+                          - entity: living room speaker
+                - What is  status of  living room speaker:
+                          - entity: living room speaker
+                - What is  read out of my living room speaker please:
+                          - entity: living room speaker
+                - What is  read out of my living room speaker:
+                          - entity: living room speaker
+                - What is  read out of the living room speaker please:
+                          - entity: living room speaker
+                - What is  read out of the living room speaker:
+                          - entity: living room speaker
+                - What is  read out of  living room speaker please:
+                          - entity: living room speaker
+                - What is  read out of  living room speaker:
+                          - entity: living room speaker
+                - What is the temperature of my living room speaker please:
+                          - entity: living room speaker
+                - What is the temperature of my living room speaker:
+                          - entity: living room speaker
+                - What is the temperature of the living room speaker please:
+                          - entity: living room speaker
+                - What is the temperature of the living room speaker:
+                          - entity: living room speaker
+                - What is the temperature of  living room speaker please:
+                          - entity: living room speaker
+                - What is the temperature of  living room speaker:
+                          - entity: living room speaker
+                - What is the hue of my living room speaker please:
+                          - entity: living room speaker
+                - What is the hue of my living room speaker:
+                          - entity: living room speaker
+                - What is the hue of the living room speaker please:
+                          - entity: living room speaker
+                - What is the hue of the living room speaker:
+                          - entity: living room speaker
+                - What is the hue of  living room speaker please:
+                          - entity: living room speaker
+                - What is the hue of  living room speaker:
+                          - entity: living room speaker
+                - What is the value of my living room speaker please:
+                          - entity: living room speaker
+                - What is the value of my living room speaker:
+                          - entity: living room speaker
+                - What is the value of the living room speaker please:
+                          - entity: living room speaker
+                - What is the value of the living room speaker:
+                          - entity: living room speaker
+                - What is the value of  living room speaker please:
+                          - entity: living room speaker
+                - What is the value of  living room speaker:
+                          - entity: living room speaker
+                - What is the state of my living room speaker please:
+                          - entity: living room speaker
+                - What is the state of my living room speaker:
+                          - entity: living room speaker
+                - What is the state of the living room speaker please:
+                          - entity: living room speaker
+                - What is the state of the living room speaker:
+                          - entity: living room speaker
+                - What is the state of  living room speaker please:
+                          - entity: living room speaker
+                - What is the state of  living room speaker:
+                          - entity: living room speaker
+                - What is the status of my living room speaker please:
+                          - entity: living room speaker
+                - What is the status of my living room speaker:
+                          - entity: living room speaker
+                - What is the status of the living room speaker please:
+                          - entity: living room speaker
+                - What is the status of the living room speaker:
+                          - entity: living room speaker
+                - What is the status of  living room speaker please:
+                          - entity: living room speaker
+                - What is the status of  living room speaker:
+                          - entity: living room speaker
+                - What is the read out of my living room speaker please:
+                          - entity: living room speaker
+                - What is the read out of my living room speaker:
+                          - entity: living room speaker
+                - What is the read out of the living room speaker please:
+                          - entity: living room speaker
+                - What is the read out of the living room speaker:
+                          - entity: living room speaker
+                - What is the read out of  living room speaker please:
+                          - entity: living room speaker
+                - What is the read out of  living room speaker:
+                          - entity: living room speaker
+                - Give me  temperature of my living room speaker please:
+                          - entity: living room speaker
+                - Give me  temperature of my living room speaker:
+                          - entity: living room speaker
+                - Give me  temperature of the living room speaker please:
+                          - entity: living room speaker
+                - Give me  temperature of the living room speaker:
+                          - entity: living room speaker
+                - Give me  temperature of  living room speaker please:
+                          - entity: living room speaker
+                - Give me  temperature of  living room speaker:
+                          - entity: living room speaker
+                - Give me  hue of my living room speaker please:
+                          - entity: living room speaker
+                - Give me  hue of my living room speaker:
+                          - entity: living room speaker
+                - Give me  hue of the living room speaker please:
+                          - entity: living room speaker
+                - Give me  hue of the living room speaker:
+                          - entity: living room speaker
+                - Give me  hue of  living room speaker please:
+                          - entity: living room speaker
+                - Give me  hue of  living room speaker:
+                          - entity: living room speaker
+                - Give me  value of my living room speaker please:
+                          - entity: living room speaker
+                - Give me  value of my living room speaker:
+                          - entity: living room speaker
+                - Give me  value of the living room speaker please:
+                          - entity: living room speaker
+                - Give me  value of the living room speaker:
+                          - entity: living room speaker
+                - Give me  value of  living room speaker please:
+                          - entity: living room speaker
+                - Give me  value of  living room speaker:
+                          - entity: living room speaker
+                - Give me  state of my living room speaker please:
+                          - entity: living room speaker
+                - Give me  state of my living room speaker:
+                          - entity: living room speaker
+                - Give me  state of the living room speaker please:
+                          - entity: living room speaker
+                - Give me  state of the living room speaker:
+                          - entity: living room speaker
+                - Give me  state of  living room speaker please:
+                          - entity: living room speaker
+                - Give me  state of  living room speaker:
+                          - entity: living room speaker
+                - Give me  status of my living room speaker please:
+                          - entity: living room speaker
+                - Give me  status of my living room speaker:
+                          - entity: living room speaker
+                - Give me  status of the living room speaker please:
+                          - entity: living room speaker
+                - Give me  status of the living room speaker:
+                          - entity: living room speaker
+                - Give me  status of  living room speaker please:
+                          - entity: living room speaker
+                - Give me  status of  living room speaker:
+                          - entity: living room speaker
+                - Give me  read out of my living room speaker please:
+                          - entity: living room speaker
+                - Give me  read out of my living room speaker:
+                          - entity: living room speaker
+                - Give me  read out of the living room speaker please:
+                          - entity: living room speaker
+                - Give me  read out of the living room speaker:
+                          - entity: living room speaker
+                - Give me  read out of  living room speaker please:
+                          - entity: living room speaker
+                - Give me  read out of  living room speaker:
+                          - entity: living room speaker
+                - Give me the temperature of my living room speaker please:
+                          - entity: living room speaker
+                - Give me the temperature of my living room speaker:
+                          - entity: living room speaker
+                - Give me the temperature of the living room speaker please:
+                          - entity: living room speaker
+                - Give me the temperature of the living room speaker:
+                          - entity: living room speaker
+                - Give me the temperature of  living room speaker please:
+                          - entity: living room speaker
+                - Give me the temperature of  living room speaker:
+                          - entity: living room speaker
+                - Give me the hue of my living room speaker please:
+                          - entity: living room speaker
+                - Give me the hue of my living room speaker:
+                          - entity: living room speaker
+                - Give me the hue of the living room speaker please:
+                          - entity: living room speaker
+                - Give me the hue of the living room speaker:
+                          - entity: living room speaker
+                - Give me the hue of  living room speaker please:
+                          - entity: living room speaker
+                - Give me the hue of  living room speaker:
+                          - entity: living room speaker
+                - Give me the value of my living room speaker please:
+                          - entity: living room speaker
+                - Give me the value of my living room speaker:
+                          - entity: living room speaker
+                - Give me the value of the living room speaker please:
+                          - entity: living room speaker
+                - Give me the value of the living room speaker:
+                          - entity: living room speaker
+                - Give me the value of  living room speaker please:
+                          - entity: living room speaker
+                - Give me the value of  living room speaker:
+                          - entity: living room speaker
+                - Give me the state of my living room speaker please:
+                          - entity: living room speaker
+                - Give me the state of my living room speaker:
+                          - entity: living room speaker
+                - Give me the state of the living room speaker please:
+                          - entity: living room speaker
+                - Give me the state of the living room speaker:
+                          - entity: living room speaker
+                - Give me the state of  living room speaker please:
+                          - entity: living room speaker
+                - Give me the state of  living room speaker:
+                          - entity: living room speaker
+                - Give me the status of my living room speaker please:
+                          - entity: living room speaker
+                - Give me the status of my living room speaker:
+                          - entity: living room speaker
+                - Give me the status of the living room speaker please:
+                          - entity: living room speaker
+                - Give me the status of the living room speaker:
+                          - entity: living room speaker
+                - Give me the status of  living room speaker please:
+                          - entity: living room speaker
+                - Give me the status of  living room speaker:
+                          - entity: living room speaker
+                - Give me the read out of my living room speaker please:
+                          - entity: living room speaker
+                - Give me the read out of my living room speaker:
+                          - entity: living room speaker
+                - Give me the read out of the living room speaker please:
+                          - entity: living room speaker
+                - Give me the read out of the living room speaker:
+                          - entity: living room speaker
+                - Give me the read out of  living room speaker please:
+                          - entity: living room speaker
+                - Give me the read out of  living room speaker:
+                          - entity: living room speaker
+                - Tell me  temperature of my living room speaker please:
+                          - entity: living room speaker
+                - Tell me  temperature of my living room speaker:
+                          - entity: living room speaker
+                - Tell me  temperature of the living room speaker please:
+                          - entity: living room speaker
+                - Tell me  temperature of the living room speaker:
+                          - entity: living room speaker
+                - Tell me  temperature of  living room speaker please:
+                          - entity: living room speaker
+                - Tell me  temperature of  living room speaker:
+                          - entity: living room speaker
+                - Tell me  hue of my living room speaker please:
+                          - entity: living room speaker
+                - Tell me  hue of my living room speaker:
+                          - entity: living room speaker
+                - Tell me  hue of the living room speaker please:
+                          - entity: living room speaker
+                - Tell me  hue of the living room speaker:
+                          - entity: living room speaker
+                - Tell me  hue of  living room speaker please:
+                          - entity: living room speaker
+                - Tell me  hue of  living room speaker:
+                          - entity: living room speaker
+                - Tell me  value of my living room speaker please:
+                          - entity: living room speaker
+                - Tell me  value of my living room speaker:
+                          - entity: living room speaker
+                - Tell me  value of the living room speaker please:
+                          - entity: living room speaker
+                - Tell me  value of the living room speaker:
+                          - entity: living room speaker
+                - Tell me  value of  living room speaker please:
+                          - entity: living room speaker
+                - Tell me  value of  living room speaker:
+                          - entity: living room speaker
+                - Tell me  state of my living room speaker please:
+                          - entity: living room speaker
+                - Tell me  state of my living room speaker:
+                          - entity: living room speaker
+                - Tell me  state of the living room speaker please:
+                          - entity: living room speaker
+                - Tell me  state of the living room speaker:
+                          - entity: living room speaker
+                - Tell me  state of  living room speaker please:
+                          - entity: living room speaker
+                - Tell me  state of  living room speaker:
+                          - entity: living room speaker
+                - Tell me  status of my living room speaker please:
+                          - entity: living room speaker
+                - Tell me  status of my living room speaker:
+                          - entity: living room speaker
+                - Tell me  status of the living room speaker please:
+                          - entity: living room speaker
+                - Tell me  status of the living room speaker:
+                          - entity: living room speaker
+                - Tell me  status of  living room speaker please:
+                          - entity: living room speaker
+                - Tell me  status of  living room speaker:
+                          - entity: living room speaker
+                - Tell me  read out of my living room speaker please:
+                          - entity: living room speaker
+                - Tell me  read out of my living room speaker:
+                          - entity: living room speaker
+                - Tell me  read out of the living room speaker please:
+                          - entity: living room speaker
+                - Tell me  read out of the living room speaker:
+                          - entity: living room speaker
+                - Tell me  read out of  living room speaker please:
+                          - entity: living room speaker
+                - Tell me  read out of  living room speaker:
+                          - entity: living room speaker
+                - Tell me the temperature of my living room speaker please:
+                          - entity: living room speaker
+                - Tell me the temperature of my living room speaker:
+                          - entity: living room speaker
+                - Tell me the temperature of the living room speaker please:
+                          - entity: living room speaker
+                - Tell me the temperature of the living room speaker:
+                          - entity: living room speaker
+                - Tell me the temperature of  living room speaker please:
+                          - entity: living room speaker
+                - Tell me the temperature of  living room speaker:
+                          - entity: living room speaker
+                - Tell me the hue of my living room speaker please:
+                          - entity: living room speaker
+                - Tell me the hue of my living room speaker:
+                          - entity: living room speaker
+                - Tell me the hue of the living room speaker please:
+                          - entity: living room speaker
+                - Tell me the hue of the living room speaker:
+                          - entity: living room speaker
+                - Tell me the hue of  living room speaker please:
+                          - entity: living room speaker
+                - Tell me the hue of  living room speaker:
+                          - entity: living room speaker
+                - Tell me the value of my living room speaker please:
+                          - entity: living room speaker
+                - Tell me the value of my living room speaker:
+                          - entity: living room speaker
+                - Tell me the value of the living room speaker please:
+                          - entity: living room speaker
+                - Tell me the value of the living room speaker:
+                          - entity: living room speaker
+                - Tell me the value of  living room speaker please:
+                          - entity: living room speaker
+                - Tell me the value of  living room speaker:
+                          - entity: living room speaker
+                - Tell me the state of my living room speaker please:
+                          - entity: living room speaker
+                - Tell me the state of my living room speaker:
+                          - entity: living room speaker
+                - Tell me the state of the living room speaker please:
+                          - entity: living room speaker
+                - Tell me the state of the living room speaker:
+                          - entity: living room speaker
+                - Tell me the state of  living room speaker please:
+                          - entity: living room speaker
+                - Tell me the state of  living room speaker:
+                          - entity: living room speaker
+                - Tell me the status of my living room speaker please:
+                          - entity: living room speaker
+                - Tell me the status of my living room speaker:
+                          - entity: living room speaker
+                - Tell me the status of the living room speaker please:
+                          - entity: living room speaker
+                - Tell me the status of the living room speaker:
+                          - entity: living room speaker
+                - Tell me the status of  living room speaker please:
+                          - entity: living room speaker
+                - Tell me the status of  living room speaker:
+                          - entity: living room speaker
+                - Tell me the read out of my living room speaker please:
+                          - entity: living room speaker
+                - Tell me the read out of my living room speaker:
+                          - entity: living room speaker
+                - Tell me the read out of the living room speaker please:
+                          - entity: living room speaker
+                - Tell me the read out of the living room speaker:
+                          - entity: living room speaker
+                - Tell me the read out of  living room speaker please:
+                          - entity: living room speaker
+                - Tell me the read out of  living room speaker:
+                          - entity: living room speaker
+                - Get  temperature of my living room speaker please:
+                          - entity: living room speaker
+                - Get  temperature of my living room speaker:
+                          - entity: living room speaker
+                - Get  temperature of the living room speaker please:
+                          - entity: living room speaker
+                - Get  temperature of the living room speaker:
+                          - entity: living room speaker
+                - Get  temperature of  living room speaker please:
+                          - entity: living room speaker
+                - Get  temperature of  living room speaker:
+                          - entity: living room speaker
+                - Get  hue of my living room speaker please:
+                          - entity: living room speaker
+                - Get  hue of my living room speaker:
+                          - entity: living room speaker
+                - Get  hue of the living room speaker please:
+                          - entity: living room speaker
+                - Get  hue of the living room speaker:
+                          - entity: living room speaker
+                - Get  hue of  living room speaker please:
+                          - entity: living room speaker
+                - Get  hue of  living room speaker:
+                          - entity: living room speaker
+                - Get  value of my living room speaker please:
+                          - entity: living room speaker
+                - Get  value of my living room speaker:
+                          - entity: living room speaker
+                - Get  value of the living room speaker please:
+                          - entity: living room speaker
+                - Get  value of the living room speaker:
+                          - entity: living room speaker
+                - Get  value of  living room speaker please:
+                          - entity: living room speaker
+                - Get  value of  living room speaker:
+                          - entity: living room speaker
+                - Get  state of my living room speaker please:
+                          - entity: living room speaker
+                - Get  state of my living room speaker:
+                          - entity: living room speaker
+                - Get  state of the living room speaker please:
+                          - entity: living room speaker
+                - Get  state of the living room speaker:
+                          - entity: living room speaker
+                - Get  state of  living room speaker please:
+                          - entity: living room speaker
+                - Get  state of  living room speaker:
+                          - entity: living room speaker
+                - Get  status of my living room speaker please:
+                          - entity: living room speaker
+                - Get  status of my living room speaker:
+                          - entity: living room speaker
+                - Get  status of the living room speaker please:
+                          - entity: living room speaker
+                - Get  status of the living room speaker:
+                          - entity: living room speaker
+                - Get  status of  living room speaker please:
+                          - entity: living room speaker
+                - Get  status of  living room speaker:
+                          - entity: living room speaker
+                - Get  read out of my living room speaker please:
+                          - entity: living room speaker
+                - Get  read out of my living room speaker:
+                          - entity: living room speaker
+                - Get  read out of the living room speaker please:
+                          - entity: living room speaker
+                - Get  read out of the living room speaker:
+                          - entity: living room speaker
+                - Get  read out of  living room speaker please:
+                          - entity: living room speaker
+                - Get  read out of  living room speaker:
+                          - entity: living room speaker
+                - Get the temperature of my living room speaker please:
+                          - entity: living room speaker
+                - Get the temperature of my living room speaker:
+                          - entity: living room speaker
+                - Get the temperature of the living room speaker please:
+                          - entity: living room speaker
+                - Get the temperature of the living room speaker:
+                          - entity: living room speaker
+                - Get the temperature of  living room speaker please:
+                          - entity: living room speaker
+                - Get the temperature of  living room speaker:
+                          - entity: living room speaker
+                - Get the hue of my living room speaker please:
+                          - entity: living room speaker
+                - Get the hue of my living room speaker:
+                          - entity: living room speaker
+                - Get the hue of the living room speaker please:
+                          - entity: living room speaker
+                - Get the hue of the living room speaker:
+                          - entity: living room speaker
+                - Get the hue of  living room speaker please:
+                          - entity: living room speaker
+                - Get the hue of  living room speaker:
+                          - entity: living room speaker
+                - Get the value of my living room speaker please:
+                          - entity: living room speaker
+                - Get the value of my living room speaker:
+                          - entity: living room speaker
+                - Get the value of the living room speaker please:
+                          - entity: living room speaker
+                - Get the value of the living room speaker:
+                          - entity: living room speaker
+                - Get the value of  living room speaker please:
+                          - entity: living room speaker
+                - Get the value of  living room speaker:
+                          - entity: living room speaker
+                - Get the state of my living room speaker please:
+                          - entity: living room speaker
+                - Get the state of my living room speaker:
+                          - entity: living room speaker
+                - Get the state of the living room speaker please:
+                          - entity: living room speaker
+                - Get the state of the living room speaker:
+                          - entity: living room speaker
+                - Get the state of  living room speaker please:
+                          - entity: living room speaker
+                - Get the state of  living room speaker:
+                          - entity: living room speaker
+                - Get the status of my living room speaker please:
+                          - entity: living room speaker
+                - Get the status of my living room speaker:
+                          - entity: living room speaker
+                - Get the status of the living room speaker please:
+                          - entity: living room speaker
+                - Get the status of the living room speaker:
+                          - entity: living room speaker
+                - Get the status of  living room speaker please:
+                          - entity: living room speaker
+                - Get the status of  living room speaker:
+                          - entity: living room speaker
+                - Get the read out of my living room speaker please:
+                          - entity: living room speaker
+                - Get the read out of my living room speaker:
+                          - entity: living room speaker
+                - Get the read out of the living room speaker please:
+                          - entity: living room speaker
+                - Get the read out of the living room speaker:
+                          - entity: living room speaker
+                - Get the read out of  living room speaker please:
+                          - entity: living room speaker
+                - Get the read out of  living room speaker:
+                          - entity: living room speaker
+                - is my living room speaker on:
+                          - entity: living room speaker
+                - is my living room speaker off:
+                          - entity: living room speaker
+                - is my living room speaker high:
+                          - entity: living room speaker
+                - is my living room speaker low:
+                          - entity: living room speaker
+                - is my living room speaker cold:
+                          - entity: living room speaker
+                - is my living room speaker warm:
+                          - entity: living room speaker
+                - is my living room speaker hot:
+                          - entity: living room speaker
+                - is my living room speaker connected:
+                          - entity: living room speaker
+                - is my living room speaker disconnected:
+                          - entity: living room speaker
+                - is my living room speaker open:
+                          - entity: living room speaker
+                - is my living room speaker closed:
+                          - entity: living room speaker
+                - is my living room speaker dark:
+                          - entity: living room speaker
+                - is my living room speaker in motion:
+                          - entity: living room speaker
+                - is my living room speaker occupied:
+                          - entity: living room speaker
+                - is my living room speaker plugged in:
+                          - entity: living room speaker
+                - is my living room speaker secure:
+                          - entity: living room speaker
+                - is my living room speaker unsecure:
+                          - entity: living room speaker
+                - is my living room speaker charging:
+                          - entity: living room speaker
+                - is my living room speaker available:
+                          - entity: living room speaker
+                - is the living room speaker on:
+                          - entity: living room speaker
+                - is the living room speaker off:
+                          - entity: living room speaker
+                - is the living room speaker high:
+                          - entity: living room speaker
+                - is the living room speaker low:
+                          - entity: living room speaker
+                - is the living room speaker cold:
+                          - entity: living room speaker
+                - is the living room speaker warm:
+                          - entity: living room speaker
+                - is the living room speaker hot:
+                          - entity: living room speaker
+                - is the living room speaker connected:
+                          - entity: living room speaker
+                - is the living room speaker disconnected:
+                          - entity: living room speaker
+                - is the living room speaker open:
+                          - entity: living room speaker
+                - is the living room speaker closed:
+                          - entity: living room speaker
+                - is the living room speaker dark:
+                          - entity: living room speaker
+                - is the living room speaker in motion:
+                          - entity: living room speaker
+                - is the living room speaker occupied:
+                          - entity: living room speaker
+                - is the living room speaker plugged in:
+                          - entity: living room speaker
+                - is the living room speaker secure:
+                          - entity: living room speaker
+                - is the living room speaker unsecure:
+                          - entity: living room speaker
+                - is the living room speaker charging:
+                          - entity: living room speaker
+                - is the living room speaker available:
+                          - entity: living room speaker
+                - is  living room speaker on:
+                          - entity: living room speaker
+                - is  living room speaker off:
+                          - entity: living room speaker
+                - is  living room speaker high:
+                          - entity: living room speaker
+                - is  living room speaker low:
+                          - entity: living room speaker
+                - is  living room speaker cold:
+                          - entity: living room speaker
+                - is  living room speaker warm:
+                          - entity: living room speaker
+                - is  living room speaker hot:
+                          - entity: living room speaker
+                - is  living room speaker connected:
+                          - entity: living room speaker
+                - is  living room speaker disconnected:
+                          - entity: living room speaker
+                - is  living room speaker open:
+                          - entity: living room speaker
+                - is  living room speaker closed:
+                          - entity: living room speaker
+                - is  living room speaker dark:
+                          - entity: living room speaker
+                - is  living room speaker in motion:
+                          - entity: living room speaker
+                - is  living room speaker occupied:
+                          - entity: living room speaker
+                - is  living room speaker plugged in:
+                          - entity: living room speaker
+                - is  living room speaker secure:
+                          - entity: living room speaker
+                - is  living room speaker unsecure:
+                          - entity: living room speaker
+                - is  living room speaker charging:
+                          - entity: living room speaker
+                - is  living room speaker available:
+                          - entity: living room speaker
+                - has  living room speaker detected a moisture:
+                          - entity: living room speaker
+                - has  living room speaker detected a energy:
+                          - entity: living room speaker
+                - has  living room speaker detected a problem:
+                          - entity: living room speaker
+                - has  living room speaker detected a vibration:
+                          - entity: living room speaker
+                - has  living room speaker detected a gas:
+                          - entity: living room speaker
+                - has  living room speaker detected a sound:
+                          - entity: living room speaker
+                - has  living room speaker detected  moisture:
+                          - entity: living room speaker
+                - has  living room speaker detected  energy:
+                          - entity: living room speaker
+                - has  living room speaker detected  problem:
+                          - entity: living room speaker
+                - has  living room speaker detected  vibration:
+                          - entity: living room speaker
+                - has  living room speaker detected  gas:
+                          - entity: living room speaker
+                - has  living room speaker detected  sound:
+                          - entity: living room speaker
+                - has the living room speaker detected a moisture:
+                          - entity: living room speaker
+                - has the living room speaker detected a energy:
+                          - entity: living room speaker
+                - has the living room speaker detected a problem:
+                          - entity: living room speaker
+                - has the living room speaker detected a vibration:
+                          - entity: living room speaker
+                - has the living room speaker detected a gas:
+                          - entity: living room speaker
+                - has the living room speaker detected a sound:
+                          - entity: living room speaker
+                - has the living room speaker detected  moisture:
+                          - entity: living room speaker
+                - has the living room speaker detected  energy:
+                          - entity: living room speaker
+                - has the living room speaker detected  problem:
+                          - entity: living room speaker
+                - has the living room speaker detected  vibration:
+                          - entity: living room speaker
+                - has the living room speaker detected  gas:
+                          - entity: living room speaker
+                - has the living room speaker detected  sound:
+                          - entity: living room speaker
+                - has my living room speaker detected a moisture:
+                          - entity: living room speaker
+                - has my living room speaker detected a energy:
+                          - entity: living room speaker
+                - has my living room speaker detected a problem:
+                          - entity: living room speaker
+                - has my living room speaker detected a vibration:
+                          - entity: living room speaker
+                - has my living room speaker detected a gas:
+                          - entity: living room speaker
+                - has my living room speaker detected a sound:
+                          - entity: living room speaker
+                - has my living room speaker detected  moisture:
+                          - entity: living room speaker
+                - has my living room speaker detected  energy:
+                          - entity: living room speaker
+                - has my living room speaker detected  problem:
+                          - entity: living room speaker
+                - has my living room speaker detected  vibration:
+                          - entity: living room speaker
+                - has my living room speaker detected  gas:
+                          - entity: living room speaker
+                - has my living room speaker detected  sound:
+                          - entity: living room speaker
 
-      lights.decrease.brightness.intent:
-            - decrease the brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - decrease the brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - decrease the brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - decrease  brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - decrease  brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - decrease  brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - decrease the brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - decrease the brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - decrease the brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - decrease  brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - decrease  brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - decrease  brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - make  bedside lamp dimmer:
-                    - entity: bedside lamp
-            - make the bedside lamp dimmer:
-                    - entity: bedside lamp
-            - make my bedside lamp dimmer:
-                    - entity: bedside lamp
-            - dim down the brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - dim down the brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - dim down the brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - dim down the brightness  my bedside lamp:
-                    - entity: bedside lamp
-            - dim down the brightness  the bedside lamp:
-                    - entity: bedside lamp
-            - dim down the brightness   bedside lamp:
-                    - entity: bedside lamp
-            - dim down the  of my bedside lamp:
-                    - entity: bedside lamp
-            - dim down the  of the bedside lamp:
-                    - entity: bedside lamp
-            - dim down the  of  bedside lamp:
-                    - entity: bedside lamp
-            - dim down the   my bedside lamp:
-                    - entity: bedside lamp
-            - dim down the   the bedside lamp:
-                    - entity: bedside lamp
-            - dim down the    bedside lamp:
-                    - entity: bedside lamp
-            - dim down  brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - dim down  brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - dim down  brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - dim down  brightness  my bedside lamp:
-                    - entity: bedside lamp
-            - dim down  brightness  the bedside lamp:
-                    - entity: bedside lamp
-            - dim down  brightness   bedside lamp:
-                    - entity: bedside lamp
-            - dim down   of my bedside lamp:
-                    - entity: bedside lamp
-            - dim down   of the bedside lamp:
-                    - entity: bedside lamp
-            - dim down   of  bedside lamp:
-                    - entity: bedside lamp
-            - dim down    my bedside lamp:
-                    - entity: bedside lamp
-            - dim down    the bedside lamp:
-                    - entity: bedside lamp
-            - dim down     bedside lamp:
-                    - entity: bedside lamp
-            - dim  the brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - dim  the brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - dim  the brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - dim  the brightness  my bedside lamp:
-                    - entity: bedside lamp
-            - dim  the brightness  the bedside lamp:
-                    - entity: bedside lamp
-            - dim  the brightness   bedside lamp:
-                    - entity: bedside lamp
-            - dim  the  of my bedside lamp:
-                    - entity: bedside lamp
-            - dim  the  of the bedside lamp:
-                    - entity: bedside lamp
-            - dim  the  of  bedside lamp:
-                    - entity: bedside lamp
-            - dim  the   my bedside lamp:
-                    - entity: bedside lamp
-            - dim  the   the bedside lamp:
-                    - entity: bedside lamp
-            - dim  the    bedside lamp:
-                    - entity: bedside lamp
-            - dim   brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - dim   brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - dim   brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - dim   brightness  my bedside lamp:
-                    - entity: bedside lamp
-            - dim   brightness  the bedside lamp:
-                    - entity: bedside lamp
-            - dim   brightness   bedside lamp:
-                    - entity: bedside lamp
-            - dim    of my bedside lamp:
-                    - entity: bedside lamp
-            - dim    of the bedside lamp:
-                    - entity: bedside lamp
-            - dim    of  bedside lamp:
-                    - entity: bedside lamp
-            - dim     my bedside lamp:
-                    - entity: bedside lamp
-            - dim     the bedside lamp:
-                    - entity: bedside lamp
-            - dim      bedside lamp:
-                    - entity: bedside lamp
+        lights.decrease.brightness.intent:
+                - decrease the brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - decrease the brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - decrease the brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - decrease  brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - decrease  brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - decrease  brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - decrease the brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - decrease the brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - decrease the brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - decrease  brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - decrease  brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - decrease  brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - make  bedside lamp dimmer:
+                          - entity: bedside lamp
+                - make the bedside lamp dimmer:
+                          - entity: bedside lamp
+                - make my bedside lamp dimmer:
+                          - entity: bedside lamp
+                - dim down the brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - dim down the brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - dim down the brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - dim down the brightness  my bedside lamp:
+                          - entity: bedside lamp
+                - dim down the brightness  the bedside lamp:
+                          - entity: bedside lamp
+                - dim down the brightness   bedside lamp:
+                          - entity: bedside lamp
+                - dim down the  of my bedside lamp:
+                          - entity: bedside lamp
+                - dim down the  of the bedside lamp:
+                          - entity: bedside lamp
+                - dim down the  of  bedside lamp:
+                          - entity: bedside lamp
+                - dim down the   my bedside lamp:
+                          - entity: bedside lamp
+                - dim down the   the bedside lamp:
+                          - entity: bedside lamp
+                - dim down the    bedside lamp:
+                          - entity: bedside lamp
+                - dim down  brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - dim down  brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - dim down  brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - dim down  brightness  my bedside lamp:
+                          - entity: bedside lamp
+                - dim down  brightness  the bedside lamp:
+                          - entity: bedside lamp
+                - dim down  brightness   bedside lamp:
+                          - entity: bedside lamp
+                - dim down   of my bedside lamp:
+                          - entity: bedside lamp
+                - dim down   of the bedside lamp:
+                          - entity: bedside lamp
+                - dim down   of  bedside lamp:
+                          - entity: bedside lamp
+                - dim down    my bedside lamp:
+                          - entity: bedside lamp
+                - dim down    the bedside lamp:
+                          - entity: bedside lamp
+                - dim down     bedside lamp:
+                          - entity: bedside lamp
+                - dim  the brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - dim  the brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - dim  the brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - dim  the brightness  my bedside lamp:
+                          - entity: bedside lamp
+                - dim  the brightness  the bedside lamp:
+                          - entity: bedside lamp
+                - dim  the brightness   bedside lamp:
+                          - entity: bedside lamp
+                - dim  the  of my bedside lamp:
+                          - entity: bedside lamp
+                - dim  the  of the bedside lamp:
+                          - entity: bedside lamp
+                - dim  the  of  bedside lamp:
+                          - entity: bedside lamp
+                - dim  the   my bedside lamp:
+                          - entity: bedside lamp
+                - dim  the   the bedside lamp:
+                          - entity: bedside lamp
+                - dim  the    bedside lamp:
+                          - entity: bedside lamp
+                - dim   brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - dim   brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - dim   brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - dim   brightness  my bedside lamp:
+                          - entity: bedside lamp
+                - dim   brightness  the bedside lamp:
+                          - entity: bedside lamp
+                - dim   brightness   bedside lamp:
+                          - entity: bedside lamp
+                - dim    of my bedside lamp:
+                          - entity: bedside lamp
+                - dim    of the bedside lamp:
+                          - entity: bedside lamp
+                - dim    of  bedside lamp:
+                          - entity: bedside lamp
+                - dim     my bedside lamp:
+                          - entity: bedside lamp
+                - dim     the bedside lamp:
+                          - entity: bedside lamp
+                - dim      bedside lamp:
+                          - entity: bedside lamp
 
-      lights.increase.brightness.intent:
-            - increase the brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - increase the brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - increase the brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - increase  brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - increase  brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - increase  brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - make  bedside lamp brighter:
-                    - entity: bedside lamp
-            - make the bedside lamp brighter:
-                    - entity: bedside lamp
-            - make my bedside lamp brighter:
-                    - entity: bedside lamp
-            - bump up the brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - bump up the brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - bump up the brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - bump up  brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - bump up  brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - bump up  brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - bump  the brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - bump  the brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - bump  the brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - bump   brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - bump   brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - bump   brightness of  bedside lamp:
-                    - entity: bedside lamp
+        lights.increase.brightness.intent:
+                - increase the brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - increase the brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - increase the brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - increase  brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - increase  brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - increase  brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - make  bedside lamp brighter:
+                          - entity: bedside lamp
+                - make the bedside lamp brighter:
+                          - entity: bedside lamp
+                - make my bedside lamp brighter:
+                          - entity: bedside lamp
+                - bump up the brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - bump up the brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - bump up the brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - bump up  brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - bump up  brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - bump up  brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - bump  the brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - bump  the brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - bump  the brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - bump   brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - bump   brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - bump   brightness of  bedside lamp:
+                          - entity: bedside lamp
 
-      lights.get.brightness.intent:
-            - query the current brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - query the current brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - query the current brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - query the  brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - query the  brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - query the  brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - get the current brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - get the current brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - get the current brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - get the  brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - get the  brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - get the  brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - what's the current brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - what's the current brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - what's the current brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - what's the  brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - what's the  brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - what's the  brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - what is the current brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - what is the current brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - what is the current brightness of  bedside lamp:
-                    - entity: bedside lamp
-            - what is the  brightness of my bedside lamp:
-                    - entity: bedside lamp
-            - what is the  brightness of the bedside lamp:
-                    - entity: bedside lamp
-            - what is the  brightness of  bedside lamp:
-                    - entity: bedside lamp
+        lights.get.brightness.intent:
+                - query the current brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - query the current brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - query the current brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - query the  brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - query the  brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - query the  brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - get the current brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - get the current brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - get the current brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - get the  brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - get the  brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - get the  brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - what's the current brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - what's the current brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - what's the current brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - what's the  brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - what's the  brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - what's the  brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - what is the current brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - what is the current brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - what is the current brightness of  bedside lamp:
+                          - entity: bedside lamp
+                - what is the  brightness of my bedside lamp:
+                          - entity: bedside lamp
+                - what is the  brightness of the bedside lamp:
+                          - entity: bedside lamp
+                - what is the  brightness of  bedside lamp:
+                          - entity: bedside lamp
 
-      lights.set.brightness.intent:
-            - change the brightness of my lamp to one hundred:
-                    - entity: lamp
-                    - brightness: one hundred
-            - change the brightness of my lamp to one hundred percent:
-                    - entity: lamp
-                    - brightness: one hundred
-            - change the brightness of the lamp to one hundred:
-                    - entity: lamp
-                    - brightness: one hundred
-            - change the brightness of the lamp to one hundred percent:
-                    - entity: lamp
-                    - brightness: one hundred
-            - change the brightness of lamp to one hundred:
-                    - entity: lamp
-                    - brightness: one hundred
-            - change the brightness of lamp to one hundred percent:
-                    - entity: lamp
-                    - brightness: one hundred
-            - change brightness of my lamp to one hundred:
-                    - entity: lamp
-                    - brightness: one hundred
-            - change brightness of my lamp to one hundred percent:
-                    - entity: lamp
-                    - brightness: one hundred
-            - change brightness of the lamp to one hundred:
-                    - entity: lamp
-                    - brightness: one hundred
-            - change brightness of the lamp to one hundred percent:
-                    - entity: lamp
-                    - brightness: one hundred
-            - change brightness of lamp to one hundred:
-                    - entity: lamp
-                    - brightness: one hundred
-            - change brightness of lamp to one hundred percent:
-                    - entity: lamp
-                    - brightness: one hundred
-            - set the brightness of my lamp to one hundred:
-                    - entity: lamp
-                    - brightness: one hundred
-            - set the brightness of my lamp to one hundred percent:
-                    - entity: lamp
-                    - brightness: one hundred
-            - set the brightness of the lamp to one hundred:
-                    - entity: lamp
-                    - brightness: one hundred
-            - set the brightness of the lamp to one hundred percent:
-                    - entity: lamp
-                    - brightness: one hundred
-            - set the brightness of lamp to one hundred:
-                    - entity: lamp
-                    - brightness: one hundred
-            - set the brightness of lamp to one hundred percent:
-                    - entity: lamp
-                    - brightness: one hundred
-            - set brightness of my lamp to one hundred:
-                    - entity: lamp
-                    - brightness: one hundred
-            - set brightness of my lamp to one hundred percent:
-                    - entity: lamp
-                    - brightness: one hundred
-            - set brightness of the lamp to one hundred:
-                    - entity: lamp
-                    - brightness: one hundred
-            - set brightness of the lamp to one hundred percent:
-                    - entity: lamp
-                    - brightness: one hundred
-            - set brightness of lamp to one hundred:
-                    - entity: lamp
-                    - brightness: one hundred
-            - set brightness of lamp to one hundred percent:
-                    - entity: lamp
-                    - brightness: one hundred
+        lights.set.brightness.intent:
+                - change the brightness of my lamp to one hundred:
+                          - entity: lamp
+                          - brightness: one hundred
+                - change the brightness of my lamp to one hundred percent:
+                          - entity: lamp
+                          - brightness: one hundred
+                - change the brightness of the lamp to one hundred:
+                          - entity: lamp
+                          - brightness: one hundred
+                - change the brightness of the lamp to one hundred percent:
+                          - entity: lamp
+                          - brightness: one hundred
+                - change the brightness of lamp to one hundred:
+                          - entity: lamp
+                          - brightness: one hundred
+                - change the brightness of lamp to one hundred percent:
+                          - entity: lamp
+                          - brightness: one hundred
+                - change brightness of my lamp to one hundred:
+                          - entity: lamp
+                          - brightness: one hundred
+                - change brightness of my lamp to one hundred percent:
+                          - entity: lamp
+                          - brightness: one hundred
+                - change brightness of the lamp to one hundred:
+                          - entity: lamp
+                          - brightness: one hundred
+                - change brightness of the lamp to one hundred percent:
+                          - entity: lamp
+                          - brightness: one hundred
+                - change brightness of lamp to one hundred:
+                          - entity: lamp
+                          - brightness: one hundred
+                - change brightness of lamp to one hundred percent:
+                          - entity: lamp
+                          - brightness: one hundred
+                - set the brightness of my lamp to one hundred:
+                          - entity: lamp
+                          - brightness: one hundred
+                - set the brightness of my lamp to one hundred percent:
+                          - entity: lamp
+                          - brightness: one hundred
+                - set the brightness of the lamp to one hundred:
+                          - entity: lamp
+                          - brightness: one hundred
+                - set the brightness of the lamp to one hundred percent:
+                          - entity: lamp
+                          - brightness: one hundred
+                - set the brightness of lamp to one hundred:
+                          - entity: lamp
+                          - brightness: one hundred
+                - set the brightness of lamp to one hundred percent:
+                          - entity: lamp
+                          - brightness: one hundred
+                - set brightness of my lamp to one hundred:
+                          - entity: lamp
+                          - brightness: one hundred
+                - set brightness of my lamp to one hundred percent:
+                          - entity: lamp
+                          - brightness: one hundred
+                - set brightness of the lamp to one hundred:
+                          - entity: lamp
+                          - brightness: one hundred
+                - set brightness of the lamp to one hundred percent:
+                          - entity: lamp
+                          - brightness: one hundred
+                - set brightness of lamp to one hundred:
+                          - entity: lamp
+                          - brightness: one hundred
+                - set brightness of lamp to one hundred percent:
+                          - entity: lamp
+                          - brightness: one hundred
 
-      lights.get.color.intent:
-            - get   color of my bedside lamp:
-                    - entity: bedside lamp
-            - get   color of the bedside lamp:
-                    - entity: bedside lamp
-            - get   color of  bedside lamp:
-                    - entity: bedside lamp
-            - get  current color of my bedside lamp:
-                    - entity: bedside lamp
-            - get  current color of the bedside lamp:
-                    - entity: bedside lamp
-            - get  current color of  bedside lamp:
-                    - entity: bedside lamp
-            - get the  color of my bedside lamp:
-                    - entity: bedside lamp
-            - get the  color of the bedside lamp:
-                    - entity: bedside lamp
-            - get the  color of  bedside lamp:
-                    - entity: bedside lamp
-            - get the current color of my bedside lamp:
-                    - entity: bedside lamp
-            - get the current color of the bedside lamp:
-                    - entity: bedside lamp
-            - get the current color of  bedside lamp:
-                    - entity: bedside lamp
-            - query   color of my bedside lamp:
-                    - entity: bedside lamp
-            - query   color of the bedside lamp:
-                    - entity: bedside lamp
-            - query   color of  bedside lamp:
-                    - entity: bedside lamp
-            - query  current color of my bedside lamp:
-                    - entity: bedside lamp
-            - query  current color of the bedside lamp:
-                    - entity: bedside lamp
-            - query  current color of  bedside lamp:
-                    - entity: bedside lamp
-            - query the  color of my bedside lamp:
-                    - entity: bedside lamp
-            - query the  color of the bedside lamp:
-                    - entity: bedside lamp
-            - query the  color of  bedside lamp:
-                    - entity: bedside lamp
-            - query the current color of my bedside lamp:
-                    - entity: bedside lamp
-            - query the current color of the bedside lamp:
-                    - entity: bedside lamp
-            - query the current color of  bedside lamp:
-                    - entity: bedside lamp
-            - what is   color of my bedside lamp:
-                    - entity: bedside lamp
-            - what is   color of the bedside lamp:
-                    - entity: bedside lamp
-            - what is   color of  bedside lamp:
-                    - entity: bedside lamp
-            - what is  current color of my bedside lamp:
-                    - entity: bedside lamp
-            - what is  current color of the bedside lamp:
-                    - entity: bedside lamp
-            - what is  current color of  bedside lamp:
-                    - entity: bedside lamp
-            - what is the  color of my bedside lamp:
-                    - entity: bedside lamp
-            - what is the  color of the bedside lamp:
-                    - entity: bedside lamp
-            - what is the  color of  bedside lamp:
-                    - entity: bedside lamp
-            - what is the current color of my bedside lamp:
-                    - entity: bedside lamp
-            - what is the current color of the bedside lamp:
-                    - entity: bedside lamp
-            - what is the current color of  bedside lamp:
-                    - entity: bedside lamp
-            - what's   color of my bedside lamp:
-                    - entity: bedside lamp
-            - what's   color of the bedside lamp:
-                    - entity: bedside lamp
-            - what's   color of  bedside lamp:
-                    - entity: bedside lamp
-            - what's  current color of my bedside lamp:
-                    - entity: bedside lamp
-            - what's  current color of the bedside lamp:
-                    - entity: bedside lamp
-            - what's  current color of  bedside lamp:
-                    - entity: bedside lamp
-            - what's the  color of my bedside lamp:
-                    - entity: bedside lamp
-            - what's the  color of the bedside lamp:
-                    - entity: bedside lamp
-            - what's the  color of  bedside lamp:
-                    - entity: bedside lamp
-            - what's the current color of my bedside lamp:
-                    - entity: bedside lamp
-            - what's the current color of the bedside lamp:
-                    - entity: bedside lamp
-            - what's the current color of  bedside lamp:
-                    - entity: bedside lamp
+        lights.get.color.intent:
+                - get   color of my bedside lamp:
+                          - entity: bedside lamp
+                - get   color of the bedside lamp:
+                          - entity: bedside lamp
+                - get   color of  bedside lamp:
+                          - entity: bedside lamp
+                - get  current color of my bedside lamp:
+                          - entity: bedside lamp
+                - get  current color of the bedside lamp:
+                          - entity: bedside lamp
+                - get  current color of  bedside lamp:
+                          - entity: bedside lamp
+                - get the  color of my bedside lamp:
+                          - entity: bedside lamp
+                - get the  color of the bedside lamp:
+                          - entity: bedside lamp
+                - get the  color of  bedside lamp:
+                          - entity: bedside lamp
+                - get the current color of my bedside lamp:
+                          - entity: bedside lamp
+                - get the current color of the bedside lamp:
+                          - entity: bedside lamp
+                - get the current color of  bedside lamp:
+                          - entity: bedside lamp
+                - query   color of my bedside lamp:
+                          - entity: bedside lamp
+                - query   color of the bedside lamp:
+                          - entity: bedside lamp
+                - query   color of  bedside lamp:
+                          - entity: bedside lamp
+                - query  current color of my bedside lamp:
+                          - entity: bedside lamp
+                - query  current color of the bedside lamp:
+                          - entity: bedside lamp
+                - query  current color of  bedside lamp:
+                          - entity: bedside lamp
+                - query the  color of my bedside lamp:
+                          - entity: bedside lamp
+                - query the  color of the bedside lamp:
+                          - entity: bedside lamp
+                - query the  color of  bedside lamp:
+                          - entity: bedside lamp
+                - query the current color of my bedside lamp:
+                          - entity: bedside lamp
+                - query the current color of the bedside lamp:
+                          - entity: bedside lamp
+                - query the current color of  bedside lamp:
+                          - entity: bedside lamp
+                - what is   color of my bedside lamp:
+                          - entity: bedside lamp
+                - what is   color of the bedside lamp:
+                          - entity: bedside lamp
+                - what is   color of  bedside lamp:
+                          - entity: bedside lamp
+                - what is  current color of my bedside lamp:
+                          - entity: bedside lamp
+                - what is  current color of the bedside lamp:
+                          - entity: bedside lamp
+                - what is  current color of  bedside lamp:
+                          - entity: bedside lamp
+                - what is the  color of my bedside lamp:
+                          - entity: bedside lamp
+                - what is the  color of the bedside lamp:
+                          - entity: bedside lamp
+                - what is the  color of  bedside lamp:
+                          - entity: bedside lamp
+                - what is the current color of my bedside lamp:
+                          - entity: bedside lamp
+                - what is the current color of the bedside lamp:
+                          - entity: bedside lamp
+                - what is the current color of  bedside lamp:
+                          - entity: bedside lamp
+                - what's   color of my bedside lamp:
+                          - entity: bedside lamp
+                - what's   color of the bedside lamp:
+                          - entity: bedside lamp
+                - what's   color of  bedside lamp:
+                          - entity: bedside lamp
+                - what's  current color of my bedside lamp:
+                          - entity: bedside lamp
+                - what's  current color of the bedside lamp:
+                          - entity: bedside lamp
+                - what's  current color of  bedside lamp:
+                          - entity: bedside lamp
+                - what's the  color of my bedside lamp:
+                          - entity: bedside lamp
+                - what's the  color of the bedside lamp:
+                          - entity: bedside lamp
+                - what's the  color of  bedside lamp:
+                          - entity: bedside lamp
+                - what's the current color of my bedside lamp:
+                          - entity: bedside lamp
+                - what's the current color of the bedside lamp:
+                          - entity: bedside lamp
+                - what's the current color of  bedside lamp:
+                          - entity: bedside lamp
 
-      lights.set.color.intent:
-            - adjust bedside lamp color to blue:
-                    - entity: bedside lamp
-                    - color: blue
-            - adjust the bedside lamp color to blue:
-                    - entity: bedside lamp
-                    - color: blue
-            - adjust my bedside lamp color to blue:
-                    - entity: bedside lamp
-                    - color: blue
-            - make bedside lamp color to blue:
-                    - entity: bedside lamp
-                    - color: blue
-            - make the bedside lamp color to blue:
-                    - entity: bedside lamp
-                    - color: blue
-            - make my bedside lamp color to blue:
-                    - entity: bedside lamp
-                    - color: blue
-            - make my light bedside lamp to blue:
-                    - entity: bedside lamp
-                    - color: blue
-            - make the light bedside lamp to blue:
-                    - entity: bedside lamp
-                    - color: blue
-            - make light bedside lamp to blue:
-                    - entity: bedside lamp
-                    - color: blue
-            - change my light bedside lamp to blue:
-                    - entity: bedside lamp
-                    - color: blue
-            - change the light bedside lamp to blue:
-                    - entity: bedside lamp
-                    - color: blue
-            - change light bedside lamp to blue:
-                    - entity: bedside lamp
-                    - color: blue
+        lights.set.color.intent:
+                - adjust bedside lamp color to blue:
+                          - entity: bedside lamp
+                          - color: blue
+                - adjust the bedside lamp color to blue:
+                          - entity: bedside lamp
+                          - color: blue
+                - adjust my bedside lamp color to blue:
+                          - entity: bedside lamp
+                          - color: blue
+                - make bedside lamp color to blue:
+                          - entity: bedside lamp
+                          - color: blue
+                - make the bedside lamp color to blue:
+                          - entity: bedside lamp
+                          - color: blue
+                - make my bedside lamp color to blue:
+                          - entity: bedside lamp
+                          - color: blue
+                - make my light bedside lamp to blue:
+                          - entity: bedside lamp
+                          - color: blue
+                - make the light bedside lamp to blue:
+                          - entity: bedside lamp
+                          - color: blue
+                - make light bedside lamp to blue:
+                          - entity: bedside lamp
+                          - color: blue
+                - change my light bedside lamp to blue:
+                          - entity: bedside lamp
+                          - color: blue
+                - change the light bedside lamp to blue:
+                          - entity: bedside lamp
+                          - color: blue
+                - change light bedside lamp to blue:
+                          - entity: bedside lamp
+                          - color: blue
 
-      show_area_dashboard.intent:
-            - open living room dashboard:
-                    - area: living room
-            - display living room dashboard:
-                    - area: living room
-            - open the living room dashboard:
-                    - area: living room
-            - display the living room dashboard:
-                    - area: living room
-            - open my living room dashboard:
-                    - area: living room
-            - display my living room dashboard:
-                    - area: living room
-            - open living room:
-                    - area: living room
-            - display living room:
-                    - area: living room
-            - open the living room:
-                    - area: living room
-            - display the living room:
-                    - area: living room
-            - open my living room:
-                    - area: living room
-            - display my living room:
-                    - area: living room
+        show_area_dashboard.intent:
+                - open living room dashboard:
+                          - area: living room
+                - display living room dashboard:
+                          - area: living room
+                - open the living room dashboard:
+                          - area: living room
+                - display the living room dashboard:
+                          - area: living room
+                - open my living room dashboard:
+                          - area: living room
+                - display my living room dashboard:
+                          - area: living room
+                - open living room:
+                          - area: living room
+                - display living room:
+                          - area: living room
+                - open the living room:
+                          - area: living room
+                - display the living room:
+                          - area: living room
+                - open my living room:
+                          - area: living room
+                - display my living room:
+                          - area: living room
 
-      turn_off.intent:
-            - turn off my living room speaker:
-                    - entity: living room speaker
-            - turn off the living room speaker:
-                    - entity: living room speaker
-            - turn off  living room speaker:
-                    - entity: living room speaker
-            - turn my living room speaker off:
-                    - entity: living room speaker
-            - turn the living room speaker off:
-                    - entity: living room speaker
-            - turn  living room speaker off:
-                    - entity: living room speaker
-            - Can you turn  my living room speaker off please?:
-                    - entity: living room speaker
-            - Can you turn  my living room speaker  please?:
-                    - entity: living room speaker
-            - Can you turn  the living room speaker off please?:
-                    - entity: living room speaker
-            - Can you turn  the living room speaker  please?:
-                    - entity: living room speaker
-            - Can you turn   living room speaker off please?:
-                    - entity: living room speaker
-            - Can you turn   living room speaker  please?:
-                    - entity: living room speaker
-            - Can you turn off my living room speaker off please?:
-                    - entity: living room speaker
-            - Can you turn off my living room speaker  please?:
-                    - entity: living room speaker
-            - Can you turn off the living room speaker off please?:
-                    - entity: living room speaker
-            - Can you turn off the living room speaker  please?:
-                    - entity: living room speaker
-            - Can you turn off  living room speaker off please?:
-                    - entity: living room speaker
-            - Can you turn off  living room speaker  please?:
-                    - entity: living room speaker
-            - Would you turn  my living room speaker off please?:
-                    - entity: living room speaker
-            - Would you turn  my living room speaker  please?:
-                    - entity: living room speaker
-            - Would you turn  the living room speaker off please?:
-                    - entity: living room speaker
-            - Would you turn  the living room speaker  please?:
-                    - entity: living room speaker
-            - Would you turn   living room speaker off please?:
-                    - entity: living room speaker
-            - Would you turn   living room speaker  please?:
-                    - entity: living room speaker
-            - Would you turn off my living room speaker off please?:
-                    - entity: living room speaker
-            - Would you turn off my living room speaker  please?:
-                    - entity: living room speaker
-            - Would you turn off the living room speaker off please?:
-                    - entity: living room speaker
-            - Would you turn off the living room speaker  please?:
-                    - entity: living room speaker
-            - Would you turn off  living room speaker off please?:
-                    - entity: living room speaker
-            - Would you turn off  living room speaker  please?:
-                    - entity: living room speaker
-            - I'd like to turn  my living room speaker off:
-                    - entity: living room speaker
-            - I'd like to turn  my living room speaker:
-                    - entity: living room speaker
-            - I'd like to turn  the living room speaker off:
-                    - entity: living room speaker
-            - I'd like to turn  the living room speaker:
-                    - entity: living room speaker
-            - I'd like to turn   living room speaker off:
-                    - entity: living room speaker
-            - I'd like to turn   living room speaker:
-                    - entity: living room speaker
-            - I'd like to turn off my living room speaker off:
-                    - entity: living room speaker
-            - I'd like to turn off my living room speaker:
-                    - entity: living room speaker
-            - I'd like to turn off the living room speaker off:
-                    - entity: living room speaker
-            - I'd like to turn off the living room speaker:
-                    - entity: living room speaker
-            - I'd like to turn off  living room speaker off:
-                    - entity: living room speaker
-            - I'd like to turn off  living room speaker:
-                    - entity: living room speaker
-            - I would like my living room speaker off:
-                    - entity: living room speaker
-            - I would like the living room speaker off:
-                    - entity: living room speaker
-            - I would like  living room speaker off:
-                    - entity: living room speaker
+        turn_off.intent:
+                - turn off my living room speaker:
+                          - entity: living room speaker
+                - turn off the living room speaker:
+                          - entity: living room speaker
+                - turn off  living room speaker:
+                          - entity: living room speaker
+                - turn my living room speaker off:
+                          - entity: living room speaker
+                - turn the living room speaker off:
+                          - entity: living room speaker
+                - turn  living room speaker off:
+                          - entity: living room speaker
+                - Can you turn  my living room speaker off please?:
+                          - entity: living room speaker
+                - Can you turn  my living room speaker  please?:
+                          - entity: living room speaker
+                - Can you turn  the living room speaker off please?:
+                          - entity: living room speaker
+                - Can you turn  the living room speaker  please?:
+                          - entity: living room speaker
+                - Can you turn   living room speaker off please?:
+                          - entity: living room speaker
+                - Can you turn   living room speaker  please?:
+                          - entity: living room speaker
+                - Can you turn off my living room speaker off please?:
+                          - entity: living room speaker
+                - Can you turn off my living room speaker  please?:
+                          - entity: living room speaker
+                - Can you turn off the living room speaker off please?:
+                          - entity: living room speaker
+                - Can you turn off the living room speaker  please?:
+                          - entity: living room speaker
+                - Can you turn off  living room speaker off please?:
+                          - entity: living room speaker
+                - Can you turn off  living room speaker  please?:
+                          - entity: living room speaker
+                - Would you turn  my living room speaker off please?:
+                          - entity: living room speaker
+                - Would you turn  my living room speaker  please?:
+                          - entity: living room speaker
+                - Would you turn  the living room speaker off please?:
+                          - entity: living room speaker
+                - Would you turn  the living room speaker  please?:
+                          - entity: living room speaker
+                - Would you turn   living room speaker off please?:
+                          - entity: living room speaker
+                - Would you turn   living room speaker  please?:
+                          - entity: living room speaker
+                - Would you turn off my living room speaker off please?:
+                          - entity: living room speaker
+                - Would you turn off my living room speaker  please?:
+                          - entity: living room speaker
+                - Would you turn off the living room speaker off please?:
+                          - entity: living room speaker
+                - Would you turn off the living room speaker  please?:
+                          - entity: living room speaker
+                - Would you turn off  living room speaker off please?:
+                          - entity: living room speaker
+                - Would you turn off  living room speaker  please?:
+                          - entity: living room speaker
+                - I'd like to turn  my living room speaker off:
+                          - entity: living room speaker
+                - I'd like to turn  my living room speaker:
+                          - entity: living room speaker
+                - I'd like to turn  the living room speaker off:
+                          - entity: living room speaker
+                - I'd like to turn  the living room speaker:
+                          - entity: living room speaker
+                - I'd like to turn   living room speaker off:
+                          - entity: living room speaker
+                - I'd like to turn   living room speaker:
+                          - entity: living room speaker
+                - I'd like to turn off my living room speaker off:
+                          - entity: living room speaker
+                - I'd like to turn off my living room speaker:
+                          - entity: living room speaker
+                - I'd like to turn off the living room speaker off:
+                          - entity: living room speaker
+                - I'd like to turn off the living room speaker:
+                          - entity: living room speaker
+                - I'd like to turn off  living room speaker off:
+                          - entity: living room speaker
+                - I'd like to turn off  living room speaker:
+                          - entity: living room speaker
+                - I would like my living room speaker off:
+                          - entity: living room speaker
+                - I would like the living room speaker off:
+                          - entity: living room speaker
+                - I would like  living room speaker off:
+                          - entity: living room speaker
 
-      turn_on.intent:
-            - turn on my living room speaker:
-                    - entity: living room speaker
-            - turn on the living room speaker:
-                    - entity: living room speaker
-            - turn on  living room speaker:
-                    - entity: living room speaker
-            - turn  living room speaker on:
-                    - entity: living room speaker
-            - turn the living room speaker on:
-                    - entity: living room speaker
-            - turn my living room speaker on:
-                    - entity: living room speaker
-            - Can you turn  my living room speaker on please?:
-                    - entity: living room speaker
-            - Can you turn  my living room speaker  please?:
-                    - entity: living room speaker
-            - Can you turn  the living room speaker on please?:
-                    - entity: living room speaker
-            - Can you turn  the living room speaker  please?:
-                    - entity: living room speaker
-            - Can you turn   living room speaker on please?:
-                    - entity: living room speaker
-            - Can you turn   living room speaker  please?:
-                    - entity: living room speaker
-            - Can you turn on my living room speaker on please?:
-                    - entity: living room speaker
-            - Can you turn on my living room speaker  please?:
-                    - entity: living room speaker
-            - Can you turn on the living room speaker on please?:
-                    - entity: living room speaker
-            - Can you turn on the living room speaker  please?:
-                    - entity: living room speaker
-            - Can you turn on  living room speaker on please?:
-                    - entity: living room speaker
-            - Can you turn on  living room speaker  please?:
-                    - entity: living room speaker
-            - Would you turn  my living room speaker on please?:
-                    - entity: living room speaker
-            - Would you turn  my living room speaker  please?:
-                    - entity: living room speaker
-            - Would you turn  the living room speaker on please?:
-                    - entity: living room speaker
-            - Would you turn  the living room speaker  please?:
-                    - entity: living room speaker
-            - Would you turn   living room speaker on please?:
-                    - entity: living room speaker
-            - Would you turn   living room speaker  please?:
-                    - entity: living room speaker
-            - Would you turn on my living room speaker on please?:
-                    - entity: living room speaker
-            - Would you turn on my living room speaker  please?:
-                    - entity: living room speaker
-            - Would you turn on the living room speaker on please?:
-                    - entity: living room speaker
-            - Would you turn on the living room speaker  please?:
-                    - entity: living room speaker
-            - Would you turn on  living room speaker on please?:
-                    - entity: living room speaker
-            - Would you turn on  living room speaker  please?:
-                    - entity: living room speaker
-            - I'd like to turn  my living room speaker on:
-                    - entity: living room speaker
-            - I'd like to turn  my living room speaker:
-                    - entity: living room speaker
-            - I'd like to turn  the living room speaker on:
-                    - entity: living room speaker
-            - I'd like to turn  the living room speaker:
-                    - entity: living room speaker
-            - I'd like to turn   living room speaker on:
-                    - entity: living room speaker
-            - I'd like to turn   living room speaker:
-                    - entity: living room speaker
-            - I'd like to turn on my living room speaker on:
-                    - entity: living room speaker
-            - I'd like to turn on my living room speaker:
-                    - entity: living room speaker
-            - I'd like to turn on the living room speaker on:
-                    - entity: living room speaker
-            - I'd like to turn on the living room speaker:
-                    - entity: living room speaker
-            - I'd like to turn on  living room speaker on:
-                    - entity: living room speaker
-            - I'd like to turn on  living room speaker:
-                    - entity: living room speaker
-            - I would like  living room speaker on:
-                    - entity: living room speaker
-            - I would like the living room speaker on:
-                    - entity: living room speaker
-            - I would like my living room speaker on:
-                    - entity: living room speaker
-      assist.intent:
-            - tell home assistant to turn on the roomba:
-                    - command: turn on the roomba
-            - tell home assistant turn on the roomba:
-                    - command: turn on the roomba
+        turn_on.intent:
+                - turn on my living room speaker:
+                          - entity: living room speaker
+                - turn on the living room speaker:
+                          - entity: living room speaker
+                - turn on  living room speaker:
+                          - entity: living room speaker
+                - turn  living room speaker on:
+                          - entity: living room speaker
+                - turn the living room speaker on:
+                          - entity: living room speaker
+                - turn my living room speaker on:
+                          - entity: living room speaker
+                - Can you turn  my living room speaker on please?:
+                          - entity: living room speaker
+                - Can you turn  my living room speaker  please?:
+                          - entity: living room speaker
+                - Can you turn  the living room speaker on please?:
+                          - entity: living room speaker
+                - Can you turn  the living room speaker  please?:
+                          - entity: living room speaker
+                - Can you turn   living room speaker on please?:
+                          - entity: living room speaker
+                - Can you turn   living room speaker  please?:
+                          - entity: living room speaker
+                - Can you turn on my living room speaker on please?:
+                          - entity: living room speaker
+                - Can you turn on my living room speaker  please?:
+                          - entity: living room speaker
+                - Can you turn on the living room speaker on please?:
+                          - entity: living room speaker
+                - Can you turn on the living room speaker  please?:
+                          - entity: living room speaker
+                - Can you turn on  living room speaker on please?:
+                          - entity: living room speaker
+                - Can you turn on  living room speaker  please?:
+                          - entity: living room speaker
+                - Would you turn  my living room speaker on please?:
+                          - entity: living room speaker
+                - Would you turn  my living room speaker  please?:
+                          - entity: living room speaker
+                - Would you turn  the living room speaker on please?:
+                          - entity: living room speaker
+                - Would you turn  the living room speaker  please?:
+                          - entity: living room speaker
+                - Would you turn   living room speaker on please?:
+                          - entity: living room speaker
+                - Would you turn   living room speaker  please?:
+                          - entity: living room speaker
+                - Would you turn on my living room speaker on please?:
+                          - entity: living room speaker
+                - Would you turn on my living room speaker  please?:
+                          - entity: living room speaker
+                - Would you turn on the living room speaker on please?:
+                          - entity: living room speaker
+                - Would you turn on the living room speaker  please?:
+                          - entity: living room speaker
+                - Would you turn on  living room speaker on please?:
+                          - entity: living room speaker
+                - Would you turn on  living room speaker  please?:
+                          - entity: living room speaker
+                - I'd like to turn  my living room speaker on:
+                          - entity: living room speaker
+                - I'd like to turn  my living room speaker:
+                          - entity: living room speaker
+                - I'd like to turn  the living room speaker on:
+                          - entity: living room speaker
+                - I'd like to turn  the living room speaker:
+                          - entity: living room speaker
+                - I'd like to turn   living room speaker on:
+                          - entity: living room speaker
+                - I'd like to turn   living room speaker:
+                          - entity: living room speaker
+                - I'd like to turn on my living room speaker on:
+                          - entity: living room speaker
+                - I'd like to turn on my living room speaker:
+                          - entity: living room speaker
+                - I'd like to turn on the living room speaker on:
+                          - entity: living room speaker
+                - I'd like to turn on the living room speaker:
+                          - entity: living room speaker
+                - I'd like to turn on  living room speaker on:
+                          - entity: living room speaker
+                - I'd like to turn on  living room speaker:
+                          - entity: living room speaker
+                - I would like  living room speaker on:
+                          - entity: living room speaker
+                - I would like the living room speaker on:
+                          - entity: living room speaker
+                - I would like my living room speaker on:
+                          - entity: living room speaker
+
+        list.devices.intent:
+                - list all devices in home assistant
+
+        list.devices.types.intent:
+                - please list the lights in home assistant:
+                          - entity: lights
+                - please list my lights in home assistant:
+                          - entity: lights
+                - please list lights in home assistant:
+                          - entity: lights
+                - list the lights in home assistant:
+                          - entity: lights
+                - list my lights in home assistant:
+                          - entity: lights
+                - list lights in home assistant:
+                          - entity: lights
+
+        assist.intent:
+                - tell home assistant to turn on the roomba:
+                          - command: turn on the roomba
+                - tell home assistant turn on the roomba:
+                          - command: turn on the roomba
 
 unmatched intents:
-      en-us:
-            - set a reminder to change my oil at 4 PM
+        en-us:
+                - set a reminder to change my oil at 4 PM
