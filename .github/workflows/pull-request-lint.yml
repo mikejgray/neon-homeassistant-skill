@@ -23,4 +23,6 @@ jobs:
             feat
             fix
             chore
+            docs
+            bugfix
           requireScope: false
