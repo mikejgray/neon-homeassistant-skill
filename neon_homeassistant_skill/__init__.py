@@ -1,11 +1,17 @@
 import asyncio
-
+from typing import List
 from mycroft.messagebus.message import Message
 from mycroft.skills.core import MycroftSkill, intent_handler
 from mycroft.util.log import LOG
 from pfzy import fuzzy_match
 
-__version__ = "0.0.9"
+__version__ = "0.0.11"
+
+
+def chunks(lst, n) -> List[list]:
+    """Split list into n-length chunks."""
+    n = max(1, n)
+    return [lst[i : i + n] for i in range(0, len(lst), n)]
 
 
 # https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant/blob/master/ovos_PHAL_plugin_homeassistant/__init__.py
@@ -14,8 +20,9 @@ class NeonHomeAssistantSkill(MycroftSkill):
 
     def __init__(self):
         super(NeonHomeAssistantSkill, self).__init__(name="NeonHomeAssistantSkill")
-        self.devices_list = None
+        self.devices_list = []
         self.skill_id = "neon-homeassistant-skill"
+        self.device_list_pagination = 10
 
     def initialize(self):
         self._build_device_list()
@@ -29,9 +36,31 @@ class NeonHomeAssistantSkill(MycroftSkill):
 
     def _handle_device_list(self, message):
         self.devices_list = message.data
+        self.log.info(type(self.devices_list))
+        self.log.info(self.devices_list)
 
     def _handle_device_state_update(self, _):
         self._build_device_list()
+
+    @intent_handler("list.devices.intent")
+    def handle_list_devices(self, _):
+        """Handle intent to read all devices out loud."""
+        for chunk in chunks(self.devices_list, self.device_list_pagination)[0]:
+            spoken_chunk = ",".join([c.get("name", "") for c in chunk])
+            self.speak(spoken_chunk)
+            # TODO: Make it conversational, so you can stop or even skip ahead if needed
+
+    @intent_handler("list.device.types.intent")
+    def handle_list_device_types(self, message):
+        """Handle intent to read all devices of a certain type out loud."""
+        dev_type = message.get("device_type")
+        device_list_by_type = [dev for dev in self.devices_list if dev.get("type") == dev_type]
+        if len(device_list_by_type) == 0:
+            self.speak(f"I'm sorry, Home Assistant didn't tell me about any devices of the {dev_type} type.")
+        for chunk in chunks(device_list_by_type, self.device_list_pagination)[0]:
+            spoken_chunk = ",".join([c.get("name", "") for c in chunk])
+            self.speak(spoken_chunk)
+            # TODO: Make it conversational, so you can stop or even skip ahead if needed
 
     @intent_handler("sensor.intent")
     def get_device_intent(self, message):
@@ -64,7 +93,7 @@ class NeonHomeAssistantSkill(MycroftSkill):
             self.speak_dialog("device.not.found", data={"device": device})
 
     @intent_handler("turn.off.intent")
-    @intent_handler("stop.intent")
+    @intent_handler("stop.intent")  # Consider changing this so it stops reading from the list of devices
     def handle_turn_off_intent(self, message) -> None:
         """Handle turn off intent."""
         LOG.info(message.data)
@@ -202,10 +231,19 @@ class NeonHomeAssistantSkill(MycroftSkill):
     def handle_show_area_dashboard_intent(self, message):
         area = message.data.get("area")
         if area:
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.show.area.dashboard"), {"area": area})
+            self.bus.emit(Message("ovos.phal.plugin.homeassistant.show.area.dashboard", {"area": area}))
             self.speak_dialog("area.dashboard.opened", data={"area": area})
         else:
             self.speak_dialog("area.not.found")
+
+    @intent_handler("assist.intent")
+    def handle_assist_intent(self, message):
+        command = message.data.get("command")
+        if command:
+            self.bus.emit(Message("ovos.phal.plugin.homeassistant.assist.intent", {"command": command}))
+            self.speak_dialog("assist")
+        else:
+            self.speak_dialog("Sorry, I didn't catch what to tell Home Assistant.")
 
     # @intent_handler("vacuum.action.intent")  # TODO: Find an intent that doesn't conflict with OCP
     # def handle_vacuum_action_intent(self, message):
