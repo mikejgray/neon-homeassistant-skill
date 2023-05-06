@@ -5,7 +5,7 @@ from typing import List
 from mycroft import intent_handler
 from mycroft.messagebus.message import Message
 from mycroft.util.log import LOG
-from neon_utils.skills.neon_skill import NeonSkill
+from ovos_workshop.skills import OVOSSkill
 from pfzy import fuzzy_match
 
 
@@ -16,7 +16,7 @@ def chunks(lst, n) -> List[list]:
 
 
 # https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant/blob/master/ovos_PHAL_plugin_homeassistant/__init__.py
-class NeonHomeAssistantSkill(NeonSkill):
+class NeonHomeAssistantSkill(OVOSSkill):
     """Home Assistant skill for Neon OS. Requires the PHAL Home Assistant plugin."""
 
     def __init__(self):
