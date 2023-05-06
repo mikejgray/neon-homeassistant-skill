@@ -8,8 +8,6 @@ from mycroft.util.log import LOG
 from neon_utils.skills.neon_skill import NeonSkill
 from pfzy import fuzzy_match
 
-__version__ = "0.0.12a1"
-
 
 def chunks(lst, n) -> List[list]:
     """Split list into n-length chunks."""

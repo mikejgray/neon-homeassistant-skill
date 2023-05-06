@@ -692,7 +692,8 @@
     "systemDeps": false,
     "requirements": {
         "python": [
-            "pfzy==0.3.4"
+            "pfzy==0.3.4",
+            "neon-utils~=1.4.0"
         ],
         "system": {},
         "skill": []
