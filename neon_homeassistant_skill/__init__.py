@@ -1,11 +1,14 @@
+# pylint: disable=missing-function-docstring,missing-class-docstring,missing-module-docstring
 import asyncio
 from typing import List
+
+from mycroft import intent_handler
 from mycroft.messagebus.message import Message
-from mycroft.skills.core import MycroftSkill, intent_handler
 from mycroft.util.log import LOG
+from neon_utils.skills.neon_skill import NeonSkill
 from pfzy import fuzzy_match
 
-__version__ = "0.0.11"
+__version__ = "0.0.12a1"
 
 
 def chunks(lst, n) -> List[list]:
@@ -15,11 +18,11 @@ def chunks(lst, n) -> List[list]:
 
 
 # https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant/blob/master/ovos_PHAL_plugin_homeassistant/__init__.py
-class NeonHomeAssistantSkill(MycroftSkill):
+class NeonHomeAssistantSkill(NeonSkill):
     """Home Assistant skill for Neon OS. Requires the PHAL Home Assistant plugin."""
 
     def __init__(self):
-        super(NeonHomeAssistantSkill, self).__init__(name="NeonHomeAssistantSkill")
+        super(NeonHomeAssistantSkill, self).__init__()
         self.devices_list = []
         self.skill_id = "neon-homeassistant-skill"
         self.device_list_pagination = 10
