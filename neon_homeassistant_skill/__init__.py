@@ -43,25 +43,25 @@ class NeonHomeAssistantSkill(OVOSSkill):
     def _handle_device_state_update(self, _):
         self._build_device_list()
 
-    @intent_handler("list.devices.intent")
-    def handle_list_devices(self, _):
-        """Handle intent to read all devices out loud."""
-        for chunk in chunks(self.devices_list, self.device_list_pagination)[0]:
-            spoken_chunk = ",".join([c.get("name", "") for c in chunk])
-            self.speak(spoken_chunk)
-            # TODO: Make it conversational, so you can stop or even skip ahead if needed
+    # @intent_handler("list.devices.intent")
+    # def handle_list_devices(self, _):
+    #     """Handle intent to read all devices out loud."""
+    #     for chunk in chunks(self.devices_list, self.device_list_pagination)[0]:
+    #         spoken_chunk = ",".join([c.get("name", "") for c in chunk])
+    #         self.speak(spoken_chunk)
+    #         # TODO: Make it conversational, so you can stop or even skip ahead if needed
 
-    @intent_handler("list.device.types.intent")
-    def handle_list_device_types(self, message):
-        """Handle intent to read all devices of a certain type out loud."""
-        dev_type = message.get("device_type")
-        device_list_by_type = [dev for dev in self.devices_list if dev.get("type") == dev_type]
-        if len(device_list_by_type) == 0:
-            self.speak(f"I'm sorry, Home Assistant didn't tell me about any devices of the {dev_type} type.")
-        for chunk in chunks(device_list_by_type, self.device_list_pagination)[0]:
-            spoken_chunk = ",".join([c.get("name", "") for c in chunk])
-            self.speak(spoken_chunk)
-            # TODO: Make it conversational, so you can stop or even skip ahead if needed
+    # @intent_handler("list.device.types.intent")
+    # def handle_list_device_types(self, message):
+    #     """Handle intent to read all devices of a certain type out loud."""
+    #     dev_type = message.get("device_type")
+    #     device_list_by_type = [dev for dev in self.devices_list if dev.get("type") == dev_type]
+    #     if len(device_list_by_type) == 0:
+    #         self.speak(f"I'm sorry, Home Assistant didn't tell me about any devices of the {dev_type} type.")
+    #     for chunk in chunks(device_list_by_type, self.device_list_pagination)[0]:
+    #         spoken_chunk = ",".join([c.get("name", "") for c in chunk])
+    #         self.speak(spoken_chunk)
+    #         # TODO: Make it conversational, so you can stop or even skip ahead if needed
 
     @intent_handler("sensor.intent")
     def get_device_intent(self, message):
