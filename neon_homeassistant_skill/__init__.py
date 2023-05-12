@@ -26,9 +26,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
         self.device_list_pagination = 10
 
     def initialize(self):
-        self._build_device_list()
         self.bus.on("ovos.phal.plugin.homeassistant.get.devices.response", self._handle_device_list)
         self.bus.on("ovos.phal.plugin.homeassistant.device.state.updated", self._handle_device_state_update)
+        self.bus.on("ovos.phal.plugin.homeassistant.assist.message.response", self._handle_assist_error)
         # TODO: Try to get a response from the PHAL skill. If no response, ask user if they want to load it
         # Keep state in settings
 
@@ -38,7 +38,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
     def _handle_device_list(self, message):
         self.devices_list = message.data
         self.log.info(type(self.devices_list))
-        self.log.info(self.devices_list)
+        self.log.debug(self.devices_list)
 
     def _handle_device_state_update(self, _):
         self._build_device_list()
@@ -62,6 +62,12 @@ class NeonHomeAssistantSkill(OVOSSkill):
     #         spoken_chunk = ",".join([c.get("name", "") for c in chunk])
     #         self.speak(spoken_chunk)
     #         # TODO: Make it conversational, so you can stop or even skip ahead if needed
+
+    # Handlers
+    @intent_handler("get.all.devices.intent")
+    def handle_get_all_devices_intent(self, _):
+        self._build_device_list()
+        self.speak("acknowledge")
 
     @intent_handler("sensor.intent")
     def get_device_intent(self, message):
@@ -285,6 +291,8 @@ class NeonHomeAssistantSkill(OVOSSkill):
         device_names = []
 
         if not self.devices_list:
+            self.log.info("No devices found")
+            self.speak_dialog("device.list.unavailable")
             return None
 
         for device in self.devices_list:
