@@ -324,6 +324,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
                 return i
         return None
 
+    def _handle_assist_error(self, _):
+        self.speak("Home Assistant returned an error. Please check the enclosure or PHAL logs for more information.")
+
 
 def create_skill():
     return NeonHomeAssistantSkill()
