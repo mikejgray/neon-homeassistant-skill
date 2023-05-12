@@ -40,5 +40,6 @@ intents:
     - lights.increase.brightness.intent
     - show.area.dashboard.intent
     - assist.intent
+    - get.all.devices.intent
   # Adapt intents are the name passed to the constructor
   adapt: []
