@@ -693,7 +693,9 @@
     "requirements": {
         "python": [
             "pfzy==0.3.4",
-            "neon-utils~=1.4.0"
+            "ovos-workshop",
+            "ovos-utils",
+            "ovos-bus-client"
         ],
         "system": {},
         "skill": []

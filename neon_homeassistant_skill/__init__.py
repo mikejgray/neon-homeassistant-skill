@@ -2,9 +2,9 @@
 import asyncio
 from typing import List
 
-from mycroft import intent_handler
-from mycroft.messagebus.message import Message
-from mycroft.util.log import LOG
+from ovos_bus_client import Message
+from ovos_utils import LOG
+from ovos_workshop.decorators import intent_handler
 from ovos_workshop.skills import OVOSSkill
 from pfzy import fuzzy_match
 
@@ -19,13 +19,14 @@ def chunks(lst, n) -> List[list]:
 class NeonHomeAssistantSkill(OVOSSkill):
     """Home Assistant skill for Neon OS. Requires the PHAL Home Assistant plugin."""
 
-    def __init__(self):
-        super(NeonHomeAssistantSkill, self).__init__()
+    def __init__(self, *args, **kwargs):
+        super(NeonHomeAssistantSkill, self).__init__(*args, **kwargs)
         self.devices_list = []
         self.skill_id = "neon-homeassistant-skill"
         self.device_list_pagination = 10
 
     def initialize(self):
+        self._build_device_list()
         self.bus.on("ovos.phal.plugin.homeassistant.get.devices.response", self._handle_device_list)
         self.bus.on("ovos.phal.plugin.homeassistant.device.state.updated", self._handle_device_state_update)
         self.bus.on("ovos.phal.plugin.homeassistant.assist.message.response", self._handle_assist_error)
@@ -33,7 +34,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         # Keep state in settings
 
     def _build_device_list(self):
-        self.bus.emit(Message("ovos.phal.plugin.homeassistant.get.devices", None, {"skill_id": self.skill_id}))
+        self.bus.emit(Message("ovos.phal.plugin.homeassistant.get.devices", {"skill_id": self.skill_id}))
 
     def _handle_device_list(self, message):
         self.devices_list = message.data
@@ -67,7 +68,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
     @intent_handler("get.all.devices.intent")
     def handle_get_all_devices_intent(self, _):
         self._build_device_list()
-        self.speak("acknowledge")
+        self.speak_dialog("acknowledge")
 
     @intent_handler("sensor.intent")
     def get_device_intent(self, message):
