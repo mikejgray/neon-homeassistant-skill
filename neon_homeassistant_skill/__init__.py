@@ -37,7 +37,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         self.bus.emit(Message("ovos.phal.plugin.homeassistant.get.devices", {"skill_id": self.skill_id}))
 
     def _handle_device_list(self, message):
-        self.devices_list = message.data
+        self.devices_list = message.data.get("devices", [])
         self.log.info(type(self.devices_list))
         self.log.debug(self.devices_list)
 
