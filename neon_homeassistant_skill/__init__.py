@@ -297,7 +297,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             return None
 
         for device in self.devices_list:
-            if device["attributes"].get("friendly_name"):
+            if device.get("attributes", {}).get("friendly_name"):
                 device_names.append(device["attributes"]["friendly_name"].lower())
             else:
                 device_names.append(device["name"].lower())
