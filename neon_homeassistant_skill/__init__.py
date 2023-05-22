@@ -48,7 +48,12 @@ class NeonHomeAssistantSkill(OVOSSkill):
         device = message.data
         if device:
             self.speak_dialog(
-                "device.status", data={"device": device, "type": device.get("type"), "state": device.get("state")}
+                "device.status",
+                data={
+                    "device": device.get("attributes", {}).get("friendly_name", device.get("name")),
+                    "type": device.get("type"),
+                    "state": device.get("state"),
+                },
             )
         else:
             self.speak_dialog("device.not.found")
