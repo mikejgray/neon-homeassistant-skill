@@ -4,7 +4,7 @@ import unittest
 from os import getenv
 from yaml import safe_load
 
-from mycroft.skills.intent_service import IntentService
+from ovos_core.intent_services import IntentService
 from ovos_utils.messagebus import FakeBus
 from padacioso import IntentContainer
 from neon_homeassistant_skill import NeonHomeAssistantSkill
