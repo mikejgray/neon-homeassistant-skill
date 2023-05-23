@@ -70,7 +70,8 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.speak_dialog("no.parsed.device")
 
     def handle_turn_on_response(self, message) -> None:
-        self.log.info(message.data)
+        """Handle turn on intent response."""
+        self.log.debug(f"Handling turn on response to {message.data}")
         device = message.data.get("device", "")
         if device:
             self.speak_dialog("device.turned.on", data={"device": device})
@@ -90,7 +91,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.speak_dialog("no.parsed.device")
 
     def handle_turn_off_response(self, message) -> None:
-        self.log.info(message.data)
+        self.log.debug(f"Handling turn off response to {message.data}")
         device = message.data.get("device", "")
         if device:
             self.speak_dialog("device.turned.off", data={"device": device})
