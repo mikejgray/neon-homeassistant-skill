@@ -25,4 +25,5 @@ jobs:
             chore
             docs
             bugfix
+            refactor
           requireScope: false
