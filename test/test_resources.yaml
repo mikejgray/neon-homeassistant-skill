@@ -33,7 +33,7 @@ intents:
     - lights.set.brightness.intent
     - stop.intent
     - lights.decrease.brightness.intent
-    # - lights.set.color.intent
+    - lights.set.color.intent
     - turn.off.intent
     - lights.get.brightness.intent
     - open.dashboard.intent
