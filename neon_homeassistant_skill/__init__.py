@@ -178,7 +178,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         device = message.data.get("device")
         self.log.info(f"Device {device} brightness is now {brightness}")
         if brightness:
-            self.speak_dialog(
+            return self.speak_dialog(
                 "lights.current.brightness",
                 data={
                     "brightness": brightness,
@@ -186,9 +186,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
                 },
             )
         if message.data.get("response"):
-            self.speak_dialog("device.not.found", data={"device": device})
+            return self.speak_dialog("device.not.found", data={"device": device})
         else:
-            self.speak_dialog("lights.status.not.available", data={"device": device})
+            return self.speak_dialog("lights.status.not.available", data={"device": device})
 
     @intent_handler("lights.increase.brightness.intent")
     def handle_increase_brightness_intent(self, message):
