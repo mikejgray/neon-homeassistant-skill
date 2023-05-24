@@ -194,8 +194,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
     def handle_increase_brightness_intent(self, message):
         self.log.info(message.data)
         device = message.data.get("entity")
-        brightness = message.data.get("brightness")
-        if device and brightness:
+        if device:
             call_data = {"device": device}
             self.log.info(call_data)
             self.bus.emit(
@@ -209,8 +208,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
     def handle_decrease_brightness_intent(self, message):
         self.log.info(message.data)
         device = message.data.get("entity")
-        brightness = message.data.get("brightness")
-        if device and brightness:
+        if device:
             call_data = {"device": device}
             self.log.info(call_data)
             self.bus.emit(
