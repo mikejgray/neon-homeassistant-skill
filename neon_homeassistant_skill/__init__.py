@@ -45,6 +45,10 @@ class NeonHomeAssistantSkill(OVOSSkill):
             "ovos.phal.plugin.homeassistant.get.light.color.response",
             self.handle_get_light_color_response,
         )
+        self.bus.on(
+            "ovos.phal.plugin.homeassistant.set.light.color.response",
+            self.handle_set_light_color_response,
+        )
 
     # Handlers
     @intent_handler("sensor.intent")
@@ -222,6 +226,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         else:
             self.speak_dialog("no.parsed.device")
 
+    # Light color
     @intent_handler("lights.get.color.intent")
     def handle_get_color_intent(self, message):
         self.log.info(message.data)
@@ -253,22 +258,39 @@ class NeonHomeAssistantSkill(OVOSSkill):
         else:
             return self.speak_dialog("lights.status.not.available", data={"device": device})
 
-    # @intent_handler("lights.set.color.intent")
-    # def handle_set_color_intent(self, message):
-    #     device, device_id = self._get_device_from_message(message)
-    #     if device and device_id:
-    #         dev = self._get_device_info(device_id)
-    #         brightness = dev.get("attributes", {}).get("brightness")
+    @intent_handler("lights.set.color.intent")
+    def handle_set_color_intent(self, message: Message):
+        self.log.info(message.data)
+        device = message.data.get("entity")
+        color = message.data.get("color")
+        if device and color:
+            call_data = {
+                "device": device,
+                "color": color,
+            }
+            self.log.info(call_data)
+            self.bus.emit(Message("ovos.phal.plugin.homeassistant.set.light.color", call_data, message.context))
+            self.speak_dialog("acknowledge")
+        else:
+            self.speak_dialog("no.parsed.device")
 
-    #         call_data = {
-    #             "device_id": device_id,
-    #             "function_name": "turn_on",
-    #             "data": {"brightness": brightness, "rgb_color": message.data.get("color")},
-    #         }
-    #         self.bus.emit(Message("ovos.phal.plugin.homeassistant.call.supported.function", call_data))
-    #         self.speak_dialog("acknowledge")
-    #     else:
-    #         self.speak_dialog("device.not.found", data={"device": device})
+    def handle_set_light_color_response(self, message):
+        """Handle set light color response."""
+        color = message.data.get("color")
+        device = message.data.get("device")
+        self.log.info(f"Device {device} color is now {color}")
+        if color:
+            return self.speak_dialog(
+                "lights.current.color",
+                data={
+                    "color": color,
+                    "device": device,
+                },
+            )
+        if message.data.get("response"):
+            return self.speak_dialog("device.not.found", data={"device": device})
+        else:
+            return self.speak_dialog("lights.status.not.available", data={"device": device})
 
     @intent_handler("show.area.dashboard.intent")
     def handle_show_area_dashboard_intent(self, message):
