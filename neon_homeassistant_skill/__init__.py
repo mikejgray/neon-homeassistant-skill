@@ -41,6 +41,10 @@ class NeonHomeAssistantSkill(OVOSSkill):
             "ovos.phal.plugin.homeassistant.decrease.light.brightness.response",
             self.handle_set_light_brightness_response,
         )
+        self.bus.on(
+            "ovos.phal.plugin.homeassistant.get.light.color.response",
+            self.handle_get_light_color_response,
+        )
 
     # Handlers
     @intent_handler("sensor.intent")
@@ -218,21 +222,36 @@ class NeonHomeAssistantSkill(OVOSSkill):
         else:
             self.speak_dialog("no.parsed.device")
 
-    # @intent_handler("lights.get.color.intent")
-    # def handle_get_color_intent(self, message):
-    #     device, device_id = self._get_device_from_message(message)
-    #     color = self._get_device_info(device_id).get("attributes", {}).get("rgb_color")
-    #     LOG.info(device)
-    #     LOG.info(device_id)
-    #     if device_id:
-    #         for dev in self.devices_list:
-    #             if dev["id"] == device_id:
-    #                 color = dev["attributes"].get("rgb_color")
-    #                 LOG.info(dev)
-    #                 if color:
-    #                     self.speak_dialog("lights.current.color", data={"color": color, "device": device})
-    #                 else:
-    #                     self.speak_dialog("lights.status.not.available", data={"device": device, "status": "color"})
+    @intent_handler("lights.get.color.intent")
+    def handle_get_color_intent(self, message):
+        self.log.info(message.data)
+        device = message.data.get("entity")
+        if device:
+            self.bus.emit(
+                Message(
+                    "ovos.phal.plugin.homeassistant.get.light.color",
+                    {"device": device},
+                )
+            )
+        else:
+            self.speak_dialog("no.parsed.device")
+
+    def handle_get_light_color_response(self, message):
+        color = message.data.get("color")
+        device = message.data.get("device")
+        self.log.info(f"Device {device} color is {color}")
+        if color:
+            self.speak_dialog(
+                "lights.current.color",
+                data={
+                    "color": color,
+                    "device": device,
+                },
+            )
+        if message.data.get("response"):
+            self.speak_dialog("device.not.found", data={"device": device})
+        else:
+            self.speak_dialog("lights.status.not.available", data={"device": device})
 
     # @intent_handler("lights.set.color.intent")
     # def handle_set_color_intent(self, message):

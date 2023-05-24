@@ -23,6 +23,7 @@ dialog:
   - vacuum.action.not.found
   - no.parsed.device
   - assist.not.understood
+  - lights.current.color
 # regex entities, not necessarily filenames
 regex: []
 intents:
@@ -37,7 +38,7 @@ intents:
     - lights.get.brightness.intent
     - open.dashboard.intent
     - turn.on.intent
-    # - lights.get.color.intent
+    - lights.get.color.intent
     - sensor.intent
     - lights.increase.brightness.intent
     - show.area.dashboard.intent
