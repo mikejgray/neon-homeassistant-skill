@@ -52,7 +52,7 @@ with open("./neon_homeassistant_skill/version.py", "r", encoding="utf-8") as v:
 setup(
     name=PYPI_NAME,
     version=version,
-    description="OVOS home assistant phal plugin voice interface skill",
+    description="Neon OVOS home assistant phal plugin voice interface skill",
     long_description=long_description,
     url=URL,
     author="Mike Gray",
@@ -63,6 +63,6 @@ setup(
     packages=[SKILL_PKG],
     include_package_data=True,
     install_requires=get_requirements("requirements.txt"),
-    keywords="ovos home assistant phal voice interface skill plugin",
+    keywords="ovos neon home assistant phal voice interface skill plugin",
     entry_points={"ovos.plugin.skill": PLUGIN_ENTRY_POINT},
 )
