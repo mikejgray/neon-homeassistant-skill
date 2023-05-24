@@ -241,7 +241,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         device = message.data.get("device")
         self.log.info(f"Device {device} color is {color}")
         if color:
-            self.speak_dialog(
+            return self.speak_dialog(
                 "lights.current.color",
                 data={
                     "color": color,
@@ -249,9 +249,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
                 },
             )
         if message.data.get("response"):
-            self.speak_dialog("device.not.found", data={"device": device})
+            return self.speak_dialog("device.not.found", data={"device": device})
         else:
-            self.speak_dialog("lights.status.not.available", data={"device": device})
+            return self.speak_dialog("lights.status.not.available", data={"device": device})
 
     # @intent_handler("lights.set.color.intent")
     # def handle_set_color_intent(self, message):
