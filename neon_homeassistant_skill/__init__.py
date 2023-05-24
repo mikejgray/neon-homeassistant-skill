@@ -26,19 +26,19 @@ class NeonHomeAssistantSkill(OVOSSkill):
         self.bus.on("ovos.phal.plugin.homeassistant.device.turn_on.response", self.handle_turn_on_response)
         self.bus.on("ovos.phal.plugin.homeassistant.device.turn_off.response", self.handle_turn_off_response)
         self.bus.on(
-            "ovos.phal.plugin.homeassistant.device.get.light.brightness.response",
+            "ovos.phal.plugin.homeassistant.get.light.brightness.response",
             self.handle_get_light_brightness_response,
         )
         self.bus.on(
-            "ovos.phal.plugin.homeassistant.device.set.light.brightness.response",
+            "ovos.phal.plugin.homeassistant.set.light.brightness.response",
             self.handle_set_light_brightness_response,
         )
         self.bus.on(
-            "ovos.phal.plugin.homeassistant.device.increase.light.brightness.response",
+            "ovos.phal.plugin.homeassistant.increase.light.brightness.response",
             self.handle_set_light_brightness_response,
         )
         self.bus.on(
-            "ovos.phal.plugin.homeassistant.device.decrease.light.brightness.response",
+            "ovos.phal.plugin.homeassistant.decrease.light.brightness.response",
             self.handle_set_light_brightness_response,
         )
 
