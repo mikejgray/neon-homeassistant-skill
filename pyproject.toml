@@ -17,6 +17,7 @@ pfzy = "*"
 ovos-utils = {version = "*", allow-prereleases = true}
 ovos-bus-client = {version = "*", allow-prereleases = true}
 ovos-workshop = {version = "~=0.0.12a27", allow-prereleases = true}
+ovos-core = {version = "*", allow-prereleases = true}
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
@@ -28,7 +29,6 @@ black = "*"
 mypy = "*"
 bandit = "*"
 types-pyyaml = "*"
-ovos-core = {version = "*", allow-prereleases = true}
 ovos-skills-manager = {version = "*", allow-prereleases = true}
 padacioso = {version = "*", allow-prereleases = true}
 adapt-parser = {git = "https://github.com/mycroftai/adapt"}

@@ -4,7 +4,7 @@
 name = "adapt-parser"
 version = "1.0.0"
 description = "A text-to-intent parsing framework."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 files = []
@@ -512,7 +512,7 @@ requirements-deprecated-finder = ["pip-api", "pipreqs"]
 name = "joblib"
 version = "1.2.0"
 description = "Lightweight pipelining with Python functions"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -550,7 +550,7 @@ files = [
 name = "langcodes"
 version = "3.3.0"
 description = "Tools for labeling human languages with IETF language tags"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -733,7 +733,7 @@ files = [
 name = "nltk"
 version = "3.8.1"
 description = "Natural Language Toolkit"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -776,14 +776,14 @@ offline = ["SpeechRecognition (>=3.8,<4.0)", "ovos-plugin-manager", "timezonefin
 
 [[package]]
 name = "ovos-bus-client"
-version = "0.0.4a11"
+version = "0.0.4a12"
 description = "OVOS Messagebus Client"
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "ovos-bus-client-0.0.4a11.tar.gz", hash = "sha256:69ec083ef3e5d968a90676e026914946b39e82d479bd477ad0171ff185333492"},
-    {file = "ovos_bus_client-0.0.4a11-py3-none-any.whl", hash = "sha256:6e6aef21fff219304bd8831c789eb514ec9c586fa01eb17d1237b5b8c13ea70f"},
+    {file = "ovos-bus-client-0.0.4a12.tar.gz", hash = "sha256:c7e98dbcf8c235ac7acbbe57367284337ce8f49db90caff03f42d438175c5855"},
+    {file = "ovos_bus_client-0.0.4a12-py3-none-any.whl", hash = "sha256:1ca2a3ea7c99d4979174dca6f39b172b78ff9b9692e2d4f3b9c8d3286eb3e8bf"},
 ]
 
 [package.dependencies]
@@ -796,7 +796,7 @@ websocket-client = ">=0.54.0"
 name = "ovos-classifiers"
 version = "0.0.0a13"
 description = ""
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 files = [
@@ -839,7 +839,7 @@ extras = ["ovos-backend-client (<0.1.0)"]
 name = "ovos-core"
 version = "0.0.8a21"
 description = "mycroft-core packaged as a library"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 files = [
@@ -888,13 +888,13 @@ webcolors = "*"
 
 [[package]]
 name = "ovos-plugin-manager"
-version = "0.0.23a17"
+version = "0.0.23a20"
 description = "OpenVoiceOS plugin manager"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "ovos_plugin_manager-0.0.23a17-py3-none-any.whl", hash = "sha256:41305974bfffd451d663fb436850175d38a98584d04270301c20b35d07e40386"},
+    {file = "ovos_plugin_manager-0.0.23a20-py3-none-any.whl", hash = "sha256:da44392ee83eefa29dcf48b6a291299da8743d7a6efca57dd7a67c2a4291c2b1"},
 ]
 
 [package.dependencies]
@@ -1009,7 +1009,7 @@ files = [
 name = "padacioso"
 version = "0.2.1a5"
 description = "dead simple intent parser"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 files = [
@@ -1437,7 +1437,7 @@ full = ["numpy"]
 name = "regex"
 version = "2023.5.5"
 description = "Alternative regular expression module, to replace re."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -1533,14 +1533,14 @@ files = [
 
 [[package]]
 name = "requests"
-version = "2.30.0"
+version = "2.31.0"
 description = "Python HTTP for Humans."
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "requests-2.30.0-py3-none-any.whl", hash = "sha256:10e94cc4f3121ee6da529d358cdaeaff2f1c409cd377dbc72b825852f2f7e294"},
-    {file = "requests-2.30.0.tar.gz", hash = "sha256:239d7d4458afcb28a692cdd298d87542235f4ca8d36d03a15bfc128a6559a2f4"},
+    {file = "requests-2.31.0-py3-none-any.whl", hash = "sha256:58cd2187c01e70e6e26505bca751777aa9f2ee0b7f4300988b709f44e013003f"},
+    {file = "requests-2.31.0.tar.gz", hash = "sha256:942c5a758f98d790eaed1a29cb6eefc7ffb0d1cf7af05c3d2791656dbd6ad1e1"},
 ]
 
 [package.dependencies]
@@ -1645,7 +1645,7 @@ testing-integration = ["build[virtualenv]", "filelock (>=3.4.0)", "jaraco.envs (
 name = "simplematch"
 version = "1.3"
 description = "Minimal, super readable string pattern matching."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6,<4.0"
 files = [
@@ -1733,7 +1733,7 @@ files = [
 name = "tqdm"
 version = "4.65.0"
 description = "Fast, Extensible Progress Meter"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -1786,26 +1786,26 @@ files = [
 
 [[package]]
 name = "types-pyyaml"
-version = "6.0.12.9"
+version = "6.0.12.10"
 description = "Typing stubs for PyYAML"
 category = "dev"
 optional = false
 python-versions = "*"
 files = [
-    {file = "types-PyYAML-6.0.12.9.tar.gz", hash = "sha256:c51b1bd6d99ddf0aa2884a7a328810ebf70a4262c292195d3f4f9a0005f9eeb6"},
-    {file = "types_PyYAML-6.0.12.9-py3-none-any.whl", hash = "sha256:5aed5aa66bd2d2e158f75dda22b059570ede988559f030cf294871d3b647e3e8"},
+    {file = "types-PyYAML-6.0.12.10.tar.gz", hash = "sha256:ebab3d0700b946553724ae6ca636ea932c1b0868701d4af121630e78d695fc97"},
+    {file = "types_PyYAML-6.0.12.10-py3-none-any.whl", hash = "sha256:662fa444963eff9b68120d70cda1af5a5f2aa57900003c2006d7626450eaae5f"},
 ]
 
 [[package]]
 name = "typing-extensions"
-version = "4.5.0"
+version = "4.6.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "typing_extensions-4.5.0-py3-none-any.whl", hash = "sha256:fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4"},
-    {file = "typing_extensions-4.5.0.tar.gz", hash = "sha256:5cb5f4a79139d699607b3ef622a1dedafa84e115ab0024e0d9c044a9479ca7cb"},
+    {file = "typing_extensions-4.6.0-py3-none-any.whl", hash = "sha256:6ad00b63f849b7dcc313b70b6b304ed67b2b2963b3098a33efe18056b1a9a223"},
+    {file = "typing_extensions-4.6.0.tar.gz", hash = "sha256:ff6b238610c747e44c268aa4bb23c8c735d665a63726df3f9431ce707f2aa768"},
 ]
 
 [[package]]
@@ -1900,14 +1900,14 @@ tests = ["pytest", "pytest-cov"]
 
 [[package]]
 name = "websocket-client"
-version = "1.5.1"
+version = "1.5.2"
 description = "WebSocket client for Python with low level API options"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "websocket-client-1.5.1.tar.gz", hash = "sha256:3f09e6d8230892547132177f575a4e3e73cfdf06526e20cc02aa1c3b47184d40"},
-    {file = "websocket_client-1.5.1-py3-none-any.whl", hash = "sha256:cdf5877568b7e83aa7cf2244ab56a3213de587bbe0ce9d8b9600fc77b455d89e"},
+    {file = "websocket-client-1.5.2.tar.gz", hash = "sha256:c7d67c13b928645f259d9b847ab5b57fd2d127213ca41ebd880de1f553b7c23b"},
+    {file = "websocket_client-1.5.2-py3-none-any.whl", hash = "sha256:f8c64e28cd700e7ba1f04350d66422b6833b82a796b525a51e740b8cc8dab4b1"},
 ]
 
 [package.extras]
@@ -2019,4 +2019,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.7"
-content-hash = "8c212b24a1538291026789df5085953900ac3f585237373e25394f23f2f34457"
+content-hash = "4fa0a9a4d95ada23554410cc8ea746a239e2bd0ca68a3a936923716f7185f08a"
