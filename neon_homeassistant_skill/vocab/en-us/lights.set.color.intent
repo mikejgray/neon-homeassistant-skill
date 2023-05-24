@@ -1,2 +1,2 @@
 (adjust|change|make) (|the|my) {entity} color (to |){color}
-(adjust|change|make) (|the|my) light {entity} to {color}
+(adjust|change|make) (|the|my) light {entity} (to |){color}
