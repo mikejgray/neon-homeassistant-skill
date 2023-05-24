@@ -21,26 +21,26 @@ dialog:
   - device.not.found
   - ha.dashboard.closed
   - vacuum.action.not.found
-  - no.parsed.device.dialog
+  - no.parsed.device
+  - assist.not.understood
 # regex entities, not necessarily filenames
 regex: []
 intents:
   # Padatious intents are the `.intent` file names
   padatious:
     - close.dashboard.intent
-    # - lights.set.brightness.intent
+    - lights.set.brightness.intent
     - stop.intent
-    # - lights.decrease.brightness.intent
+    - lights.decrease.brightness.intent
     # - lights.set.color.intent
     - turn.off.intent
-    # - lights.get.brightness.intent
+    - lights.get.brightness.intent
     - open.dashboard.intent
     - turn.on.intent
     # - lights.get.color.intent
     - sensor.intent
-    # - lights.increase.brightness.intent
+    - lights.increase.brightness.intent
     - show.area.dashboard.intent
     - assist.intent
-    # - get.all.devices.intent
   # Adapt intents are the name passed to the constructor
   adapt: []
