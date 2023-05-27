@@ -1,5 +1,5 @@
 pfzy>=0.3.4
 ovos-utils
 ovos-bus-client
-ovos-workshop~=0.0.12a7
+ovos-workshop<=0.0.12
 ovos-core>=0.0.7
