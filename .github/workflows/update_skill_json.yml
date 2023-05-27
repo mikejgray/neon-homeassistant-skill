@@ -1,6 +1,8 @@
 name: Update skill.json
 on:
   push:
+permissions:
+  contents: write
 
 jobs:
   update_skill_json:
