@@ -21,6 +21,9 @@ dialog:
   - device.not.found
   - ha.dashboard.closed
   - vacuum.action.not.found
+  - no.parsed.device
+  - assist.not.understood
+  - lights.current.color
 # regex entities, not necessarily filenames
 regex: []
 intents:

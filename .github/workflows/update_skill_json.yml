@@ -1,0 +1,9 @@
+name: Update skill.json
+on:
+  push:
+permissions:
+  contents: write
+
+jobs:
+  update_skill_json:
+    uses: neongeckocom/.github/.github/workflows/skill_update_json_spec.yml@master
