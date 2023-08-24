@@ -75,7 +75,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             "show.area.dashboard.intent",
             "assist.intent",
         ):
-            self.disable_intent(intent)
+            self.intent_service.remove_intent(intent)
 
     # Handlers
     @intent_handler("sensor.intent")
