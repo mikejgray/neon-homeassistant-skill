@@ -47,21 +47,32 @@ class NeonHomeAssistantSkill(OVOSSkill):
         )
         self.bus.on("mycroft.ready", self._on_ready)
 
-    def _on_ready(message: Message):
-        resp = self.bus.wait_for_response(message.forward("ovos.phal.plugin.check_connected"))
-        if resp and resp.data.get('connected'):
+    def _on_ready(self, message: Message):
+        resp = self.bus.wait_for_response(message.forward("ovos.phal.plugin.homeassistant.check_connected"))
+        if resp and resp.data.get("connected"):
             self.log.debug("PHAL plugin connected to HA")
             return
         if not resp:
-            self.log.error("PHAL plugin not installed or not running!")
+            self.log.error("Home Assistant PHAL plugin not installed or not running!")
             self.detach()  # Removes all intents
             return
 
         self.log.info("PHAL Plugin not connected to HomeAssistant")
-        for intent in ("sensor.intent", "turn.on.intent", "turn.off.intent", "stop.intent"):
-            # TODO: All the relevant intents
+        for intent in (
+            "sensor.intent",
+            "turn.on.intent",
+            "turn.off.intent",
+            "stop.intent",
+            "lights.get.brightness.intent",
+            "lights.set.brightness.intent",
+            "lights.increase.brightness.intent",
+            "lights.decrease.brightness.intent",
+            "lights.get.color.intent",
+            "lights.set.color.intent",
+            "show.area.dashboard.intent",
+            "assist.intent",
+        ):
             self.disable_intent(intent)
-
 
     # Handlers
     @intent_handler("sensor.intent")
