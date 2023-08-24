@@ -45,10 +45,8 @@ class NeonHomeAssistantSkill(OVOSSkill):
             "ovos.phal.plugin.homeassistant.set.light.color.response",
             self.handle_set_light_color_response,
         )
-        self.bus.on("mycroft.ready", self._on_ready)
 
-    def _on_ready(self, message: Message):
-        resp = self.bus.wait_for_response(message.forward("ovos.phal.plugin.homeassistant.check_connected"))
+        resp = self.bus.wait_for_response(Message("ovos.phal.plugin.homeassistant.check_connected"))
         if resp and resp.data.get("connected"):
             self.log.debug("PHAL plugin connected to HA")
             return
