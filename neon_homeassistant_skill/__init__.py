@@ -58,10 +58,13 @@ class NeonHomeAssistantSkill(OVOSSkill):
             return
         if not resp:
             self.log.error("Home Assistant PHAL plugin not installed or not running!")
-            self.detach()  # Removes all intents
+            self.disable_unused_intents()
             return
 
         self.log.info("PHAL Plugin not connected to HomeAssistant")
+        self.disable_unused_intents()
+
+    def disable_unused_intents(self):
         for intent in (
             "sensor.intent",
             "turn.on.intent",
