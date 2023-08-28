@@ -49,8 +49,10 @@ class NeonHomeAssistantSkill(OVOSSkill):
             "ovos.phal.plugin.homeassistant.set.light.color.response",
             self.handle_set_light_color_response,
         )
+        self.bus.on("mycroft.ready", self.on_ready)
 
-        resp = self.bus.wait_for_response(Message("ovos.phal.plugin.homeassistant.check_connected"))
+    def on_ready(self, message):
+        resp = self.bus.wait_for_response(message.forward("ovos.phal.plugin.homeassistant.check_connected"))
         if resp and resp.data.get("connected"):
             self.log.debug("PHAL plugin connected to HA")
             return
@@ -78,6 +80,10 @@ class NeonHomeAssistantSkill(OVOSSkill):
             "assist.intent",
         ):
             self.intent_service.remove_intent(intent)
+            try:
+                assert self.intent_service.intent_is_detached(intent) is True
+            except AssertionError:
+                self.log.error(f"Error disabling intent: {intent}")
 
     # Handlers
     @intent_handler("sensor.intent")
