@@ -17,69 +17,74 @@ class NeonHomeAssistantSkill(OVOSSkill):
     """Home Assistant skill for Neon OS. Requires the PHAL Home Assistant plugin."""
 
     def initialize(self):
-        self.bus.on("ovos.phal.plugin.homeassistant.assist.message.response", self._handle_assist_error)
-        self.bus.on("ovos.phal.plugin.homeassistant.get.device.response", self.handle_get_device_response)
-        self.bus.on("ovos.phal.plugin.homeassistant.device.turn_on.response", self.handle_turn_on_response)
-        self.bus.on("ovos.phal.plugin.homeassistant.device.turn_off.response", self.handle_turn_off_response)
-        self.bus.on(
-            "ovos.phal.plugin.homeassistant.get.light.brightness.response",
-            self.handle_get_light_brightness_response,
-        )
-        self.bus.on(
-            "ovos.phal.plugin.homeassistant.set.light.brightness.response",
-            self.handle_set_light_brightness_response,
-        )
-        self.bus.on(
-            "ovos.phal.plugin.homeassistant.increase.light.brightness.response",
-            self.handle_set_light_brightness_response,
-        )
-        self.bus.on(
-            "ovos.phal.plugin.homeassistant.decrease.light.brightness.response",
-            self.handle_set_light_brightness_response,
-        )
-        self.bus.on(
-            "ovos.phal.plugin.homeassistant.get.light.color.response",
-            self.handle_get_light_color_response,
-        )
-        self.bus.on(
-            "ovos.phal.plugin.homeassistant.set.light.color.response",
-            self.handle_set_light_color_response,
-        )
+        try:
+            assert self.connected is True
+        except AssertionError:
+            self.log.warning("Home Assistant PHAL plugin not installed or not running!")
         self.bus.on("mycroft.ready", self.on_ready)
+        self.bus.on("ovos.phal.plugin.homeassistant.ready", self.on_ready)
+        if not self.connected:
+            self.on_ready(Message("ovos.phal.plugin.homeassistant.check_connected"))
+        if self.connected:
+            self.register_intents()
+            self.bus.on("ovos.phal.plugin.homeassistant.assist.message.response", self._handle_assist_error)
+            self.bus.on("ovos.phal.plugin.homeassistant.get.device.response", self.handle_get_device_response)
+            self.bus.on("ovos.phal.plugin.homeassistant.device.turn_on.response", self.handle_turn_on_response)
+            self.bus.on("ovos.phal.plugin.homeassistant.device.turn_off.response", self.handle_turn_off_response)
+            self.bus.on(
+                "ovos.phal.plugin.homeassistant.get.light.brightness.response",
+                self.handle_get_light_brightness_response,
+            )
+            self.bus.on(
+                "ovos.phal.plugin.homeassistant.set.light.brightness.response",
+                self.handle_set_light_brightness_response,
+            )
+            self.bus.on(
+                "ovos.phal.plugin.homeassistant.increase.light.brightness.response",
+                self.handle_set_light_brightness_response,
+            )
+            self.bus.on(
+                "ovos.phal.plugin.homeassistant.decrease.light.brightness.response",
+                self.handle_set_light_brightness_response,
+            )
+            self.bus.on(
+                "ovos.phal.plugin.homeassistant.get.light.color.response",
+                self.handle_get_light_color_response,
+            )
+            self.bus.on(
+                "ovos.phal.plugin.homeassistant.set.light.color.response",
+                self.handle_set_light_color_response,
+            )
 
     def on_ready(self, message):
         resp = self.bus.wait_for_response(message.forward("ovos.phal.plugin.homeassistant.check_connected"))
         if resp and resp.data.get("connected"):
             self.log.debug("PHAL plugin connected to HA")
-            return
+            self.initialize()
+            return True
         if not resp:
             self.log.error("Home Assistant PHAL plugin not installed or not running!")
             self.disable_unused_intents()
-            return
+            return False
 
         self.log.info("PHAL Plugin not connected to HomeAssistant")
         self.disable_unused_intents()
 
     def disable_unused_intents(self):
-        for intent in (
-            "sensor.intent",
-            "turn.on.intent",
-            "turn.off.intent",
-            "stop.intent",
-            "lights.get.brightness.intent",
-            "lights.set.brightness.intent",
-            "lights.increase.brightness.intent",
-            "lights.decrease.brightness.intent",
-            "lights.get.color.intent",
-            "lights.set.color.intent",
-            "show.area.dashboard.intent",
-            "assist.intent",
-        ):
+        for intent in self.connected_intents:
             self.intent_service.remove_intent(intent)
             try:
                 assert self.intent_service.intent_is_detached(intent) is True
             except AssertionError:
                 self.log.error(f"Error disabling intent: {intent}")
+
+    def register_intents(self):
+        for intent in self.connected_intents:
+            self.intent_service.register_padatious_intent(intent)
+            try:
+                assert self.intent_service.intent_is_detached(intent) is False
+            except AssertionError:
+                self.log.error(f"Error registering intent: {intent}")
 
     # Handlers
     @intent_handler("sensor.intent")
