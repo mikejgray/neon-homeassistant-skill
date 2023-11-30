@@ -24,7 +24,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         self.bus.on("mycroft.ready", self.on_ready)
         self.bus.on("ovos.phal.plugin.homeassistant.ready", self.on_ready)
         if not self.connected:
-            self.on_ready(Message("ovos.phal.plugin.homeassistant.check_connected"))
+            self.on_ready(Message("ovos.phal.plugin.homeassistant.check_connected", None, {"skill_id": self.skill_id}))
         if self.connected:
             self.register_intents()
             self.bus.on("ovos.phal.plugin.homeassistant.assist.message.response", self._handle_assist_error)
@@ -97,6 +97,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
                 Message(
                     "ovos.phal.plugin.homeassistant.get.device",
                     {"device": device},
+                    {"skill_id": self.skill_id}
                 )
             )
             self.speak_dialog("acknowledge")
@@ -124,7 +125,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         self.log.info(message.data)
         device = message.data.get("entity", "")
         if device:
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.device.turn_on", {"device": device}))
+            self.bus.emit(Message("ovos.phal.plugin.homeassistant.device.turn_on", {"device": device}, {"skill_id": self.skill_id}))
             self.speak_dialog("acknowledge")
         else:
             self.speak_dialog("no.parsed.device")
@@ -145,7 +146,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         self.log.info(message.data)
         device = message.data.get("entity", "")
         if device:
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.device.turn_off", {"device": device}))
+            self.bus.emit(Message("ovos.phal.plugin.homeassistant.device.turn_off", {"device": device}, {"skill_id": self.skill_id}))
             self.speak_dialog("acknowledge")
         else:
             self.speak_dialog("no.parsed.device")
@@ -160,12 +161,12 @@ class NeonHomeAssistantSkill(OVOSSkill):
 
     @intent_handler("open.dashboard.intent")
     def handle_open_dashboard_intent(self, _):
-        self.bus.emit(Message("ovos-PHAL-plugin-homeassistant.home"))
+        self.bus.emit(Message("ovos-PHAL-plugin-homeassistant.home", None, {"skill_id": self.skill_id}))
         self.speak_dialog("ha.dashboard.opened")
 
     @intent_handler("close.dashboard.intent")
     def handle_close_dashboard_intent(self, _):
-        self.bus.emit(Message("ovos-PHAL-plugin-homeassistant.close"))
+        self.bus.emit(Message("ovos-PHAL-plugin-homeassistant.close", None, {"skill_id": self.skill_id}))
         self.speak_dialog("ha.dashboard.closed")
 
     @intent_handler("lights.get.brightness.intent")
@@ -177,6 +178,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
                 Message(
                     "ovos.phal.plugin.homeassistant.get.light.brightness",
                     {"device": device},
+                    {"skill_id": self.skill_id}
                 )
             )
         else:
@@ -272,6 +274,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
                 Message(
                     "ovos.phal.plugin.homeassistant.get.light.color",
                     {"device": device},
+                    {"skill_id": self.skill_id}
                 )
             )
         else:
@@ -332,7 +335,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
     def handle_show_area_dashboard_intent(self, message):
         area = message.data.get("area")
         if area:
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.show.area.dashboard", {"area": area}))
+            self.bus.emit(Message("ovos.phal.plugin.homeassistant.show.area.dashboard", {"area": area}, {"skill_id": self.skill_id}))
             self.speak_dialog("area.dashboard.opened", data={"area": area})
         else:
             self.speak_dialog("area.not.found")
@@ -342,7 +345,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         """Handle passthrough to Home Assistant's Assist API."""
         command = message.data.get("command")
         if command:
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.assist.intent", {"command": command}))
+            self.bus.emit(Message("ovos.phal.plugin.homeassistant.assist.intent", {"command": command}, {"skill_id": self.skill_id}))
             self.speak_dialog("assist")
         else:
             self.speak_dialog("assist.not.understood")
