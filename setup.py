@@ -63,6 +63,7 @@ setup(
     packages=[SKILL_PKG],
     include_package_data=True,
     install_requires=get_requirements("requirements.txt"),
+    extras_require={"test": ["neon-minerva>=0.1.1a1"]},
     keywords="ovos neon home assistant phal voice interface skill plugin",
     entry_points={"ovos.plugin.skill": PLUGIN_ENTRY_POINT},
 )
