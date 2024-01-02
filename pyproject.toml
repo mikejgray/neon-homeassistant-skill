@@ -11,13 +11,16 @@ readme = "README.md"
 license = "Apache-2.0"
 include = ["neon_homeassistant_skill/dialog/*", "neon_homeassistant_skill/vocab/*"]
 
+[tool.poetry.extras]
+test = ["neon-minerva"]
+
 [tool.poetry.dependencies]
 python = "^3.7"
 pfzy = "*"
 ovos-utils = {version = "*", allow-prereleases = true}
 ovos-bus-client = {version = "*", allow-prereleases = true}
 ovos-workshop = {version = "~=0.0.12a27", allow-prereleases = true}
-ovos-core = {version = "*", allow-prereleases = true}
+neon-minerva = {version = "~=0.1", allow-prereleases = true, optional = true}
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
@@ -32,6 +35,7 @@ types-pyyaml = "*"
 ovos-skills-manager = {version = "*", allow-prereleases = true}
 padacioso = {version = "*", allow-prereleases = true}
 adapt-parser = {git = "https://github.com/mycroftai/adapt"}
+ovos-core = {version = "*", allow-prereleases = true}
 
 [tool.poetry.scripts]
 "neon-homeassistant-skill" = "neon_homeassistant_skill:NeonHomeAssistantSkill"
