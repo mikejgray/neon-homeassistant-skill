@@ -17,6 +17,8 @@ jobs:
   #   uses: neongeckocom/.github/.github/workflows/skill_test_intents.yml@master
   skill_resource_tests:
     uses: neongeckocom/.github/.github/workflows/skill_test_resources.yml@master
+    with:
+      skill_entrypoint: neon_homeassistant_skill.mikejgray
   # The skill_install_tests shared workflow requires the package to be in the root for compatibility
   # Classic core expects to see everything right in the root
   # However, I was able to install this repo as-is from OSM. For now, we'll exclude this test.
