@@ -17,6 +17,33 @@ def chunks(lst, n_len) -> List[list]:
 class NeonHomeAssistantSkill(OVOSSkill):
     """Home Assistant skill for Neon OS. Requires the PHAL Home Assistant plugin."""
 
+    _connected = False
+    connected_intents = (
+            "sensor.intent",
+            "turn.on.intent",
+            "turn.off.intent",
+            "stop.intent",
+            "lights.get.brightness.intent",
+            "lights.set.brightness.intent",
+            "lights.increase.brightness.intent",
+            "lights.decrease.brightness.intent",
+            "lights.get.color.intent",
+            "lights.set.color.intent",
+            "show.area.dashboard.intent",
+            "assist.intent",
+        )
+
+    @property
+    def connected(self):
+        if self._connected is False:
+            self._connected = self.on_ready(Message(
+                        "ovos.phal.plugin.homeassistant.check_connected",
+                        None,
+                        {"skill_id": self.skill_id}
+                    )
+                )
+        return self._connected
+
     def initialize(self):
         try:
             assert self.connected is True
@@ -87,7 +114,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
     def register_intents(self):
         for intent in self.connected_intents:
             # TODO: Localization
-            filename = path.join(path.realpath(__file__), "locale", "en-us", "intents", intent)
+            filename = path.join(path.realpath(__file__).replace("/__init__.py", ""), "locale", "en-us", "intents", intent)
             self.intent_service.register_padatious_intent(intent_name=intent, filename=filename, lang="en-us")
             try:
                 assert self.intent_service.intent_is_detached(intent) is False
