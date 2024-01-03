@@ -2,8 +2,6 @@
 
 Uses [PHAL Home Assistant plugin](https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant)
 
-Still a work in progress - PRs and issues welcome
-
 Available on PyPi: `pip install neon-homeassistant-skill`
 
 ## Installation on Neon

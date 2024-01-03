@@ -16,10 +16,6 @@ def chunks(lst, n_len) -> List[list]:
 class NeonHomeAssistantSkill(OVOSSkill):
     """Home Assistant skill for Neon OS. Requires the PHAL Home Assistant plugin."""
 
-    def __init__(self, *args, **kwargs):
-        super(NeonHomeAssistantSkill, self).__init__(*args, **kwargs)
-        self.skill_id = "neon-homeassistant-skill"
-
     def initialize(self):
         self.bus.on("ovos.phal.plugin.homeassistant.assist.message.response", self._handle_assist_error)
         self.bus.on("ovos.phal.plugin.homeassistant.get.device.response", self.handle_get_device_response)
