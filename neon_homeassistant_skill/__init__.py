@@ -26,32 +26,35 @@ class NeonHomeAssistantSkill(OVOSSkill):
         if not self.connected:
             self.on_ready(Message("ovos.phal.plugin.homeassistant.check_connected", None, {"skill_id": self.skill_id}))
         if self.connected:
-            self.register_intents()
-            self.bus.on("ovos.phal.plugin.homeassistant.assist.message.response", self._handle_assist_error)
-            self.bus.on("ovos.phal.plugin.homeassistant.get.device.response", self.handle_get_device_response)
-            self.bus.on("ovos.phal.plugin.homeassistant.device.turn_on.response", self.handle_turn_on_response)
-            self.bus.on("ovos.phal.plugin.homeassistant.device.turn_off.response", self.handle_turn_off_response)
-            self.bus.on(
+            self.enable_ha_intents()
+
+    def enable_ha_intents(self):
+        self.register_intents()
+        self.bus.on("ovos.phal.plugin.homeassistant.assist.message.response", self._handle_assist_error)
+        self.bus.on("ovos.phal.plugin.homeassistant.get.device.response", self.handle_get_device_response)
+        self.bus.on("ovos.phal.plugin.homeassistant.device.turn_on.response", self.handle_turn_on_response)
+        self.bus.on("ovos.phal.plugin.homeassistant.device.turn_off.response", self.handle_turn_off_response)
+        self.bus.on(
                 "ovos.phal.plugin.homeassistant.get.light.brightness.response",
                 self.handle_get_light_brightness_response,
             )
-            self.bus.on(
+        self.bus.on(
                 "ovos.phal.plugin.homeassistant.set.light.brightness.response",
                 self.handle_set_light_brightness_response,
             )
-            self.bus.on(
+        self.bus.on(
                 "ovos.phal.plugin.homeassistant.increase.light.brightness.response",
                 self.handle_set_light_brightness_response,
             )
-            self.bus.on(
+        self.bus.on(
                 "ovos.phal.plugin.homeassistant.decrease.light.brightness.response",
                 self.handle_set_light_brightness_response,
             )
-            self.bus.on(
+        self.bus.on(
                 "ovos.phal.plugin.homeassistant.get.light.color.response",
                 self.handle_get_light_color_response,
             )
-            self.bus.on(
+        self.bus.on(
                 "ovos.phal.plugin.homeassistant.set.light.color.response",
                 self.handle_set_light_color_response,
             )
@@ -61,7 +64,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         self.log.debug(f"Response from HA PHAL plugin: {resp}")
         if resp and resp.data.get("connected"):
             self.log.debug("PHAL plugin connected to HA")
-            self.initialize()
+            self.enable_ha_intents()
             return True
         if not resp:
             self.log.error("Home Assistant PHAL plugin not installed or not running!")
