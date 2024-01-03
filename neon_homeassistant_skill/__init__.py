@@ -1,4 +1,5 @@
 # pylint: disable=missing-function-docstring,missing-class-docstring,missing-module-docstring,logging-fstring-interpolation
+from os import path
 from typing import List
 
 from ovos_bus_client import Message
@@ -86,7 +87,8 @@ class NeonHomeAssistantSkill(OVOSSkill):
     def register_intents(self):
         for intent in self.connected_intents:
             # TODO: Localization
-            self.intent_service.register_padatious_intent(intent_name=intent, filename=intent, lang="en-us")
+            filename = path.join(path.realpath(__file__), "locale", "en-us", intent)
+            self.intent_service.register_padatious_intent(intent_name=intent, filename=filename, lang="en-us")
             try:
                 assert self.intent_service.intent_is_detached(intent) is False
             except AssertionError:
@@ -94,7 +96,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
 
     # Handlers
     @intent_handler("sensor.intent")
-    def get_device_intent(self, message):
+    def get_device_intent(self, message):  # noqa
         """Handle intent to get a single device status from Home Assistant."""
         self.log.info(message.data)
         device = message.data.get("entity", "")
@@ -110,7 +112,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         else:
             self.speak_dialog("no.parsed.device")
 
-    def handle_get_device_response(self, message):
+    def handle_get_device_response(self, message):  # noqa
         self.log.info(message.data)
         device = message.data
         if device:
@@ -126,7 +128,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.speak_dialog("device.not.found")
 
     @intent_handler("turn.on.intent")
-    def handle_turn_on_intent(self, message) -> None:
+    def handle_turn_on_intent(self, message) -> None:  # noqa
         """Handle turn on intent."""
         self.log.info(message.data)
         device = message.data.get("entity", "")
@@ -146,8 +148,8 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.speak_dialog("no.parsed.device")
 
     @intent_handler("turn.off.intent")
-    @intent_handler("stop.intent")  # Consider changing this so it stops reading from the list of devices
-    def handle_turn_off_intent(self, message) -> None:
+    @intent_handler("stop.intent")
+    def handle_turn_off_intent(self, message) -> None:  # noqa
         """Handle turn off intent."""
         self.log.info(message.data)
         device = message.data.get("entity", "")
@@ -166,17 +168,17 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.speak_dialog("no.parsed.device")
 
     @intent_handler("open.dashboard.intent")
-    def handle_open_dashboard_intent(self, _):
+    def handle_open_dashboard_intent(self, _):  # noqa
         self.bus.emit(Message("ovos-PHAL-plugin-homeassistant.home", None, {"skill_id": self.skill_id}))
         self.speak_dialog("ha.dashboard.opened")
 
     @intent_handler("close.dashboard.intent")
-    def handle_close_dashboard_intent(self, _):
+    def handle_close_dashboard_intent(self, _):  # noqa
         self.bus.emit(Message("ovos-PHAL-plugin-homeassistant.close", None, {"skill_id": self.skill_id}))
         self.speak_dialog("ha.dashboard.closed")
 
     @intent_handler("lights.get.brightness.intent")
-    def handle_get_brightness_intent(self, message):
+    def handle_get_brightness_intent(self, message):  # noqa
         self.log.info(message.data)
         device = message.data.get("entity", "")
         if device:
@@ -208,7 +210,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.speak_dialog("lights.status.not.available", data={"device": device})
 
     @intent_handler("lights.set.brightness.intent")
-    def handle_set_brightness_intent(self, message: Message):
+    def handle_set_brightness_intent(self, message: Message):  # noqa
         self.log.info(message.data)
         device = message.data.get("entity")
         brightness = message.data.get("brightness")
@@ -243,7 +245,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             return self.speak_dialog("lights.status.not.available", data={"device": device})
 
     @intent_handler("lights.increase.brightness.intent")
-    def handle_increase_brightness_intent(self, message):
+    def handle_increase_brightness_intent(self, message):  # noqa
         self.log.info(message.data)
         device = message.data.get("entity")
         if device:
@@ -257,7 +259,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.speak_dialog("no.parsed.device")
 
     @intent_handler("lights.decrease.brightness.intent")
-    def handle_decrease_brightness_intent(self, message):
+    def handle_decrease_brightness_intent(self, message):  # noqa
         self.log.info(message.data)
         device = message.data.get("entity")
         if device:
@@ -272,7 +274,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
 
     # Light color
     @intent_handler("lights.get.color.intent")
-    def handle_get_color_intent(self, message):
+    def handle_get_color_intent(self, message):  # noqa
         self.log.info(message.data)
         device = message.data.get("entity")
         if device:
@@ -286,7 +288,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         else:
             self.speak_dialog("no.parsed.device")
 
-    def handle_get_light_color_response(self, message):
+    def handle_get_light_color_response(self, message):  # noqa
         color = message.data.get("color")
         device = message.data.get("device")
         self.log.info(f"Device {device} color is {color}")
@@ -304,7 +306,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             return self.speak_dialog("lights.status.not.available", data={"device": device})
 
     @intent_handler("lights.set.color.intent")
-    def handle_set_color_intent(self, message: Message):
+    def handle_set_color_intent(self, message: Message):  # noqa
         self.log.info(message.data)
         device = message.data.get("entity")
         color = message.data.get("color")
@@ -338,7 +340,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             return self.speak_dialog("lights.status.not.available", data={"device": device})
 
     @intent_handler("show.area.dashboard.intent")
-    def handle_show_area_dashboard_intent(self, message):
+    def handle_show_area_dashboard_intent(self, message):  # noqa
         area = message.data.get("area")
         if area:
             self.bus.emit(Message("ovos.phal.plugin.homeassistant.show.area.dashboard", {"area": area}, {"skill_id": self.skill_id}))
@@ -347,7 +349,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.speak_dialog("area.not.found")
 
     @intent_handler("assist.intent")
-    def handle_assist_intent(self, message):
+    def handle_assist_intent(self, message):  # noqa
         """Handle passthrough to Home Assistant's Assist API."""
         command = message.data.get("command")
         if command:
@@ -357,7 +359,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.speak_dialog("assist.not.understood")
 
     # @intent_handler("vacuum.action.intent")  # TODO: Find an intent that doesn't conflict with OCP
-    # def handle_vacuum_action_intent(self, message):
+    # def handle_vacuum_action_intent(self, message):  # noqa
     #     device, device_id = self._get_device_from_message(message)
     #     if device and device_id:  # If the intent doesn't understand the device, you'll get a device_id but no device
     #         dev = self._get_device_info(device_id)
