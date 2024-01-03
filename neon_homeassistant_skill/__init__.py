@@ -58,7 +58,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
 
     def on_ready(self, message):
         resp = self.bus.wait_for_response(message.forward("ovos.phal.plugin.homeassistant.check_connected"))
-        self.log.debug(f"Response from HA PHAL plugin: {resp.data}")
+        self.log.debug(f"Response from HA PHAL plugin: {resp}")
         if resp and resp.data.get("connected"):
             self.log.debug("PHAL plugin connected to HA")
             self.initialize()
@@ -82,7 +82,8 @@ class NeonHomeAssistantSkill(OVOSSkill):
 
     def register_intents(self):
         for intent in self.connected_intents:
-            self.intent_service.register_padatious_intent(intent)
+            # TODO: Localization
+            self.intent_service.register_padatious_intent(intent_name=intent, filename=intent, lang="en-us")
             try:
                 assert self.intent_service.intent_is_detached(intent) is False
             except AssertionError:
