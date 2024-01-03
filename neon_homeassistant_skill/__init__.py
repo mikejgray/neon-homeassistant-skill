@@ -87,7 +87,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
     def register_intents(self):
         for intent in self.connected_intents:
             # TODO: Localization
-            filename = path.join(path.realpath(__file__), "locale", "en-us", intent)
+            filename = path.join(path.realpath(__file__), "locale", "en-us", "intents", intent)
             self.intent_service.register_padatious_intent(intent_name=intent, filename=filename, lang="en-us")
             try:
                 assert self.intent_service.intent_is_detached(intent) is False
