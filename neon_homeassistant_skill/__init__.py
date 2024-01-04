@@ -49,8 +49,6 @@ class NeonHomeAssistantSkill(OVOSSkill):
             assert self.connected is True
         except AssertionError:
             self.log.warning("Home Assistant PHAL plugin not installed or not running!")
-        self.bus.on("mycroft.ready", self.on_ready)
-        self.bus.on("ovos.phal.plugin.homeassistant.ready", self.on_ready)
         if not self.connected:
             self.on_ready(Message("ovos.phal.plugin.homeassistant.check_connected", None, {"skill_id": self.skill_id}))
         if self.connected:
@@ -86,6 +84,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
                 "ovos.phal.plugin.homeassistant.set.light.color.response",
                 self.handle_set_light_color_response,
             )
+        self.bus.on("ovos.phal.plugin.homeassistant.ready", self.on_ready)
 
     def on_ready(self, message):
         resp = self.bus.wait_for_response(message.forward("ovos.phal.plugin.homeassistant.check_connected"))
