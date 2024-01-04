@@ -88,7 +88,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
 
     def on_ready(self, message):
         resp = self.bus.wait_for_response(message.forward("ovos.phal.plugin.homeassistant.check_connected"))
-        self.log.debug(f"Response from HA PHAL plugin: {resp}")
+        self.log.debug(f"Response from HA PHAL plugin: {repr(resp)}")
         if resp and resp.data.get("connected"):
             self.log.debug("PHAL plugin connected to HA")
             self.enable_ha_intents()
