@@ -115,21 +115,11 @@ class NeonHomeAssistantSkill(OVOSSkill):
 
     def enable_ha_intents(self):
         for intent in self.connected_intents:
-            # TODO: Localization
-            filename = path.join(
-                path.realpath(__file__).replace("/__init__.py", ""),
-                "locale",
-                "en-us",
-                "intents",
-                intent,
-            )
-            self.intent_service.register_padatious_intent(
-                intent_name=intent, filename=filename, lang="en-us"
-            )
-            try:
-                assert self.intent_service.intent_is_detached(intent) is False
-            except AssertionError:
+            success = self.enable_intent(intent)
+            if not success:
                 self.log.error(f"Error registering intent: {intent}")
+            else:
+                self.log.info(f"Successfully registered intent: {intent}")
 
     def disable_ha_intents(self):
         for intent in self.connected_intents:
