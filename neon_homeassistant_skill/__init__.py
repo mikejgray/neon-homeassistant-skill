@@ -131,7 +131,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         resp = self.bus.wait_for_response(
             message.forward("ovos.phal.plugin.homeassistant.check_connected"), timeout=1
         )
-        response = resp.serialize() if resp else None
+        response = resp.data if resp else None
         self.log.debug(f"Response from HA PHAL plugin: {response}")
         if resp and resp.data.get("connected"):
             self._handle_connection_state(connected_to_plugin=True)
