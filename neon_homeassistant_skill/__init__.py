@@ -18,91 +18,120 @@ class NeonHomeAssistantSkill(OVOSSkill):
     """Home Assistant skill for Neon OS. Requires the PHAL Home Assistant plugin."""
 
     _connected = False
+    _intents_registered = True
     connected_intents = (
-            "sensor.intent",
-            "turn.on.intent",
-            "turn.off.intent",
-            "stop.intent",
-            "lights.get.brightness.intent",
-            "lights.set.brightness.intent",
-            "lights.increase.brightness.intent",
-            "lights.decrease.brightness.intent",
-            "lights.get.color.intent",
-            "lights.set.color.intent",
-            "show.area.dashboard.intent",
-            "assist.intent",
-        )
+        "sensor.intent",
+        "turn.on.intent",
+        "turn.off.intent",
+        "stop.intent",
+        "lights.get.brightness.intent",
+        "lights.set.brightness.intent",
+        "lights.increase.brightness.intent",
+        "lights.decrease.brightness.intent",
+        "lights.get.color.intent",
+        "lights.set.color.intent",
+        "show.area.dashboard.intent",
+        "assist.intent",
+    )
 
     @property
     def connected(self):
         if self._connected is False:
-            self._connected = self.on_ready(Message(
-                        "ovos.phal.plugin.homeassistant.check_connected",
-                        None,
-                        {"skill_id": self.skill_id}
-                    )
+            self._connected = self.on_ready(
+                Message(
+                    "ovos.phal.plugin.homeassistant.check_connected",
+                    None,
+                    {"skill_id": self.skill_id},
                 )
+            )
         return self._connected
 
     def initialize(self):
-        try:
-            assert self.connected is True
-        except AssertionError:
-            self.log.warning("Home Assistant PHAL plugin not installed or not running!")
-        if not self.connected:
-            self.on_ready(Message("ovos.phal.plugin.homeassistant.check_connected", None, {"skill_id": self.skill_id}))
-        if self.connected:
+        # Register bus handlers
+        self.bus.on("mycroft.ready", self.on_ready("mycroft.ready"))
+        self.bus.on(
+            "ovos.phal.plugin.homeassistant.assist.message.response",
+            self._handle_assist_error,
+        )
+        self.bus.on(
+            "ovos.phal.plugin.homeassistant.get.device.response",
+            self.handle_get_device_response,
+        )
+        self.bus.on(
+            "ovos.phal.plugin.homeassistant.device.turn_on.response",
+            self.handle_turn_on_response,
+        )
+        self.bus.on(
+            "ovos.phal.plugin.homeassistant.device.turn_off.response",
+            self.handle_turn_off_response,
+        )
+        self.bus.on(
+            "ovos.phal.plugin.homeassistant.get.light.brightness.response",
+            self.handle_get_light_brightness_response,
+        )
+        self.bus.on(
+            "ovos.phal.plugin.homeassistant.set.light.brightness.response",
+            self.handle_set_light_brightness_response,
+        )
+        self.bus.on(
+            "ovos.phal.plugin.homeassistant.increase.light.brightness.response",
+            self.handle_set_light_brightness_response,
+        )
+        self.bus.on(
+            "ovos.phal.plugin.homeassistant.decrease.light.brightness.response",
+            self.handle_set_light_brightness_response,
+        )
+        self.bus.on(
+            "ovos.phal.plugin.homeassistant.get.light.color.response",
+            self.handle_get_light_color_response,
+        )
+        self.bus.on(
+            "ovos.phal.plugin.homeassistant.set.light.color.response",
+            self.handle_set_light_color_response,
+        )
+        self.bus.on("ovos.phal.plugin.homeassistant.ready", self.on_ready)
+        connected_to_plugin = self.connected is True
+        self._handle_connection_state(connected_to_plugin)
+
+    def _handle_connection_state(self, connected_to_plugin: bool):
+        if connected_to_plugin and self._intents_registered is False:
+            self.log.info("Home Assistant PHAL plugin connected! Registering intents.")
             self.enable_ha_intents()
+            self._intents_registered = True
+        if not connected_to_plugin and self._intents_registered is True:
+            self.log.info(
+                "Home Assistant PHAL plugin not connected! Disabling intents."
+            )
+            self.disable_ha_intents()
+            self._intents_registered = False
+        if connected_to_plugin and self.connected is True:
+            self.log.info(
+                "Home Assistant PHAL plugin reports connected, but intents are already registered."
+            )
+        if not connected_to_plugin and self.connected is False:
+            self.log.info(
+                "Home Assistant PHAL plugin did not report connected, and intents are already disabled."
+            )
 
     def enable_ha_intents(self):
-        self.register_intents()
-        self.bus.on("ovos.phal.plugin.homeassistant.assist.message.response", self._handle_assist_error)
-        self.bus.on("ovos.phal.plugin.homeassistant.get.device.response", self.handle_get_device_response)
-        self.bus.on("ovos.phal.plugin.homeassistant.device.turn_on.response", self.handle_turn_on_response)
-        self.bus.on("ovos.phal.plugin.homeassistant.device.turn_off.response", self.handle_turn_off_response)
-        self.bus.on(
-                "ovos.phal.plugin.homeassistant.get.light.brightness.response",
-                self.handle_get_light_brightness_response,
+        for intent in self.connected_intents:
+            # TODO: Localization
+            filename = path.join(
+                path.realpath(__file__).replace("/__init__.py", ""),
+                "locale",
+                "en-us",
+                "intents",
+                intent,
             )
-        self.bus.on(
-                "ovos.phal.plugin.homeassistant.set.light.brightness.response",
-                self.handle_set_light_brightness_response,
+            self.intent_service.register_padatious_intent(
+                intent_name=intent, filename=filename, lang="en-us"
             )
-        self.bus.on(
-                "ovos.phal.plugin.homeassistant.increase.light.brightness.response",
-                self.handle_set_light_brightness_response,
-            )
-        self.bus.on(
-                "ovos.phal.plugin.homeassistant.decrease.light.brightness.response",
-                self.handle_set_light_brightness_response,
-            )
-        self.bus.on(
-                "ovos.phal.plugin.homeassistant.get.light.color.response",
-                self.handle_get_light_color_response,
-            )
-        self.bus.on(
-                "ovos.phal.plugin.homeassistant.set.light.color.response",
-                self.handle_set_light_color_response,
-            )
-        self.bus.on("ovos.phal.plugin.homeassistant.ready", self.on_ready)
+            try:
+                assert self.intent_service.intent_is_detached(intent) is False
+            except AssertionError:
+                self.log.error(f"Error registering intent: {intent}")
 
-    def on_ready(self, message):
-        resp = self.bus.wait_for_response(message.forward("ovos.phal.plugin.homeassistant.check_connected"))
-        self.log.debug(f"Response from HA PHAL plugin: {repr(resp)}")
-        if resp and resp.data.get("connected"):
-            self.log.debug("PHAL plugin connected to HA")
-            self.enable_ha_intents()
-            return True
-        if not resp:
-            self.log.error("Home Assistant PHAL plugin not installed or not running!")
-            self.disable_unused_intents()
-            return False
-
-        self.log.info("PHAL Plugin not connected to HomeAssistant")
-        self.disable_unused_intents()
-        return False
-
-    def disable_unused_intents(self):
+    def disable_ha_intents(self):
         for intent in self.connected_intents:
             self.intent_service.remove_intent(intent)
             try:
@@ -110,15 +139,21 @@ class NeonHomeAssistantSkill(OVOSSkill):
             except AssertionError:
                 self.log.error(f"Error disabling intent: {intent}")
 
-    def register_intents(self):
-        for intent in self.connected_intents:
-            # TODO: Localization
-            filename = path.join(path.realpath(__file__).replace("/__init__.py", ""), "locale", "en-us", "intents", intent)
-            self.intent_service.register_padatious_intent(intent_name=intent, filename=filename, lang="en-us")
-            try:
-                assert self.intent_service.intent_is_detached(intent) is False
-            except AssertionError:
-                self.log.error(f"Error registering intent: {intent}")
+    def on_ready(self, message):
+        resp = self.bus.wait_for_response(
+            message.forward("ovos.phal.plugin.homeassistant.check_connected"), timeout=1
+        )
+        self.log.debug(f"Response from HA PHAL plugin: {repr(resp)}")
+        if resp and resp.data.get("connected"):
+            self._handle_connection_state(connected_to_plugin=True)
+            return True
+        if not resp:
+            self._handle_connection_state(connected_to_plugin=False)
+            return False
+
+        self.log.info("PHAL Plugin not connected to HomeAssistant")
+        self.disable_ha_intents()
+        return False
 
     # Handlers
     @intent_handler("sensor.intent")
@@ -131,7 +166,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
                 Message(
                     "ovos.phal.plugin.homeassistant.get.device",
                     {"device": device},
-                    {"skill_id": self.skill_id}
+                    {"skill_id": self.skill_id},
                 )
             )
             self.speak_dialog("acknowledge")
@@ -145,7 +180,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.speak_dialog(
                 "device.status",
                 data={
-                    "device": device.get("attributes", {}).get("friendly_name", device.get("name")),
+                    "device": device.get("attributes", {}).get(
+                        "friendly_name", device.get("name")
+                    ),
                     "type": device.get("type"),
                     "state": device.get("state"),
                 },
@@ -159,7 +196,13 @@ class NeonHomeAssistantSkill(OVOSSkill):
         self.log.info(message.data)
         device = message.data.get("entity", "")
         if device:
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.device.turn_on", {"device": device}, {"skill_id": self.skill_id}))
+            self.bus.emit(
+                Message(
+                    "ovos.phal.plugin.homeassistant.device.turn_on",
+                    {"device": device},
+                    {"skill_id": self.skill_id},
+                )
+            )
             self.speak_dialog("acknowledge")
         else:
             self.speak_dialog("no.parsed.device")
@@ -180,7 +223,13 @@ class NeonHomeAssistantSkill(OVOSSkill):
         self.log.info(message.data)
         device = message.data.get("entity", "")
         if device:
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.device.turn_off", {"device": device}, {"skill_id": self.skill_id}))
+            self.bus.emit(
+                Message(
+                    "ovos.phal.plugin.homeassistant.device.turn_off",
+                    {"device": device},
+                    {"skill_id": self.skill_id},
+                )
+            )
             self.speak_dialog("acknowledge")
         else:
             self.speak_dialog("no.parsed.device")
@@ -195,12 +244,22 @@ class NeonHomeAssistantSkill(OVOSSkill):
 
     @intent_handler("open.dashboard.intent")
     def handle_open_dashboard_intent(self, _):  # noqa
-        self.bus.emit(Message("ovos-PHAL-plugin-homeassistant.home", None, {"skill_id": self.skill_id}))
+        self.bus.emit(
+            Message(
+                "ovos-PHAL-plugin-homeassistant.home", None, {"skill_id": self.skill_id}
+            )
+        )
         self.speak_dialog("ha.dashboard.opened")
 
     @intent_handler("close.dashboard.intent")
     def handle_close_dashboard_intent(self, _):  # noqa
-        self.bus.emit(Message("ovos-PHAL-plugin-homeassistant.close", None, {"skill_id": self.skill_id}))
+        self.bus.emit(
+            Message(
+                "ovos-PHAL-plugin-homeassistant.close",
+                None,
+                {"skill_id": self.skill_id},
+            )
+        )
         self.speak_dialog("ha.dashboard.closed")
 
     @intent_handler("lights.get.brightness.intent")
@@ -212,7 +271,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
                 Message(
                     "ovos.phal.plugin.homeassistant.get.light.brightness",
                     {"device": device},
-                    {"skill_id": self.skill_id}
+                    {"skill_id": self.skill_id},
                 )
             )
         else:
@@ -247,7 +306,13 @@ class NeonHomeAssistantSkill(OVOSSkill):
                 "brightness": self._get_ha_value_from_percentage_brightness(brightness),
             }
             self.log.info(call_data)
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.set.light.brightness", call_data, message.context))
+            self.bus.emit(
+                Message(
+                    "ovos.phal.plugin.homeassistant.set.light.brightness",
+                    call_data,
+                    message.context,
+                )
+            )
             self.speak_dialog("acknowledge")
         else:
             self.speak_dialog("no.parsed.device")
@@ -268,7 +333,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
         if message.data.get("response"):
             return self.speak_dialog("device.not.found", data={"device": device})
         else:
-            return self.speak_dialog("lights.status.not.available", data={"device": device})
+            return self.speak_dialog(
+                "lights.status.not.available", data={"device": device}
+            )
 
     @intent_handler("lights.increase.brightness.intent")
     def handle_increase_brightness_intent(self, message):  # noqa
@@ -278,7 +345,11 @@ class NeonHomeAssistantSkill(OVOSSkill):
             call_data = {"device": device}
             self.log.info(call_data)
             self.bus.emit(
-                Message("ovos.phal.plugin.homeassistant.increase.light.brightness", call_data, message.context)
+                Message(
+                    "ovos.phal.plugin.homeassistant.increase.light.brightness",
+                    call_data,
+                    message.context,
+                )
             )
             self.speak_dialog("acknowledge")
         else:
@@ -292,7 +363,11 @@ class NeonHomeAssistantSkill(OVOSSkill):
             call_data = {"device": device}
             self.log.info(call_data)
             self.bus.emit(
-                Message("ovos.phal.plugin.homeassistant.decrease.light.brightness", call_data, message.context)
+                Message(
+                    "ovos.phal.plugin.homeassistant.decrease.light.brightness",
+                    call_data,
+                    message.context,
+                )
             )
             self.speak_dialog("acknowledge")
         else:
@@ -308,7 +383,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
                 Message(
                     "ovos.phal.plugin.homeassistant.get.light.color",
                     {"device": device},
-                    {"skill_id": self.skill_id}
+                    {"skill_id": self.skill_id},
                 )
             )
         else:
@@ -329,7 +404,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
         if message.data.get("response"):
             return self.speak_dialog("device.not.found", data={"device": device})
         else:
-            return self.speak_dialog("lights.status.not.available", data={"device": device})
+            return self.speak_dialog(
+                "lights.status.not.available", data={"device": device}
+            )
 
     @intent_handler("lights.set.color.intent")
     def handle_set_color_intent(self, message: Message):  # noqa
@@ -342,7 +419,13 @@ class NeonHomeAssistantSkill(OVOSSkill):
                 "color": color,
             }
             self.log.info(call_data)
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.set.light.color", call_data, message.context))
+            self.bus.emit(
+                Message(
+                    "ovos.phal.plugin.homeassistant.set.light.color",
+                    call_data,
+                    message.context,
+                )
+            )
             self.speak_dialog("acknowledge")
         else:
             self.speak_dialog("no.parsed.device")
@@ -363,13 +446,21 @@ class NeonHomeAssistantSkill(OVOSSkill):
         if message.data.get("response"):
             return self.speak_dialog("device.not.found", data={"device": device})
         else:
-            return self.speak_dialog("lights.status.not.available", data={"device": device})
+            return self.speak_dialog(
+                "lights.status.not.available", data={"device": device}
+            )
 
     @intent_handler("show.area.dashboard.intent")
     def handle_show_area_dashboard_intent(self, message):  # noqa
         area = message.data.get("area")
         if area:
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.show.area.dashboard", {"area": area}, {"skill_id": self.skill_id}))
+            self.bus.emit(
+                Message(
+                    "ovos.phal.plugin.homeassistant.show.area.dashboard",
+                    {"area": area},
+                    {"skill_id": self.skill_id},
+                )
+            )
             self.speak_dialog("area.dashboard.opened", data={"area": area})
         else:
             self.speak_dialog("area.not.found")
@@ -379,7 +470,13 @@ class NeonHomeAssistantSkill(OVOSSkill):
         """Handle passthrough to Home Assistant's Assist API."""
         command = message.data.get("command")
         if command:
-            self.bus.emit(Message("ovos.phal.plugin.homeassistant.assist.intent", {"command": command}, {"skill_id": self.skill_id}))
+            self.bus.emit(
+                Message(
+                    "ovos.phal.plugin.homeassistant.assist.intent",
+                    {"command": command},
+                    {"skill_id": self.skill_id},
+                )
+            )
             self.speak_dialog("assist")
         else:
             self.speak_dialog("assist.not.understood")
@@ -405,7 +502,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
     #         self.speak_dialog("device.not.found", data={"device": device})
 
     def _handle_assist_error(self, _):
-        self.speak("Home Assistant returned an error. Please check the enclosure or PHAL logs for more information.")
+        self.speak(
+            "Home Assistant returned an error. Please check the enclosure or PHAL logs for more information."
+        )
 
     def _get_ha_value_from_percentage_brightness(self, brightness):
         return round(int(brightness)) / 100 * 255
