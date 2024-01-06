@@ -104,11 +104,11 @@ class NeonHomeAssistantSkill(OVOSSkill):
             )
             self.disable_ha_intents()
             self._intents_registered = False
-        if connected_to_plugin and self.connected is True:
+        if connected_to_plugin and self._connected is True:
             self.log.info(
                 "Home Assistant PHAL plugin reports connected, but intents are already registered."
             )
-        if not connected_to_plugin and self.connected is False:
+        if not connected_to_plugin and self._connected is False:
             self.log.info(
                 "Home Assistant PHAL plugin did not report connected, and intents are already disabled."
             )
