@@ -48,7 +48,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
 
     def initialize(self):
         # Register bus handlers
-        self.bus.on("mycroft.ready", self.on_ready("mycroft.ready"))
+        self.bus.on("mycroft.ready", self.on_ready)
         self.bus.on(
             "ovos.phal.plugin.homeassistant.assist.message.response",
             self._handle_assist_error,
