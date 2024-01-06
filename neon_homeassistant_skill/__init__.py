@@ -1,11 +1,9 @@
 # pylint: disable=missing-function-docstring,missing-class-docstring,missing-module-docstring,logging-fstring-interpolation
-from os import path
 from typing import List
 
 from ovos_bus_client import Message
 from ovos_workshop.decorators import intent_handler
 from ovos_workshop.skills import OVOSSkill
-
 
 def chunks(lst, n_len) -> List[list]:
     """Split list into n-length chunks."""
@@ -133,7 +131,8 @@ class NeonHomeAssistantSkill(OVOSSkill):
         resp = self.bus.wait_for_response(
             message.forward("ovos.phal.plugin.homeassistant.check_connected"), timeout=1
         )
-        self.log.debug(f"Response from HA PHAL plugin: {repr(resp)}")
+        response = resp.serialize() if resp else None
+        self.log.debug(f"Response from HA PHAL plugin: {response}")
         if resp and resp.data.get("connected"):
             self._handle_connection_state(connected_to_plugin=True)
             return True
