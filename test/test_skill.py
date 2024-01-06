@@ -30,9 +30,13 @@ class TestSkillIntentMatching(unittest.TestCase):
                 u = []
                 for sentence, entity in utt[0].items():
                     if "entity" in entity[0].keys():
-                        revised_intent = sentence.replace(entity[0].get("entity"), "{entity}")
+                        revised_intent = sentence.replace(
+                            entity[0].get("entity"), "{entity}"
+                        )
                         if len(entity[0].keys()) > 1 and entity[0].get("color"):
-                            revised_intent = revised_intent.replace(entity[0].get("color"), "{color}")
+                            revised_intent = revised_intent.replace(
+                                entity[0].get("color"), "{color}"
+                            )
                         u.append(revised_intent)
                     elif "area" in entity[0].keys():
                         u.append(sentence.replace(entity[0].get("area"), "{area}"))
@@ -52,8 +56,8 @@ class TestSkillIntentMatching(unittest.TestCase):
             for intent, examples in self.valid_intents[lang].items():
                 for utt in examples:
                     if isinstance(utt, str):
-                        result = self.ha_intents.calc_intent(utt)
-                        self.assertTrue(result.get("conf") >= 0.9)
+                        result = self.ha_intents.calc_intent(utt) or {}
+                        self.assertTrue(result.get("conf", 0) >= 0.9)
                         self.assertEqual(result.get("name"), intent)
                     else:
                         u = list(utt.keys())[0]
