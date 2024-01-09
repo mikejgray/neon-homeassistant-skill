@@ -11,15 +11,21 @@ PYPI_NAME = "neon-homeassistant-skill"  # pip install PYPI_NAME
 # below derived from github url to ensure standard skill_id
 SKILL_AUTHOR, SKILL_NAME = URL.split(".com/")[-1].split("/")
 SKILL_PKG = SKILL_NAME.lower().replace("-", "_")
-PLUGIN_ENTRY_POINT = f"{SKILL_NAME.lower()}.{SKILL_AUTHOR.lower()}={SKILL_PKG}:{SKILL_CLAZZ}"
+PLUGIN_ENTRY_POINT = (
+    f"{SKILL_NAME.lower()}.{SKILL_AUTHOR.lower()}={SKILL_PKG}:{SKILL_CLAZZ}"
+)
 # skill_id=package_name:SkillClass
 
 
 def get_requirements(requirements_filename: str):
-    requirements_file = path.join(path.abspath(path.dirname(__file__)), requirements_filename)
+    requirements_file = path.join(
+        path.abspath(path.dirname(__file__)), requirements_filename
+    )
     with open(requirements_file, "r", encoding="utf-8") as r:
         requirements = r.readlines()
-    requirements = [r.strip() for r in requirements if r.strip() and not r.strip().startswith("#")]
+    requirements = [
+        r.strip() for r in requirements if r.strip() and not r.strip().startswith("#")
+    ]
     if "MYCROFT_LOOSE_REQUIREMENTS" in os.environ:
         print("USING LOOSE REQUIREMENTS!")
         requirements = [r.replace("==", ">=").replace("~=", ">=") for r in requirements]
@@ -34,20 +40,34 @@ def find_resource_files():
         if path.isdir(path.join(base_dir, res)):
             for directory, _, files in walk(path.join(base_dir, res)):
                 if files:
-                    package_data.append(path.join(directory.replace(base_dir, "").lstrip("/"), "*"))
+                    package_data.append(
+                        path.join(directory.replace(base_dir, "").lstrip("/"), "*")
+                    )
     return package_data
 
 
 with open("README.md", "r") as f:
     long_description = f.read()
 
-with open("./neon_homeassistant_skill/version.py", "r", encoding="utf-8") as v:
-    for line in v.readlines():
-        if line.startswith("__version__"):
-            if '"' in line:
-                version = line.split('"')[1]
-            else:
-                version = line.split("'")[1]
+
+def get_version():
+    version_location = "./neon_homeassistant_skill/version.py"
+    version = ""
+    with open(version_location, "r", encoding="utf-8") as v:
+        for line in v.readlines():
+            if line.startswith("__version__"):
+                if '"' in line:
+                    version = line.split('"')[1]
+                else:
+                    version = line.split("'")[1]
+    if not version:
+        raise ValueError(
+            f"Could not determine version, please make sure {version_location} contains a line like __version__ = '0.0.1'"
+        )
+    return version
+
+
+version = get_version()
 
 setup(
     name=PYPI_NAME,
