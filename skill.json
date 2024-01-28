@@ -9,10 +9,7 @@
     "warning": "",
     "systemDeps": false,
     "requirements": {
-        "python": [
-            "ovos-bus-client",
-            "ovos-workshop~=0.0.12a27"
-        ],
+        "python": [],
         "system": {},
         "skill": []
     },
