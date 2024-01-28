@@ -1,2 +1,0 @@
-ovos-core>=0.0.7
-ovos-utils

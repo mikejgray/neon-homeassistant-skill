@@ -1,2 +1,0 @@
-ovos-bus-client
-ovos-workshop~=0.0.12a27

@@ -4,21 +4,21 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "neon-homeassistant-skill"
-version = "0.0.15"
-description = "A Neon AI Skill for Home Assistant, which integrates with ovos-PHAL-plugin-homeassistant."
+version = "0.0.16"
+description = "An OVOS/Neon.AI Skill for Home Assistant, which integrates with ovos-PHAL-plugin-homeassistant."
 authors = [ "Mike Gray <mike@graywind.org>" ]
 readme = "README.md"
 license = "Apache-2.0"
-include = ["neon_homeassistant_skill/dialog/*", "neon_homeassistant_skill/vocab/*"]
+include = ["neon_homeassistant_skill/locale/*"]
+keywords = ["ovos", "neon", "home", "assistant", "phal", "voice", "interface", "skill", "plugin"]
 
 [tool.poetry.extras]
 test = ["neon-minerva"]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 ovos-bus-client = {version = "*", allow-prereleases = true}
-ovos-workshop = {version = "~=0.0.12a27", allow-prereleases = true}
-neon-minerva = {version = "~=0.1.1a1", allow-prereleases = true, optional = true}
+ovos-workshop = ">=0.0.15"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
@@ -34,7 +34,35 @@ ovos-utils = {version = "*", allow-prereleases = true}
 ovos-skills-manager = {version = "*", allow-prereleases = true}
 padacioso = {version = "*", allow-prereleases = true}
 adapt-parser = {git = "https://github.com/mycroftai/adapt"}
-ovos-core = {version = "*", allow-prereleases = true}
+ovos-core = ">=0.0.7"
+ovos-phal-plugin-homeassistant = {version = "*", allow-prereleases = true}
+neon-minerva = {version = "~=0.1.1a1", allow-prereleases = true, optional = true}
+poethepoet = "^0.24.4"
+pytest-cov = "^4.1.0"
+setuptools = "^69.0.3"
+
+[tool.ruff]
+line-length = 119
+
+[tool.black]
+line-length = 119
+
+[tool.mypy]
+exclude = ["test"]
+
+[tool.isort]
+profile = "black"
+
+[tool.semantic_release]
+version_variables = ["setup.py:__version__"]
+
+[tool.poe.tasks.test]
+help = "Run the test suite"
+cmd = "pytest --cov=neon_homeassistant_skill --cov-report term-missing -vv test/"
+
+[tool.poe.tasks.format]
+help = "Run code formatters"
+shell = "black --line-length=119 neon_homeassistant_skill && isort --overwrite-in-place neon_homeassistant_skill"
 
 [tool.poetry.scripts]
 "neon-homeassistant-skill" = "neon_homeassistant_skill:NeonHomeAssistantSkill"
