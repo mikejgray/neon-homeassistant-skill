@@ -16,9 +16,10 @@ keywords = ["ovos", "neon", "home", "assistant", "phal", "voice", "interface", "
 test = ["neon-minerva"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.8,<3.12"
 ovos-bus-client = {version = "*", allow-prereleases = true}
 ovos-workshop = ">=0.0.12"
+neon-minerva = {version = "~=0.1.1a5", allow-prereleases = true}
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
@@ -36,7 +37,6 @@ padacioso = {version = "*", allow-prereleases = true}
 adapt-parser = {git = "https://github.com/mycroftai/adapt"}
 ovos-core = ">=0.0.7"
 ovos-phal-plugin-homeassistant = {version = "*", allow-prereleases = true}
-neon-minerva = {version = "~=0.1.1a5", allow-prereleases = true}
 poethepoet = "^0.24.4"
 pytest-cov = "^4.1.0"
 setuptools = "^69.0.3"
