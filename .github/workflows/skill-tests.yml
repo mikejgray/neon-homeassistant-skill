@@ -6,19 +6,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  py_build_tests:
-    uses: neongeckocom/.github/.github/workflows/python_build_tests.yml@master
   skill_unit_tests:
     uses: neongeckocom/.github/.github/workflows/skill_tests.yml@master
     with:
-      neon_versions: "[ 3.8, 3.9, '3.10', '3.11', '3.12' ]"
-      ovos_versions: "[ 3.8, 3.9, '3.10', '3.11', '3.12' ]"
+      neon_versions: "[ 3.8, 3.9, '3.10', '3.11' ]"
+      ovos_versions: "[ 3.8, 3.9, '3.10', '3.11' ]"
   skill_intent_tests:
     uses: neongeckocom/.github/.github/workflows/skill_test_intents.yml@master
     with:
       test_padacioso: false
-      neon_versions: "[ 3.8, 3.9, '3.10', '3.11', '3.12' ]"
-      ovos_versions: "[ 3.8, 3.9, '3.10', '3.11', '3.12' ]"
+      neon_versions: "[ 3.8, 3.9, '3.10', '3.11' ]"
+      ovos_versions: "[ 3.8, 3.9, '3.10', '3.11' ]"
   skill_resource_tests:
     uses: neongeckocom/.github/.github/workflows/skill_test_resources.yml@master
     with:

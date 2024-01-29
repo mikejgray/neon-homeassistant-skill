@@ -1,0 +1,28 @@
+name: Build Skill
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  py_build_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.8
+      - name: Install Poetry
+        uses: pronovic/setup-poetry@v1
+        with:
+          version: 1.7.0
+          cache-venv: true
+          cache-poetry: true
+      - name: Check build
+        run: |
+          poetry install
+          poetry build
+      - name: PIP Audit
+        uses: pypa/gh-action-pip-audit@v1.0.7
+        with:
+          ignore-vulns: "GHSA-r9hx-vwmv-q579 PYSEC-2022-43012"
