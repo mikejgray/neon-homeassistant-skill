@@ -25,4 +25,5 @@ jobs:
       - name: PIP Audit
         uses: pypa/gh-action-pip-audit@v1.0.7
         with:
-          ignore-vulns: "GHSA-r9hx-vwmv-q579 PYSEC-2022-43012"
+          # Upstream issues we can't really resolve from here
+          ignore-vulns: "GHSA-r9hx-vwmv-q579 PYSEC-2022-43012 PYSEC-2023-228 PYSEC-2023-74"
