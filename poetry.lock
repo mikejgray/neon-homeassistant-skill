@@ -921,13 +921,13 @@ files = [
 
 [[package]]
 name = "neon-minerva"
-version = "0.1.1a2"
+version = "0.1.1a5"
 description = "Modular INtelligent Evaluation for a Reliable Voice Assistant"
-optional = true
+optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "neon-minerva-0.1.1a2.tar.gz", hash = "sha256:a4bab84278363bc3619b2702df67234688b4865319c8c1c799e81b14c6279aed"},
-    {file = "neon_minerva-0.1.1a2-py3-none-any.whl", hash = "sha256:0a66ba33c39bedf286556a67841fe70863487eedf42594f3edcea4bfa76f3af3"},
+    {file = "neon-minerva-0.1.1a5.tar.gz", hash = "sha256:6bc8a14da1000541bea5b1cbfecd57150842781da91596971a4a208fdaa36311"},
+    {file = "neon_minerva-0.1.1a5-py3-none-any.whl", hash = "sha256:2660d58902b47699e5b222c2978ce87d5808a87847e722b6b63a01c8d36b907a"},
 ]
 
 [package.dependencies]
@@ -2336,4 +2336,4 @@ test = []
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "cadb817fb92702ac00816cba65e542f28dc482073bb4e1c58bc577d35a922827"
+content-hash = "18917fbd2727c2f7e6277defcfdcd5508f960722da779284c28a7f331ea110e4"
