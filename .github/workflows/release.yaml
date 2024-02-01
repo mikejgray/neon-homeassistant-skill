@@ -13,10 +13,10 @@ jobs:
       packages: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-      - uses: actions/setup-python@v2
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: 3.7
+          python-version: 3.8
       - name: Semantic Release
         run: |
           pip install python-semantic-release
