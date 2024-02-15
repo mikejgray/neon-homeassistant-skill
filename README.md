@@ -35,6 +35,17 @@ PHAL:
     api_key: <HA_LONG_LIVED_TOKEN>
 ```
 
+On OVOS, you would update `~/.config/mycroft/mycroft.conf` to include the following:
+```json
+{
+  "PHAL": {
+    "ovos-PHAL-plugin-homeassistant": {
+      "host": "http://<HA_IP_OR_HOSTNAME>:8123",
+      "api_key": "<HA_LONG_LIVED_TOKEN>"
+    }
+}
+```
+
 The `PHAL` node above should be at the root of the Neon user configuration file, appended to the end of file if existing content exists, and will merge with system configuration per [Neon Configuration Docs.](https://neongeckocom.github.io/neon-docs/quick_reference/configuration/)
 
 Mycroft Mark II does not always support .local hostnames such as the default `homeassistant.local` DNS. You may need to use the IP of your Home Assistant instance instead. If you have a Nabu Casa subscription and don't mind traffic going out to the internet using your public Nabu Casa DNS is also a supported option. However, if your internet connectivity drops from your Neon instance, you will be unable to control your smart home devices from Neon. A local DNS/IP is preferable.
