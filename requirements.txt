@@ -1,1 +1,0 @@
-ovos-PHAL-plugin-homeassistant>=0.0.4a2
