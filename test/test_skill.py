@@ -4,7 +4,6 @@ import unittest
 from os import getenv
 from yaml import safe_load
 
-from mycroft.skills.intent_service import IntentService
 from ovos_utils.messagebus import FakeBus
 from padacioso import IntentContainer
 from neon_homeassistant_skill import NeonHomeAssistantSkill
@@ -43,7 +42,6 @@ class TestSkillIntentMatching(unittest.TestCase):
             ha_intents.add_intent(name, u)
 
     bus = FakeBus()
-    intent_service = IntentService(bus)
     test_skill_id = "test_skill.test"
 
     @classmethod

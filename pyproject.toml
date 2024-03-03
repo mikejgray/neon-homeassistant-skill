@@ -36,7 +36,7 @@ ovos-skills-manager = {version = "*", allow-prereleases = true}
 padacioso = {version = "*", allow-prereleases = true}
 adapt-parser = {git = "https://github.com/mycroftai/adapt"}
 ovos-core = ">=0.0.7"
-ovos-phal-plugin-homeassistant = {version = "*", allow-prereleases = true}
+ovos-phal-plugin-homeassistant = {version = ">=0.0.4a2", allow-prereleases = true}
 poethepoet = "^0.24.4"
 pytest-cov = "^4.1.0"
 setuptools = "^69.0.3"

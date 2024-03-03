@@ -12,8 +12,22 @@ def chunks(lst, n_len) -> List[list]:
     return [lst[i : i + n_len] for i in range(0, len(lst), n_len)]
 
 
+def str2bool(value):
+    _true_set = {'yes', 'true', 't', 'y', '1'}
+    _false_set = {'no', 'false', 'f', 'n', '0'}
+    if isinstance(value, str):
+        value = value.lower()
+        if value in _true_set:
+            return True
+        if value in _false_set:
+            return False
+
+    return None
+
+
 DEFAULT_SETTINGS: dict = {
     "connected": True,
+    "disable_intents": True,
 }
 
 
@@ -48,6 +62,10 @@ class NeonHomeAssistantSkill(OVOSSkill):
                 )
             )
         return self._connected
+
+    @property
+    def disable_intents(self):
+        return str2bool(self.settings.get("disable_intents")) or False
 
     def initialize(self):
         # Register bus handlers
@@ -98,6 +116,10 @@ class NeonHomeAssistantSkill(OVOSSkill):
         self._handle_connection_state(self.connected)
 
     def _handle_connection_state(self, connected_to_plugin: bool):
+        if not self.disable_intents:
+            if self._intents_registered is not True:
+                self.enable_ha_intents()
+            return
         if connected_to_plugin and self._intents_registered is False:
             self.log.info("Home Assistant PHAL plugin connected! Registering intents.")
             self.enable_ha_intents()
@@ -120,6 +142,8 @@ class NeonHomeAssistantSkill(OVOSSkill):
                 self.log.info(f"Successfully registered intent: {intent}")
 
     def disable_ha_intents(self):
+        if not self.disable_intents:
+            return
         for intent in self.connected_intents:
             self.intent_service.remove_intent(intent)
             try:

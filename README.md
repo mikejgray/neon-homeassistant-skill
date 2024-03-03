@@ -33,22 +33,48 @@ PHAL:
   ovos-PHAL-plugin-homeassistant:
     host: http://<HA_IP_OR_HOSTNAME>:8123
     api_key: <HA_LONG_LIVED_TOKEN>
+    disable_intents: False # Set this to True if you want to disable the skill's primary intents if Home Assistant is not connected
 ```
 
 On OVOS, you would update `~/.config/mycroft/mycroft.conf` to include the following:
+
 ```json
 {
   "PHAL": {
     "ovos-PHAL-plugin-homeassistant": {
       "host": "http://<HA_IP_OR_HOSTNAME>:8123",
-      "api_key": "<HA_LONG_LIVED_TOKEN>"
+      "api_key": "<HA_LONG_LIVED_TOKEN>",
+      "disable_intents": false
     }
 }
 ```
 
 The `PHAL` node above should be at the root of the Neon user configuration file, appended to the end of file if existing content exists, and will merge with system configuration per [Neon Configuration Docs.](https://neongeckocom.github.io/neon-docs/quick_reference/configuration/)
 
-Mycroft Mark II does not always support .local hostnames such as the default `homeassistant.local` DNS. You may need to use the IP of your Home Assistant instance instead. If you have a Nabu Casa subscription and don't mind traffic going out to the internet using your public Nabu Casa DNS is also a supported option. However, if your internet connectivity drops from your Neon instance, you will be unable to control your smart home devices from Neon. A local DNS/IP is preferable.
+Mycroft Mark II does not always support .local hostnames such as the default `homeassistant.local` DNS. You may need to use the IP of your Home Assistant instance instead. If you have a Nabu Casa subscription and don't mind traffic going out to the internet, using your public Nabu Casa DNS is also a supported option. However, if your internet connectivity drops from your Neon instance, you will be unable to control your smart home devices from Neon. A local DNS/IP is preferable.
+
+## Config Options
+
+In addition to the `host` and `api_key` options, you can also specify a `disable_intents` option to prevent the skill from registering intents if Home Assistant is not connected. This is `false` by default, unless you run it in Neon, in which case it is `true` by default.
+
+```yaml
+PHAL:
+  ovos-PHAL-plugin-homeassistant:
+    host: http://<HA_IP_OR_HOSTNAME>:8123
+    api_key: <HA_LONG_LIVED_TOKEN>
+    disable_intents: false
+```
+
+```json
+{
+  "PHAL": {
+    "ovos-PHAL-plugin-homeassistant": {
+      "host": "http://<HA_IP_OR_HOSTNAME>:8123",
+      "api_key": "<HA_LONG_LIVED_TOKEN>",
+      "disable_intents": false
+    }
+}
+```
 
 ## Upcoming Features
 
