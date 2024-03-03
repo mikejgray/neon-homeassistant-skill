@@ -27,7 +27,7 @@ def str2bool(value):
 
 DEFAULT_SETTINGS: dict = {
     "connected": True,
-    "disable_intents": True,
+    "disable_intents": False,
 }
 
 
