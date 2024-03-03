@@ -2177,4 +2177,4 @@ test = ["neon-minerva"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8,<3.12"
-content-hash = "351634f72d4c3c2478e95ec09bb55b0f593a5ff488fb8e2f01b9bdd937359e0d"
+content-hash = "c975b034e341a6447bbfbc9a623c2a48627090ae4e2fff051c95bb437c68fb20"
