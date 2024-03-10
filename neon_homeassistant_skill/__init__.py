@@ -95,6 +95,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         self.settings.merge(DEFAULT_SETTINGS, new_only=True)
         self.bus.on("ovos.phal.plugin.homeassistant.ready", self.on_ready)
         self.verbose = self.settings.get("verbose", True)
+        self.silent_entities = set(self.settings.get("silent_entities", []))
         self._connected = self.settings.get("connected", False)  # pylint: disable=attribute-defined-outside-init
         self._handle_connection_state(self.connected)
 
@@ -204,7 +205,8 @@ class NeonHomeAssistantSkill(OVOSSkill):
         self.log.debug(f"Handling turn on response to {message.data}")
         device = message.data.get("device", "")
         if device:
-            self.speak_dialog("device.turned.on", data={"device": device})
+            if device not in self.silent_devices:
+                self.speak_dialog("device.turned.on", data={"device": device})
         else:
             self.speak_dialog("no.parsed.device")
 
@@ -233,7 +235,8 @@ class NeonHomeAssistantSkill(OVOSSkill):
         self.log.debug(f"Handling turn off response to {message.data}")
         device = message.data.get("device", "")
         if device:
-            self.speak_dialog("device.turned.off", data={"device": device})
+            if device not in self.silent_devices:
+                self.speak_dialog("device.turned.off", data={"device": device})
         else:
             self.speak_dialog("no.parsed.device")
 
@@ -316,7 +319,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         brightness = message.data.get("brightness")
         device = message.data.get("device")
         self.log.info(f"Device {device} brightness is now {brightness}")
-        if brightness:
+        if brightness and device not in self.silent_devices:
             return self.speak_dialog(
                 "lights.current.brightness",
                 data={
@@ -434,7 +437,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         color = message.data.get("color")
         device = message.data.get("device")
         self.log.info(f"Device {device} color is now {color}")
-        if color:
+        if color and device not in self.silent_entities:
             return self.speak_dialog(
                 "lights.current.color",
                 data={
