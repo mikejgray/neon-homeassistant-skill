@@ -94,6 +94,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         )
         self.settings.merge(DEFAULT_SETTINGS, new_only=True)
         self.bus.on("ovos.phal.plugin.homeassistant.ready", self.on_ready)
+        self.verbose = self.settings.get("verbose", True)
         self._connected = self.settings.get("connected", False)  # pylint: disable=attribute-defined-outside-init
         self._handle_connection_state(self.connected)
 
@@ -156,7 +157,10 @@ class NeonHomeAssistantSkill(OVOSSkill):
                     {"skill_id": self.skill_id},
                 )
             )
-            self.speak_dialog("acknowledge")
+            if self.verbose:
+                self.speak_dialog("acknowledge")
+            else:
+                self.log.info("Trying to get device status")
         else:
             self.speak_dialog("no.parsed.device")
 
@@ -188,7 +192,10 @@ class NeonHomeAssistantSkill(OVOSSkill):
                     {"skill_id": self.skill_id},
                 )
             )
-            self.speak_dialog("acknowledge")
+            if self.verbose:
+                self.speak_dialog("acknowledge")
+            else:
+                self.log.info("Trying to turn on device")
         else:
             self.speak_dialog("no.parsed.device")
 
@@ -215,7 +222,10 @@ class NeonHomeAssistantSkill(OVOSSkill):
                     {"skill_id": self.skill_id},
                 )
             )
-            self.speak_dialog("acknowledge")
+            if self.verbose:
+                self.speak_dialog("acknowledge")
+            else:
+                self.log.info("Trying to turn off device")
         else:
             self.speak_dialog("no.parsed.device")
 
@@ -294,7 +304,10 @@ class NeonHomeAssistantSkill(OVOSSkill):
                     message.context,
                 )
             )
-            self.speak_dialog("acknowledge")
+            if self.verbose:
+                self.speak_dialog("acknowledge")
+            else:
+                self.log.info("Trying to set brightness")
         else:
             self.speak_dialog("no.parsed.device")
 
@@ -330,7 +343,10 @@ class NeonHomeAssistantSkill(OVOSSkill):
                     message.context,
                 )
             )
-            self.speak_dialog("acknowledge")
+            if self.verbose:
+                self.speak_dialog("acknowledge")
+            else:
+                self.log.info("Trying to increase brightness")
         else:
             self.speak_dialog("no.parsed.device")
 
@@ -348,7 +364,10 @@ class NeonHomeAssistantSkill(OVOSSkill):
                     message.context,
                 )
             )
-            self.speak_dialog("acknowledge")
+            if self.verbose:
+                self.speak_dialog("acknowledge")
+            else:
+                self.log.info("Trying to decrease brightness")
         else:
             self.speak_dialog("no.parsed.device")
 
@@ -403,7 +422,10 @@ class NeonHomeAssistantSkill(OVOSSkill):
                     message.context,
                 )
             )
-            self.speak_dialog("acknowledge")
+            if self.verbose:
+                self.speak_dialog("acknowledge")
+            else:
+                self.log.info("Trying to set light color")
         else:
             self.speak_dialog("no.parsed.device")
 
@@ -452,7 +474,10 @@ class NeonHomeAssistantSkill(OVOSSkill):
                     {"skill_id": self.skill_id},
                 )
             )
-            self.speak_dialog("assist")
+            if self.verbose:
+                self.speak_dialog("assist")
+            else:
+                self.log.info("Trying to pass message to Home Assistant's Assist API")
         else:
             self.speak_dialog("assist.not.understood")
 
@@ -470,7 +495,10 @@ class NeonHomeAssistantSkill(OVOSSkill):
     #                 }
     #                 self.log.info(call_data)
     #                 self.bus.emit(Message("ovos.phal.plugin.homeassistant.call.supported.function", call_data))
-    #             self.speak_dialog("acknowledge")
+    #             if self.verbose:
+    #                 self.speak_dialog("acknowledge")
+    #             else:
+    #                 self.log.info("Trying to execute action on vacuum cleaner")
     #         else:
     #             self.speak("vacuum.action.not.found", data={"action": action})
     #     else:
