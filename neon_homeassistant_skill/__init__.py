@@ -13,6 +13,9 @@ def chunks(lst, n_len) -> List[list]:
 
 
 def str2bool(value):
+    if isinstance(value, bool):
+        # It was never meant to be this way, but sometimes it is
+        return value
     _true_set = {'yes', 'true', 't', 'y', '1'}
     _false_set = {'no', 'false', 'f', 'n', '0'}
     if isinstance(value, str):

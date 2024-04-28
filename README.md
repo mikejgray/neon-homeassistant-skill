@@ -33,7 +33,7 @@ PHAL:
   ovos-PHAL-plugin-homeassistant:
     host: http://<HA_IP_OR_HOSTNAME>:8123
     api_key: <HA_LONG_LIVED_TOKEN>
-    disable_intents: False # Set this to True if you want to disable the skill's primary intents if Home Assistant is not connected
+    toggle_automations: False # Set this to True if you want to disable the skill's primary intents if Home Assistant is not connected
 ```
 
 On OVOS, you would update `~/.config/mycroft/mycroft.conf` to include the following:
@@ -44,7 +44,7 @@ On OVOS, you would update `~/.config/mycroft/mycroft.conf` to include the follow
     "ovos-PHAL-plugin-homeassistant": {
       "host": "http://<HA_IP_OR_HOSTNAME>:8123",
       "api_key": "<HA_LONG_LIVED_TOKEN>",
-      "disable_intents": false
+      "toggle_automations": false
     }
 }
 ```
@@ -55,24 +55,13 @@ Mycroft Mark II does not always support .local hostnames such as the default `ho
 
 ## Config Options
 
-In addition to the `host` and `api_key` options, you can also specify a `disable_intents` option to prevent the skill from registering intents if Home Assistant is not connected. This is `false` by default, unless you run it in Neon, in which case it is `true` by default.
+In addition to the PHAL plugin settings, you can also specify a `disable_intents` option in skill settings to prevent the skill from registering intents if Home Assistant is not connected. This is `false` by default, unless you run it in Neon, in which case it is `true` by default.
 
-```yaml
-PHAL:
-  ovos-PHAL-plugin-homeassistant:
-    host: http://<HA_IP_OR_HOSTNAME>:8123
-    api_key: <HA_LONG_LIVED_TOKEN>
-    disable_intents: false
-```
+For OVOS the skill settings file can be found at `~/.config/mycroft/skills/neon-homeassistant-skill.mikejgray/settings.json`, while in Neon it is at `~/.config/neon/skills/neon-homeassistant-skill.mikejgray/settings.json`. The file should contain the following but may contain other options:
 
 ```json
 {
-  "PHAL": {
-    "ovos-PHAL-plugin-homeassistant": {
-      "host": "http://<HA_IP_OR_HOSTNAME>:8123",
-      "api_key": "<HA_LONG_LIVED_TOKEN>",
-      "disable_intents": false
-    }
+  "disable_intents": false
 }
 ```
 
