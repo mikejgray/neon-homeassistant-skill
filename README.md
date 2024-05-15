@@ -36,6 +36,7 @@ PHAL:
 ```
 
 On OVOS, you would update `~/.config/mycroft/mycroft.conf` to include the following:
+
 ```json
 {
   "PHAL": {
@@ -49,6 +50,17 @@ On OVOS, you would update `~/.config/mycroft/mycroft.conf` to include the follow
 The `PHAL` node above should be at the root of the Neon user configuration file, appended to the end of file if existing content exists, and will merge with system configuration per [Neon Configuration Docs.](https://neongeckocom.github.io/neon-docs/quick_reference/configuration/)
 
 Mycroft Mark II does not always support .local hostnames such as the default `homeassistant.local` DNS. You may need to use the IP of your Home Assistant instance instead. If you have a Nabu Casa subscription and don't mind traffic going out to the internet using your public Nabu Casa DNS is also a supported option. However, if your internet connectivity drops from your Neon instance, you will be unable to control your smart home devices from Neon. A local DNS/IP is preferable.
+
+## Disabling Intents
+
+If you don't want to have all of the intents enabled, which may be the case if you ship this skill by default in a voice assistant image, there is a setting available to disable intents. This can be done in the `settings.json` file for the skill. The path will be `~/.config/mycroft/skills/neon_homeassistant_skill.mikejgray/settings.json` or `~/.config/neon/skills/neon_homeassistant_skill/settings.json` for Neon.
+
+```json
+{
+  "__mycroft_skill_firstrun": false,
+  "disable_intents": false
+}
+```
 
 ## Upcoming Features
 

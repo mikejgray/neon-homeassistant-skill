@@ -24,6 +24,8 @@ dialog:
   - no.parsed.device
   - assist.not.understood
   - lights.current.color
+  - disable
+  - enable
 # regex entities, not necessarily filenames
 regex: []
 intents:
@@ -43,5 +45,7 @@ intents:
     - lights.increase.brightness.intent
     - show.area.dashboard.intent
     - assist.intent
+    - disable.intent
+    - enable.intent
   # Adapt intents are the name passed to the constructor
   adapt: []
