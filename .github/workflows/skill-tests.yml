@@ -7,7 +7,7 @@ on:
 
 jobs:
   skill_unit_tests:
-    uses: neongeckocom/.github/.github/workflows/skill_tests.yml@master
+    uses: mikejgray/.github-neon/.github/workflows/skill_tests.yml@patch-2
     with:
       neon_versions: "[ 3.8, 3.9, '3.10', '3.11' ]"
       ovos_versions: "[ 3.8, 3.9, '3.10', '3.11' ]"
