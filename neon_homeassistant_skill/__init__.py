@@ -370,7 +370,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             if self.verbose:
                 self.speak_dialog("acknowledge")
             else:
-                self.log.info("Trying to decrease brightness")
+                self.log.info(f"Trying to decrease brightness for {device}")
         else:
             self.speak_dialog("no.parsed.device")
 
