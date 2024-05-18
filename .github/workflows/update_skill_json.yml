@@ -8,6 +8,8 @@ jobs:
   update_skill_json:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
       - name: Get Updated skill.json
         run: |
           python .github/workflows/scripts/update_skill_json.py action/skill
