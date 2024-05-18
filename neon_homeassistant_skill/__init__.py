@@ -1,27 +1,17 @@
 # pylint: disable=missing-function-docstring,missing-class-docstring,missing-module-docstring,logging-fstring-interpolation
-from typing import List
-
 from ovos_bus_client import Message
 from ovos_workshop.decorators import intent_handler
 from ovos_workshop.skills import OVOSSkill
 
-
-def chunks(lst, n_len) -> List[list]:
-    """Split list into n-length chunks."""
-    n_len = max(1, n_len)
-    return [lst[i : i + n_len] for i in range(0, len(lst), n_len)]
-
-
 DEFAULT_SETTINGS: dict = {
-    "connected": True,
+    "disable_intents": False,
 }
 
 
-# https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant/blob/master/ovos_PHAL_plugin_homeassistant/__init__.py
 class NeonHomeAssistantSkill(OVOSSkill):
     """Home Assistant skill for Neon OS. Requires the PHAL Home Assistant plugin."""
 
-    _intents_registered = True
+    _intents_enabled = True
     connected_intents = (
         "sensor.intent",
         "turn.on.intent",
@@ -37,21 +27,8 @@ class NeonHomeAssistantSkill(OVOSSkill):
         "assist.intent",
     )
 
-    @property
-    def connected(self) -> bool:
-        if self._connected is False:
-            self._connected = self.on_ready(  # pylint: disable=attribute-defined-outside-init
-                Message(
-                    "ovos.phal.plugin.homeassistant.check_connected",
-                    {},
-                    {"skill_id": self.skill_id},
-                )
-            )
-        return self._connected
-
     def initialize(self):
         # Register bus handlers
-        self.bus.on("mycroft.ready", self.on_ready)
         self.bus.on(
             "ovos.phal.plugin.homeassistant.assist.message.response",
             self._handle_assist_error,
@@ -93,25 +70,27 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.handle_set_light_color_response,
         )
         self.settings.merge(DEFAULT_SETTINGS, new_only=True)
-        self.bus.on("ovos.phal.plugin.homeassistant.ready", self.on_ready)
         self.verbose = self.settings.get("verbose", True)
         self.silent_entities = set(self.settings.get("silent_entities", []))
-        self._connected = self.settings.get("connected", False)  # pylint: disable=attribute-defined-outside-init
-        self._handle_connection_state(self.connected)
-
-    def _handle_connection_state(self, connected_to_plugin: bool):
-        if connected_to_plugin and self._intents_registered is False:
-            self.log.info("Home Assistant PHAL plugin connected! Registering intents.")
-            self.enable_ha_intents()
-            self._intents_registered = True
-        if not connected_to_plugin and self._intents_registered is True:
-            self.log.info("Home Assistant PHAL plugin not connected! Disabling intents.")
+        if self.disable_intents:
+            self.log.info("User has indicated they do not want to use Home Assistant intents. Disabling.")
             self.disable_ha_intents()
-            self._intents_registered = False
-        if connected_to_plugin and self._connected is True:
-            self.log.info("Home Assistant PHAL plugin reports connected, but intents are already registered.")
-        if not connected_to_plugin and self._connected is False:
-            self.log.info("Home Assistant PHAL plugin did not report connected, and intents are already disabled.")
+
+    @property
+    def disable_intents(self):
+        setting = self.settings.get("disable_intents", False)
+        self._handle_connection_state(setting)
+        return setting
+
+    def _handle_connection_state(self, disable_intents: bool):
+        if self._intents_enabled and disable_intents is True:
+            self.log.info(
+                "Disabling Home Assistant intents by user request. To re-enable, set disable_intents to False."
+            )
+            self.disable_ha_intents()
+        if not self._intents_enabled and disable_intents is False:
+            self.log.info("Enabling Home Assistant intents by user request. To disable, set disable_intents to True.")
+            self.enable_ha_intents()
 
     def enable_ha_intents(self):
         for intent in self.connected_intents:
@@ -120,6 +99,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
                 self.log.error(f"Error registering intent: {intent}")
             else:
                 self.log.info(f"Successfully registered intent: {intent}")
+        self._intents_enabled = True
 
     def disable_ha_intents(self):
         for intent in self.connected_intents:
@@ -128,25 +108,23 @@ class NeonHomeAssistantSkill(OVOSSkill):
                 assert self.intent_service.intent_is_detached(intent) is True
             except AssertionError:
                 self.log.error(f"Error disabling intent: {intent}")
-
-    def on_ready(self, message):
-        resp = self.bus.wait_for_response(message.forward("ovos.phal.plugin.homeassistant.check_connected"), timeout=1)
-        response = resp.data if resp else None
-        self.log.debug(f"Response from HA PHAL plugin: {response}")
-        if resp and resp.data.get("connected"):
-            self._handle_connection_state(connected_to_plugin=True)
-            return True
-        if not resp:
-            self._handle_connection_state(connected_to_plugin=False)
-            return False
-
-        self.log.info("PHAL Plugin not connected to HomeAssistant")
-        self.disable_ha_intents()
-        return False
+        self._intents_enabled = False
 
     # Handlers
+    @intent_handler("enable.intent")  # pragma: no cover
+    def handle_enable_intent(self, message: Message):
+        self.settings["disable_intents"] = False
+        self.speak_dialog("enable")
+        self.enable_ha_intents()
+
+    @intent_handler("disable.intent")  # pragma: no cover
+    def handle_disable_intent(self, message: Message):
+        self.settings["disable_intents"] = True
+        self.speak_dialog("disable")
+        self.disable_ha_intents()
+
     @intent_handler("sensor.intent")  # pragma: no cover
-    def get_device_intent(self, message):
+    def get_device_intent(self, message: Message):
         """Handle intent to get a single device status from Home Assistant."""
         self.log.info(message.data)
         device = message.data.get("entity", "")
@@ -165,7 +143,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         else:
             self.speak_dialog("no.parsed.device")
 
-    def handle_get_device_response(self, message):
+    def handle_get_device_response(self, message: Message):
         self.log.info(message.data)
         device = message.data
         if device:
@@ -181,7 +159,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.speak_dialog("device.not.found")
 
     @intent_handler("turn.on.intent")  # pragma: no cover
-    def handle_turn_on_intent(self, message) -> None:
+    def handle_turn_on_intent(self, message: Message) -> None:
         """Handle turn on intent."""
         self.log.info(message.data)
         device = message.data.get("entity", "")
@@ -200,7 +178,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         else:
             self.speak_dialog("no.parsed.device")
 
-    def handle_turn_on_response(self, message) -> None:
+    def handle_turn_on_response(self, message: Message) -> None:
         """Handle turn on intent response."""
         self.log.debug(f"Handling turn on response to {message.data}")
         device = message.data.get("device", "")
@@ -212,7 +190,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
 
     @intent_handler("turn.off.intent")  # pragma: no cover
     @intent_handler("stop.intent")  # pragma: no cover
-    def handle_turn_off_intent(self, message) -> None:
+    def handle_turn_off_intent(self, message: Message) -> None:
         """Handle turn off intent."""
         self.log.info(message.data)
         device = message.data.get("entity", "")
@@ -231,7 +209,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         else:
             self.speak_dialog("no.parsed.device")
 
-    def handle_turn_off_response(self, message) -> None:
+    def handle_turn_off_response(self, message: Message) -> None:
         self.log.debug(f"Handling turn off response to {message.data}")
         device = message.data.get("device", "")
         if device:
@@ -257,7 +235,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         self.speak_dialog("ha.dashboard.closed")
 
     @intent_handler("lights.get.brightness.intent")  # pragma: no cover
-    def handle_get_brightness_intent(self, message):
+    def handle_get_brightness_intent(self, message: Message):
         self.log.info(message.data)
         device = message.data.get("entity", "")
         if device:
@@ -271,7 +249,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         else:
             self.speak_dialog("no.parsed.device")
 
-    def handle_get_light_brightness_response(self, message):
+    def handle_get_light_brightness_response(self, message: Message):
         brightness = message.data.get("brightness")
         device = message.data.get("device")
         self.log.info(f"Device {device} brightness is {brightness}")
@@ -314,7 +292,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         else:
             self.speak_dialog("no.parsed.device")
 
-    def handle_set_light_brightness_response(self, message):
+    def handle_set_light_brightness_response(self, message: Message):
         """Handle set light brightness response. Works for increasing/decreasing or setting explicitly."""
         brightness = message.data.get("brightness")
         device = message.data.get("device")
@@ -333,7 +311,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             return self.speak_dialog("lights.status.not.available", data={"device": device})
 
     @intent_handler("lights.increase.brightness.intent")  # pragma: no cover
-    def handle_increase_brightness_intent(self, message):
+    def handle_increase_brightness_intent(self, message: Message):
         self.log.info(message.data)
         device = message.data.get("entity")
         if device:
@@ -354,7 +332,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.speak_dialog("no.parsed.device")
 
     @intent_handler("lights.decrease.brightness.intent")  # pragma: no cover
-    def handle_decrease_brightness_intent(self, message):
+    def handle_decrease_brightness_intent(self, message: Message):
         self.log.info(message.data)
         device = message.data.get("entity")
         if device:
@@ -376,7 +354,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
 
     # Light color
     @intent_handler("lights.get.color.intent")  # pragma: no cover
-    def handle_get_color_intent(self, message):
+    def handle_get_color_intent(self, message: Message):
         self.log.info(message.data)
         device = message.data.get("entity")
         if device:
@@ -390,7 +368,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         else:
             self.speak_dialog("no.parsed.device")
 
-    def handle_get_light_color_response(self, message):
+    def handle_get_light_color_response(self, message: Message):
         color = message.data.get("color")
         device = message.data.get("device")
         self.log.info(f"Device {device} color is {color}")
@@ -432,7 +410,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         else:
             self.speak_dialog("no.parsed.device")
 
-    def handle_set_light_color_response(self, message):
+    def handle_set_light_color_response(self, message: Message):
         """Handle set light color response."""
         color = message.data.get("color")
         device = message.data.get("device")
@@ -451,7 +429,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             return self.speak_dialog("lights.status.not.available", data={"device": device})
 
     @intent_handler("show.area.dashboard.intent")  # pragma: no cover
-    def handle_show_area_dashboard_intent(self, message):
+    def handle_show_area_dashboard_intent(self, message: Message):
         area = message.data.get("area")
         if area:
             self.bus.emit(
@@ -466,7 +444,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.speak_dialog("area.not.found")
 
     @intent_handler("assist.intent")  # pragma: no cover
-    def handle_assist_intent(self, message):
+    def handle_assist_intent(self, message: Message):
         """Handle passthrough to Home Assistant's Assist API."""
         command = message.data.get("command")
         if command:
@@ -485,7 +463,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.speak_dialog("assist.not.understood")
 
     # @intent_handler("vacuum.action.intent")  # TODO: Find an intent that doesn't conflict with OCP  # pragma: no cover
-    # def handle_vacuum_action_intent(self, message):
+    # def handle_vacuum_action_intent(self, message: Message):
     #     device, device_id = self._get_device_from_message(message)
     #     if device and device_id:  # If the intent doesn't understand the device, you'll get a device_id but no device
     #         dev = self._get_device_info(device_id)
@@ -508,7 +486,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
     #         self.speak_dialog("device.not.found", data={"device": device})
 
     def _handle_assist_error(self, _):
-        self.speak("Home Assistant returned an error. Please check the enclosure or PHAL logs for more information.")
+        self.speak_dialog("assist.error")
 
     def _get_ha_value_from_percentage_brightness(self, brightness):
         return round(int(brightness)) / 100 * 255
