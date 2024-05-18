@@ -129,13 +129,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         self.log.info(message.data)
         device = message.data.get("entity", "")
         if device:
-            self.bus.emit(
-                Message(
-                    "ovos.phal.plugin.homeassistant.get.device",
-                    {"device": device},
-                    {"skill_id": self.skill_id},
-                )
-            )
+            self.bus.emit(message.forward("ovos.phal.plugin.homeassistant.get.device", {"device": device}))
             if self.verbose:
                 self.speak_dialog("acknowledge")
             else:
@@ -165,10 +159,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
         device = message.data.get("entity", "")
         if device:
             self.bus.emit(
-                Message(
+                message.forward(
                     "ovos.phal.plugin.homeassistant.device.turn_on",
                     {"device": device},
-                    {"skill_id": self.skill_id},
                 )
             )
             if self.verbose:
@@ -196,10 +189,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
         device = message.data.get("entity", "")
         if device:
             self.bus.emit(
-                Message(
+                message.forward(
                     "ovos.phal.plugin.homeassistant.device.turn_off",
                     {"device": device},
-                    {"skill_id": self.skill_id},
                 )
             )
             if self.verbose:
@@ -219,17 +211,16 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.speak_dialog("no.parsed.device")
 
     @intent_handler("open.dashboard.intent")  # pragma: no cover
-    def handle_open_dashboard_intent(self, _):
-        self.bus.emit(Message("ovos-PHAL-plugin-homeassistant.home", None, {"skill_id": self.skill_id}))
+    def handle_open_dashboard_intent(self, message: Message):
+        self.bus.emit(message.forward("ovos-PHAL-plugin-homeassistant.home", None))
         self.speak_dialog("ha.dashboard.opened")
 
     @intent_handler("close.dashboard.intent")  # pragma: no cover
-    def handle_close_dashboard_intent(self, _):
+    def handle_close_dashboard_intent(self, message: Message):
         self.bus.emit(
-            Message(
+            message.forward(
                 "ovos-PHAL-plugin-homeassistant.close",
                 None,
-                {"skill_id": self.skill_id},
             )
         )
         self.speak_dialog("ha.dashboard.closed")
@@ -240,10 +231,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
         device = message.data.get("entity", "")
         if device:
             self.bus.emit(
-                Message(
+                message.forward(
                     "ovos.phal.plugin.homeassistant.get.light.brightness",
                     {"device": device},
-                    {"skill_id": self.skill_id},
                 )
             )
         else:
@@ -279,10 +269,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
             }
             self.log.info(call_data)
             self.bus.emit(
-                Message(
+                message.forward(
                     "ovos.phal.plugin.homeassistant.set.light.brightness",
                     call_data,
-                    message.context,
                 )
             )
             if self.verbose:
@@ -318,10 +307,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
             call_data = {"device": device}
             self.log.info(call_data)
             self.bus.emit(
-                Message(
+                message.forward(
                     "ovos.phal.plugin.homeassistant.increase.light.brightness",
                     call_data,
-                    message.context,
                 )
             )
             if self.verbose:
@@ -339,10 +327,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
             call_data = {"device": device}
             self.log.info(call_data)
             self.bus.emit(
-                Message(
+                message.forward(
                     "ovos.phal.plugin.homeassistant.decrease.light.brightness",
                     call_data,
-                    message.context,
                 )
             )
             if self.verbose:
@@ -359,10 +346,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
         device = message.data.get("entity")
         if device:
             self.bus.emit(
-                Message(
+                message.forward(
                     "ovos.phal.plugin.homeassistant.get.light.color",
                     {"device": device},
-                    {"skill_id": self.skill_id},
                 )
             )
         else:
@@ -397,10 +383,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
             }
             self.log.info(call_data)
             self.bus.emit(
-                Message(
+                message.forward(
                     "ovos.phal.plugin.homeassistant.set.light.color",
                     call_data,
-                    message.context,
                 )
             )
             if self.verbose:
@@ -433,10 +418,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
         area = message.data.get("area")
         if area:
             self.bus.emit(
-                Message(
+                message.forward(
                     "ovos.phal.plugin.homeassistant.show.area.dashboard",
                     {"area": area},
-                    {"skill_id": self.skill_id},
                 )
             )
             self.speak_dialog("area.dashboard.opened", data={"area": area})
@@ -449,10 +433,9 @@ class NeonHomeAssistantSkill(OVOSSkill):
         command = message.data.get("command")
         if command:
             self.bus.emit(
-                Message(
+                message.forward(
                     "ovos.phal.plugin.homeassistant.assist.intent",
                     {"command": command},
-                    {"skill_id": self.skill_id},
                 )
             )
             if self.verbose:
@@ -475,7 +458,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
     #                     "function_name": message.data.get("action"),
     #                 }
     #                 self.log.info(call_data)
-    #                 self.bus.emit(Message("ovos.phal.plugin.homeassistant.call.supported.function", call_data))
+    #                 self.bus.emit(message.forward("ovos.phal.plugin.homeassistant.call.supported.function", call_data))
     #             if self.verbose:
     #                 self.speak_dialog("acknowledge")
     #             else:

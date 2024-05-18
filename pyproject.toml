@@ -1,25 +1,35 @@
 [build-system]
-requires = [ "poetry_core>=1.0.0" ]
+requires = ["poetry_core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "neon-homeassistant-skill"
 version = "0.0.18"
 description = "An OVOS/Neon.AI Skill for Home Assistant, which integrates with ovos-PHAL-plugin-homeassistant."
-authors = [ "Mike Gray <mike@graywind.org>" ]
+authors = ["Mike Gray <mike@graywind.org>"]
 readme = "README.md"
 license = "Apache-2.0"
 include = ["neon_homeassistant_skill/locale/*"]
-keywords = ["ovos", "neon", "home", "assistant", "phal", "voice", "interface", "skill", "plugin"]
+keywords = [
+    "ovos",
+    "neon",
+    "home",
+    "assistant",
+    "phal",
+    "voice",
+    "interface",
+    "skill",
+    "plugin",
+]
 
 [tool.poetry.extras]
 test = ["neon-minerva"]
 
 [tool.poetry.dependencies]
 python = "^3.8,<3.12"
-ovos-bus-client = {version = "*", allow-prereleases = true}
+ovos-bus-client = { version = "*", allow-prereleases = true }
 ovos-workshop = ">=0.0.12"
-neon-minerva = {version = "~=0.1.1a5", allow-prereleases = true}
+neon-minerva = { version = "~=0.1.1a5", allow-prereleases = true }
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
@@ -31,15 +41,16 @@ black = "*"
 mypy = "*"
 bandit = "*"
 types-pyyaml = "*"
-ovos-utils = {version = "*", allow-prereleases = true}
-ovos-skills-manager = {version = "*", allow-prereleases = true}
-padacioso = {version = "*", allow-prereleases = true}
-adapt-parser = {git = "https://github.com/mycroftai/adapt"}
+ovos-utils = { version = "*", allow-prereleases = true }
+ovos-skills-manager = { version = "*", allow-prereleases = true }
+padacioso = { version = "*", allow-prereleases = true }
+adapt-parser = { git = "https://github.com/mycroftai/adapt" }
 ovos-core = ">=0.0.7"
-ovos-phal-plugin-homeassistant = {version = "*", allow-prereleases = true}
+ovos-phal-plugin-homeassistant = { version = "*", allow-prereleases = true }
 poethepoet = "^0.24.4"
 pytest-cov = "^4.1.0"
 setuptools = "^69.0.3"
+toml = "^0.10.2"
 
 [tool.ruff]
 line-length = 119
