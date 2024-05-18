@@ -480,7 +480,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             if self.verbose:
                 self.speak_dialog("assist")
             else:
-                self.log.info("Trying to pass message to Home Assistant's Assist API")
+                self.log.info(f"Trying to pass message to Home Assistant's Assist API:\n{command}")
         else:
             self.speak_dialog("assist.not.understood")
 
