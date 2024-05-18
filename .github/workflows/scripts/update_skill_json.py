@@ -94,5 +94,4 @@ def get_poetry_skill_data(skill_dir: str):
 
 
 if __name__ == "__main__":
-    # get_skill_json(argv[1])
-    get_skill_json("/Users/Mike/Documents/coding/VoiceAssistants/neon-homeassistant-skill")
+    get_skill_json(argv[1])
