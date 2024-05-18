@@ -15,7 +15,7 @@ jobs:
       - name: Get Updated skill.json
         run: |
           pip install toml
-          python .github/workflows/scripts/update_skill_json.py action/skill
+          python action/skill/.github/workflows/scripts/update_skill_json.py action/skill
       - name: Push skill.json Change
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
