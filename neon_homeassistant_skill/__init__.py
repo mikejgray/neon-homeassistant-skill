@@ -161,7 +161,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
             if self.verbose:
                 self.speak_dialog("acknowledge")
             else:
-                self.log.info("Trying to get device status")
+                self.log.info(f"Trying to get device status for {device}")
         else:
             self.speak_dialog("no.parsed.device")
 
