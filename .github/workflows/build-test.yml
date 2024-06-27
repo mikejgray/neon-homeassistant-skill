@@ -26,4 +26,4 @@ jobs:
         uses: pypa/gh-action-pip-audit@v1.0.7
         with:
           # Upstream issues we can't really resolve from here
-          ignore-vulns: "GHSA-r9hx-vwmv-q579 PYSEC-2022-43012 PYSEC-2023-228 PYSEC-2023-74"
+          ignore-vulns: "GHSA-r9hx-vwmv-q579 PYSEC-2022-43012 PYSEC-2023-228 PYSEC-2023-74 GHSA-9wx4-h78v-vm56"
