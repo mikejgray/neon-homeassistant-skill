@@ -6,4 +6,18 @@ permissions:
 
 jobs:
   update_skill_json:
-    uses: neongeckocom/.github/.github/workflows/skill_update_json_spec.yml@master
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          path: action/skill
+      - name: Get Updated skill.json
+        run: |
+          pip install toml
+          python action/skill/.github/workflows/scripts/update_skill_json.py action/skill
+      - name: Push skill.json Change
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update skill.json
+          repository: action/skill/
