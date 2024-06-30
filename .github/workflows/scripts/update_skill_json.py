@@ -50,7 +50,7 @@ def get_skill_json(skill_dir: str):
             json.dump(skill_spec, f, indent=4)
     else:
         print("No changes to skill.json")
-    copy(skill_json, join(skill_dir, "neon_homeassistant_skill", "locale", "skill.json"))
+    copy(skill_json, join(skill_dir, "neon_homeassistant_skill", "locale", "en-us", "skill.json"))
 
 
 def get_poetry_skill_data(skill_dir: str):
@@ -68,9 +68,13 @@ def get_poetry_skill_data(skill_dir: str):
         "images": [],
         "name": "",
         "description": "",
-        "examples": ["What is the status of the living room light?", "Turn on the kitchen light", "Change light bedside lamp to blue"],
+        "examples": [
+            "What is the status of the living room light?",
+            "Turn on the kitchen light",
+            "Change light bedside lamp to blue",
+        ],
         "tags": [],
-        "version": ""
+        "version": "",
     }
     from toml import load
 
