@@ -20,7 +20,7 @@ jobs:
           cache-poetry: true
       - name: Check build
         run: |
-          poetry install
+          poetry install --no-dev
           poetry build
       - name: PIP Audit
         uses: pypa/gh-action-pip-audit@v1.0.7
