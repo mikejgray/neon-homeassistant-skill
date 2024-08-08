@@ -2,11 +2,13 @@
 # pylint: disable=invalid-name,protected-access
 import unittest
 from os import getenv
-from yaml import safe_load
 
-from mycroft.skills.intent_service import IntentService
+from mock import Mock, call
+from ovos_bus_client import Message
 from ovos_utils.messagebus import FakeBus
 from padacioso import IntentContainer
+from yaml import safe_load
+
 from neon_homeassistant_skill import NeonHomeAssistantSkill
 
 BRANCH = "main"
@@ -30,20 +32,15 @@ class TestSkillIntentMatching(unittest.TestCase):
                 u = []
                 for sentence, entity in utt[0].items():
                     if "entity" in entity[0].keys():
-                        revised_intent = sentence.replace(
-                            entity[0].get("entity"), "{entity}"
-                        )
+                        revised_intent = sentence.replace(entity[0].get("entity"), "{entity}")
                         if len(entity[0].keys()) > 1 and entity[0].get("color"):
-                            revised_intent = revised_intent.replace(
-                                entity[0].get("color"), "{color}"
-                            )
+                            revised_intent = revised_intent.replace(entity[0].get("color"), "{color}")
                         u.append(revised_intent)
                     elif "area" in entity[0].keys():
                         u.append(sentence.replace(entity[0].get("area"), "{area}"))
             ha_intents.add_intent(name, u)
 
     bus = FakeBus()
-    intent_service = IntentService(bus)
     test_skill_id = "test_skill.test"
 
     @classmethod
@@ -64,3 +61,57 @@ class TestSkillIntentMatching(unittest.TestCase):
                         result = self.ha_intents.calc_intent(u)
                         if len(utt[u]) > 1:
                             self.assertTrue(list(utt[u][1].values())[0] in u)
+
+    def test_turn_on_silent_entities(self):
+        self.skill.speak_dialog = Mock()
+        self.skill.settings["silent_entities"] = ["emergency switch", "freezer switch"]
+        self.skill.handle_turn_on_response(Message(msg_type="test", data={"device": "emergency switch"}))
+        self.skill.speak_dialog.assert_has_calls([call("no.parsed.device")])
+        self.skill.speak_dialog.reset_mock()
+        self.skill.handle_turn_on_response(Message(msg_type="test", data={"device": "freezer switch"}))
+        self.skill.speak_dialog.assert_has_calls([call("no.parsed.device")])
+        self.skill.speak_dialog.reset_mock()
+        self.skill.handle_turn_on_response(Message(msg_type="test", data={"device": "ambiance"}))
+        self.skill.speak_dialog.assert_has_calls([call("device.turned.on", data={"device": "ambiance"})])
+
+    def test_turn_off_silent_entities(self):
+        self.skill.speak_dialog = Mock()
+        self.skill.settings["silent_entities"] = ["emergency switch", "freezer switch"]
+        self.skill.handle_turn_off_response(Message(msg_type="test", data={"device": "emergency switch"}))
+        self.skill.speak_dialog.assert_has_calls([call("no.parsed.device")])
+        self.skill.speak_dialog.reset_mock()
+        self.skill.handle_turn_off_response(Message(msg_type="test", data={"device": "freezer switch"}))
+        self.skill.speak_dialog.assert_has_calls([call("no.parsed.device")])
+        self.skill.speak_dialog.reset_mock()
+        self.skill.handle_turn_off_response(Message(msg_type="test", data={"device": "ambiance"}))
+        self.skill.speak_dialog.assert_has_calls([call("device.turned.off", data={"device": "ambiance"})])
+
+    def test_light_brightness_response_silent_entities(self):
+        self.skill.speak_dialog = Mock()
+        self.skill.settings["silent_entities"] = ["ignore bulb"]
+        self.skill.handle_set_light_brightness_response(
+            Message(msg_type="test", data={"device": "ignore bulb", "brightness": 50})
+        )
+        self.skill.speak_dialog.assert_not_called()
+        self.skill.speak_dialog.reset_mock()
+        self.skill.handle_set_light_brightness_response(
+            Message(msg_type="test", data={"device": "bunny", "brightness": 50})
+        )
+        self.skill.speak_dialog.assert_has_calls(
+            [call("lights.current.brightness", data={"device": "bunny", "brightness": 50})]
+        )
+
+    def test_set_light_color_response_silent_entities(self):
+        self.skill.speak_dialog = Mock()
+        self.skill.settings["silent_entities"] = ["ignore bulb"]
+        self.skill.handle_set_light_color_response(
+            Message(msg_type="test", data={"device": "ignore bulb", "color": "chartreuse"})
+        )
+        self.skill.speak_dialog.assert_not_called()
+        self.skill.speak_dialog.reset_mock()
+        self.skill.handle_set_light_color_response(
+            Message(msg_type="test", data={"device": "bunny", "color": "mauve"})
+        )
+        self.skill.speak_dialog.assert_has_calls(
+            [call("lights.current.color", data={"device": "bunny", "color": "mauve"})]
+        )
