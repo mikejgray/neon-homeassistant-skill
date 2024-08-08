@@ -70,11 +70,17 @@ class NeonHomeAssistantSkill(OVOSSkill):
             self.handle_set_light_color_response,
         )
         self.settings.merge(DEFAULT_SETTINGS, new_only=True)
-        self.verbose = self.settings.get("verbose", True)
-        self.silent_entities = set(self.settings.get("silent_entities", []))
         if self.disable_intents:
             self.log.info("User has indicated they do not want to use Home Assistant intents. Disabling.")
             self.disable_ha_intents()
+
+    @property
+    def verbose(self):
+        return self.settings.get("verbose", False)
+
+    @property
+    def silent_entities(self):
+        return self.settings.get("silent_entities", [])
 
     @property
     def disable_intents(self):
@@ -175,9 +181,8 @@ class NeonHomeAssistantSkill(OVOSSkill):
         """Handle turn on intent response."""
         self.log.debug(f"Handling turn on response to {message.data}")
         device = message.data.get("device", "")
-        if device:
-            if device not in self.silent_devices:
-                self.speak_dialog("device.turned.on", data={"device": device})
+        if device and device not in self.silent_entities:
+            self.speak_dialog("device.turned.on", data={"device": device})
         else:
             self.speak_dialog("no.parsed.device")
 
@@ -204,9 +209,8 @@ class NeonHomeAssistantSkill(OVOSSkill):
     def handle_turn_off_response(self, message: Message) -> None:
         self.log.debug(f"Handling turn off response to {message.data}")
         device = message.data.get("device", "")
-        if device:
-            if device not in self.silent_devices:
-                self.speak_dialog("device.turned.off", data={"device": device})
+        if device and device not in self.silent_entities:
+            self.speak_dialog("device.turned.off", data={"device": device})
         else:
             self.speak_dialog("no.parsed.device")
 
@@ -286,7 +290,7 @@ class NeonHomeAssistantSkill(OVOSSkill):
         brightness = message.data.get("brightness")
         device = message.data.get("device")
         self.log.info(f"Device {device} brightness is now {brightness}")
-        if brightness and device not in self.silent_devices:
+        if brightness and device not in self.silent_entities:
             return self.speak_dialog(
                 "lights.current.brightness",
                 data={
@@ -294,6 +298,8 @@ class NeonHomeAssistantSkill(OVOSSkill):
                     "device": device,
                 },
             )
+        if device in self.silent_entities:
+            return
         if message.data.get("response"):
             return self.speak_dialog("device.not.found", data={"device": device})
         else:
@@ -408,6 +414,8 @@ class NeonHomeAssistantSkill(OVOSSkill):
                     "device": device,
                 },
             )
+        if device in self.silent_entities:
+            return
         if message.data.get("response"):
             return self.speak_dialog("device.not.found", data={"device": device})
         else:
