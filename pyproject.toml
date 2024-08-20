@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "neon-homeassistant-skill"
-version = "0.0.21"
+version = "0.0.22"
 description = "An OVOS/Neon.AI Skill for Home Assistant, which integrates with ovos-PHAL-plugin-homeassistant."
 authors = ["Mike Gray <mike@graywind.org>"]
 readme = "README.md"
@@ -51,6 +51,7 @@ poethepoet = "^0.24.4"
 pytest-cov = "^4.1.0"
 setuptools = "^69.0.3"
 toml = "^0.10.2"
+mock = "^5.1.0"
 
 [tool.ruff]
 line-length = 119
