@@ -8,7 +8,7 @@ def test_default_enabled_state():
     skill = NeonHomeAssistantSkill(bus=bus, skill_id="neon_homeassistant_skill.test")
     assert set(skill.connected_intents).issubset({intent[0] for intent in skill.intent_service.registered_intents})
     assert skill._intents_enabled is True
-    return bus, skill
+
 
 
 def test_intent_disable_setting():
