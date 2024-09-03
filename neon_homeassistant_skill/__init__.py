@@ -3,10 +3,6 @@ from ovos_bus_client import Message
 from ovos_workshop.decorators import intent_handler
 from ovos_workshop.skills import OVOSSkill
 
-DEFAULT_SETTINGS: dict = {
-    "disable_intents": False,
-}
-
 
 class NeonHomeAssistantSkill(OVOSSkill):
     """Home Assistant skill for Neon OS. Requires the PHAL Home Assistant plugin."""
@@ -69,7 +65,6 @@ class NeonHomeAssistantSkill(OVOSSkill):
             "ovos.phal.plugin.homeassistant.set.light.color.response",
             self.handle_set_light_color_response,
         )
-        self.settings.merge(DEFAULT_SETTINGS, new_only=True)
         self.verbose = self.settings.get("verbose", True)
         self.silent_entities = set(self.settings.get("silent_entities", []))
         if self.disable_intents:
