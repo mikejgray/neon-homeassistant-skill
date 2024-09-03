@@ -65,8 +65,6 @@ class NeonHomeAssistantSkill(OVOSSkill):
             "ovos.phal.plugin.homeassistant.set.light.color.response",
             self.handle_set_light_color_response,
         )
-        self.verbose = self.settings.get("verbose", True)
-        self.silent_entities = set(self.settings.get("silent_entities", []))
         if self.disable_intents:
             self.log.info("User has indicated they do not want to use Home Assistant intents. Disabling.")
             self.disable_ha_intents()
@@ -75,15 +73,28 @@ class NeonHomeAssistantSkill(OVOSSkill):
     def verbose(self):
         return self.settings.get("verbose", False)
 
+    @verbose.setter
+    def verbose(self, value):
+        self.settings["verbose"] = value
+
     @property
     def silent_entities(self):
-        return self.settings.get("silent_entities", [])
+        return set(self.settings.get("silent_entities", []))
+
+    @silent_entities.setter
+    def silent_entities(self, value):
+        self.settings["silent_entities"] = value
 
     @property
     def disable_intents(self):
         setting = self.settings.get("disable_intents", False)
         self._handle_connection_state(setting)
         return setting
+
+    @disable_intents.setter
+    def disable_intents(self, value):
+        self.settings["disable_intents"] = value
+        self._handle_connection_state(value)
 
     def _handle_connection_state(self, disable_intents: bool):
         if self._intents_enabled and disable_intents is True:
