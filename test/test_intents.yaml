@@ -22,7 +22,7 @@
 
 en-us:
   close_dashboard.intent:
-    - close home assistant
+    # - close home assistant
     - close the home assistant
     - close my home assistant
     - close home assistant dashboard
