@@ -15,6 +15,7 @@ jobs:
     uses: neongeckocom/.github/.github/workflows/skill_test_intents.yml@master
     with:
       test_padacioso: false
+      test_padatious: true
       neon_versions: "[ 3.8, 3.9, '3.10', '3.11' ]"
       ovos_versions: "[ 3.8, 3.9, '3.10', '3.11' ]"
   skill_resource_tests:
