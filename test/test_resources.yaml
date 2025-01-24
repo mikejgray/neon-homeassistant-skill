@@ -47,5 +47,6 @@ intents:
     - assist.intent
     - disable.intent
     - enable.intent
+    - get.all.devices.intent
   # Adapt intents are the name passed to the constructor
   adapt: []
