@@ -128,11 +128,10 @@ class NeonHomeAssistantSkill(OVOSSkill):
 
     @intent_handler("get.all.devices.intent")  # pragma: no cover
     def handle_rebuild_device_list(self, message: Message):
-        ha_config = self.config_core.get("PHAL", {}).get("ovos-PHAL-plugin-homeassistant", {})
         self.bus.emit(
             message.forward(
-                "ovos.phal.plugin.homeassistant.setup.instance",
-                {"url": ha_config.get("host", {}), "api_key": ha_config.get("api_key")},
+                "ovos.phal.plugin.homeassistant.rebuild.device.list",
+                None,
             )
         )
         self.speak_dialog("acknowledge")
