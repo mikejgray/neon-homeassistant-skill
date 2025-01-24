@@ -9,15 +9,14 @@ jobs:
   skill_unit_tests:
     uses: neongeckocom/.github/.github/workflows/skill_tests.yml@master
     with:
-      neon_versions: "[ 3.8, 3.9, '3.10', '3.11' ]"
-      ovos_versions: "[ 3.8, 3.9, '3.10', '3.11' ]"
+      neon_versions: "[ 3.9, '3.10', '3.11', '3.12' ]"
+      ovos_versions: "[ 3.9, '3.10', '3.11', '3.12' ]"
   skill_intent_tests:
     uses: neongeckocom/.github/.github/workflows/skill_test_intents.yml@master
     with:
       test_padacioso: false
-      test_padatious: true
-      neon_versions: "[ 3.8, 3.9, '3.10', '3.11' ]"
-      ovos_versions: "[ 3.8, 3.9, '3.10', '3.11' ]"
+      neon_versions: "[ 3.9, '3.10', '3.11', '3.12' ]"
+      ovos_versions: "[ 3.9, '3.10', '3.11', '3.12' ]"
   skill_resource_tests:
     uses: neongeckocom/.github/.github/workflows/skill_test_resources.yml@master
     with:
