@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "neon-homeassistant-skill"
-version = "0.0.22"
+version = "0.0.23"
 description = "An OVOS/Neon.AI Skill for Home Assistant, which integrates with ovos-PHAL-plugin-homeassistant."
 authors = ["Mike Gray <mike@graywind.org>"]
 readme = "README.md"
@@ -26,10 +26,10 @@ keywords = [
 test = ["neon-minerva"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 ovos-bus-client = { version = "*", allow-prereleases = true }
-ovos-workshop = ">=0.0.12"
-neon-minerva = { version = "~=0.2.0", allow-prereleases = true }
+ovos-workshop = ">=0.0.15"
+setuptools = "^75.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
@@ -42,15 +42,14 @@ mypy = "*"
 bandit = "*"
 types-pyyaml = "*"
 ovos-utils = { version = "*", allow-prereleases = true }
-ovos-skills-manager = { version = "*", allow-prereleases = true }
 padacioso = { version = "*", allow-prereleases = true }
 adapt-parser = { git = "https://github.com/mycroftai/adapt" }
 ovos-core = ">=0.0.7"
 ovos-phal-plugin-homeassistant = { version = "*", allow-prereleases = true }
-poethepoet = "^0.24.4"
-pytest-cov = "^4.1.0"
-setuptools = "^69.0.3"
+poethepoet = "^0.32.1"
+pytest-cov = "^6.0.0"
 toml = "^0.10.2"
+neon-minerva = { version = "~=0.2.0", allow-prereleases = true }
 mock = "^5.1.0"
 
 [tool.ruff]
