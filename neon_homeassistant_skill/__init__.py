@@ -125,6 +125,12 @@ class NeonHomeAssistantSkill(OVOSSkill):
         self._intents_enabled = False
 
     # Handlers
+
+    @intent_handler("get.all.devices.intent")  # pragma: no cover
+    def handle_rebuild_device_list(self, message: Message):
+        self.bus.emit(message.forward("ovos.phal.plugin.homeassistant.setup.instance", None))
+        self.speak_dialog("acknowledge")
+
     @intent_handler("enable.intent")  # pragma: no cover
     def handle_enable_intent(self, message: Message):
         self.settings["disable_intents"] = False
