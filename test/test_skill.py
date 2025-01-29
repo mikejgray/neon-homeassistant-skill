@@ -115,3 +115,8 @@ class TestSkillIntentMatching(unittest.TestCase):
         self.skill.speak_dialog.assert_has_calls(
             [call("lights.current.color", data={"device": "bunny", "color": "mauve"})]
         )
+
+    def test_get_all_devices(self):
+        self.skill.speak_dialog = Mock()
+        self.skill.handle_rebuild_device_list(Message(msg_type="test"))
+        self.skill.speak_dialog.assert_called_once_with("acknowledge")

@@ -1484,6 +1484,8 @@ en-us:
   disable.intent:
     - Disable Home Assistant
     - I don't use Home Assistant
+  get.all.devices.intent:
+    - rebuild device list
 unmatched intents:
   en-us:
     - set a reminder to change my oil at 4 PM
