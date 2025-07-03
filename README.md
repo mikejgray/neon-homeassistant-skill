@@ -1,5 +1,7 @@
 # Home Assistant Neon Skill
 
+**NOTICE:** This skill has been deprecated in favor of https://github.com/OscillateLabsLLC/skill-homeassistant. It will remain here to support users running on Neon's Mark 2 OS, but gradually move to the other skill. We recommend migrating as soon as you're able.
+
 Uses [PHAL Home Assistant plugin](https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant)
 
 Available on PyPi: `pip install neon-homeassistant-skill`
